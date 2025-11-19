@@ -88,10 +88,10 @@ const Timeline = () => {
               >
                 {/* Vertical connector line to main horizontal line */}
                 <div 
-                  className="w-0.5 h-20 bg-white animate-line-grow-vertical origin-top absolute"
+                  className="w-0.5 h-40 bg-white animate-line-grow-vertical origin-top absolute"
                   style={{ 
                     animationDelay: `${(topSteps.length + index) * 0.3 + 1.5}s`,
-                    top: '-20px',
+                    top: '-160px',
                     left: '50%',
                     transform: 'translateX(-50%)'
                   }}
