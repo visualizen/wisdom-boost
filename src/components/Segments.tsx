@@ -44,9 +44,18 @@ const Segments = () => {
           {segments.map((segment, index) => (
             <Card 
               key={index}
-              className="hover:shadow-lg-custom transition-all duration-300 hover:-translate-y-2 border-border/50 shadow-card overflow-hidden animate-fade-in-up group"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="group relative overflow-hidden transition-all duration-500 hover:-translate-y-3 animate-slide-up-bounce border border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]"
+              style={{ 
+                animationDelay: `${index * 0.15}s`,
+                animationFillMode: 'both'
+              }}
             >
+              {/* Gradient border effect */}
+              <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
+              
+              {/* Glow effect on hover */}
+              <div className="absolute -inset-1 bg-gradient-primary opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
+              
               <div className="relative h-48 overflow-hidden">
                 <img 
                   src={segment.image} 
@@ -55,12 +64,12 @@ const Segments = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </div>
-              <CardHeader>
+              <CardHeader className="relative z-10">
                 <CardTitle className="text-2xl group-hover:text-primary transition-colors duration-300">
                   {segment.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="relative z-10">
                 <p className="text-muted-foreground text-base leading-relaxed">
                   {segment.description}
                 </p>
