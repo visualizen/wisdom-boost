@@ -7,19 +7,19 @@ const Hero = () => {
         <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
           <source src={heroVideo} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/90 to-primary-dark/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/70 to-primary/50" />
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
+        <div className="max-w-4xl mx-auto text-center text-white animate-fade-in-up">
           
           
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-primary-light">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
             Soluções Completas no{" "}
             <span className="bg-gradient-text bg-clip-text text-transparent">Comércio Exterior</span>
           </h1>
           
-          <p className="text-xl sm:text-2xl mb-8 text-primary-light/90 max-w-3xl mx-auto">
+          <p className="text-xl sm:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
             Importação e exportação ágil, segura e econômica. 
             Eliminamos barreiras e conectamos sua empresa ao mercado global.
           </p>
