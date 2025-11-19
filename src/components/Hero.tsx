@@ -36,10 +36,10 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              size="lg" 
-              className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6 group"
-            >
+          <Button 
+            size="lg" 
+            className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 text-lg px-8 py-6 group border border-white/20"
+          >
               Conheça Nossas Soluções
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </Button>
