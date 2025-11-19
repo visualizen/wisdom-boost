@@ -131,6 +131,14 @@ export default {
             boxShadow: "0 0 30px rgba(59, 130, 246, 0.6)",
           },
         },
+        "scroll-infinite": {
+          "0%": {
+            transform: "translateX(0)",
+          },
+          "100%": {
+            transform: "translateX(-50%)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -140,6 +148,7 @@ export default {
         "scale-in": "scale-in 0.5s ease-out",
         "slide-up-bounce": "slide-up-bounce 1s cubic-bezier(0.34, 1.56, 0.64, 1)",
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        "scroll-infinite": "scroll-infinite 30s linear infinite",
       },
     },
   },
