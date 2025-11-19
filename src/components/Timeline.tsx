@@ -86,15 +86,20 @@ const Timeline = () => {
                   top: '0'
                 }}
               >
-                <p className="text-sm font-semibold text-white mb-4 text-center w-32">{step.label}</p>
-                {/* Vertical connector line */}
+                {/* Vertical connector line to main horizontal line */}
                 <div 
-                  className="w-0.5 h-20 bg-white animate-line-grow-vertical origin-top"
-                  style={{ animationDelay: `${(topSteps.length + index) * 0.3 + 1.5}s` }}
+                  className="w-0.5 h-20 bg-white animate-line-grow-vertical origin-top absolute"
+                  style={{ 
+                    animationDelay: `${(topSteps.length + index) * 0.3 + 1.5}s`,
+                    top: '-20px',
+                    left: '50%',
+                    transform: 'translateX(-50%)'
+                  }}
                 />
-                <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 relative z-10">
+                <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 relative z-10 mt-0">
                   <step.icon className="text-black" size={32} />
                 </div>
+                <p className="text-sm font-semibold text-white mt-4 text-center w-32">{step.label}</p>
               </div>
             ))}
           </div>
