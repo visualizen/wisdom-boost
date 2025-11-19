@@ -46,12 +46,15 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 perspective-1000">
           {services.map((service, index) => (
             <Card 
               key={index} 
-              className="group relative overflow-hidden transition-all duration-500 hover:-translate-y-3 animate-fade-in-up border border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="group relative overflow-hidden transition-all duration-500 hover:-translate-y-3 animate-slide-up-bounce border border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)]"
+              style={{ 
+                animationDelay: `${index * 0.15}s`,
+                animationFillMode: 'both'
+              }}
             >
               {/* Gradient border effect */}
               <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
