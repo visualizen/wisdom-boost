@@ -45,12 +45,12 @@ const Certifications = () => {
               {duplicatedCertifications.map((cert, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 mx-8 w-32 h-32 flex items-center justify-center bg-white rounded-lg shadow-card hover:shadow-lg-custom transition-all duration-300 hover:scale-110"
+                  className="flex-shrink-0 mx-8 w-48 h-48 flex items-center justify-center hover:scale-110 transition-transform duration-300"
                 >
                   <img
                     src={cert.logo}
                     alt={cert.name}
-                    className="max-w-full max-h-full object-contain p-4"
+                    className="max-w-full max-h-full object-contain"
                   />
                 </div>
               ))}
