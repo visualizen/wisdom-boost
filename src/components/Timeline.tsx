@@ -74,30 +74,29 @@ const Timeline = () => {
           </div>
 
           {/* Bottom Row */}
-          <div className="relative mt-0" style={{ minHeight: '200px' }}>
-            <div className="flex justify-between items-start relative" style={{ paddingTop: '16px' }}>
-              {bottomSteps.map((step, index) => (
+          <div className="relative" style={{ minHeight: '220px' }}>
+            {bottomSteps.map((step, index) => (
+              <div 
+                key={index} 
+                className="flex flex-col items-center animate-fade-in-up group absolute"
+                style={{ 
+                  animationDelay: `${(index + topSteps.length) * 0.1}s`,
+                  left: `${((index + 1) / (topSteps.length)) * 100}%`,
+                  transform: 'translateX(-50%)',
+                  top: '0'
+                }}
+              >
+                <p className="text-sm font-semibold text-white mb-4 text-center w-32">{step.label}</p>
+                {/* Vertical connector line */}
                 <div 
-                  key={index} 
-                  className="flex flex-col items-center animate-fade-in-up group absolute"
-                  style={{ 
-                    animationDelay: `${(index + topSteps.length) * 0.1}s`,
-                    left: `${((index + 0.5) / topSteps.length) * 100}%`,
-                    transform: 'translateX(-50%)'
-                  }}
-                >
-                  <p className="text-sm font-semibold text-white mb-4 text-center min-h-[40px] flex items-end w-32">{step.label}</p>
-                  {/* Vertical connector line */}
-                  <div 
-                    className="w-0.5 h-16 bg-white animate-line-grow-vertical origin-top"
-                    style={{ animationDelay: `${(topSteps.length + index) * 0.3 + 1.5}s` }}
-                  />
-                  <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 relative z-10">
-                    <step.icon className="text-black" size={32} />
-                  </div>
+                  className="w-0.5 h-20 bg-white animate-line-grow-vertical origin-top"
+                  style={{ animationDelay: `${(topSteps.length + index) * 0.3 + 1.5}s` }}
+                />
+                <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 relative z-10">
+                  <step.icon className="text-black" size={32} />
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
