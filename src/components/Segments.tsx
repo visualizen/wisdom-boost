@@ -1,37 +1,30 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Factory, Wrench, Zap, Leaf, Package, Building2 } from "lucide-react";
+import fundicaoImg from "@/assets/segments/fundicao.jpg";
+import ferroAcoImg from "@/assets/segments/ferro-aco.png";
+import quimicosImg from "@/assets/segments/quimicos.jpg";
+import alimenticiaImg from "@/assets/segments/alimenticia.jpg";
 
 const Segments = () => {
   const segments = [
     {
-      icon: Factory,
-      title: "Industrial",
-      description: "Equipamentos e insumos para a indústria de transformação e manufatura.",
+      title: "Fundição",
+      description: "Equipamentos e insumos especializados para o setor de fundição industrial.",
+      image: fundicaoImg,
     },
     {
-      icon: Wrench,
-      title: "Máquinas e Equipamentos",
-      description: "Importação de maquinário especializado para diversos setores produtivos.",
+      title: "Ferro e Aço",
+      description: "Produtos siderúrgicos e materiais para a indústria de ferro e aço.",
+      image: ferroAcoImg,
     },
     {
-      icon: Zap,
-      title: "Tecnologia",
-      description: "Produtos eletrônicos e tecnológicos de última geração.",
+      title: "Químicos",
+      description: "Insumos químicos e reagentes para diversos processos industriais.",
+      image: quimicosImg,
     },
     {
-      icon: Leaf,
-      title: "Agronegócio",
-      description: "Insumos e equipamentos para o setor agrícola e pecuário.",
-    },
-    {
-      icon: Package,
-      title: "Bens de Consumo",
-      description: "Produtos acabados para revenda no mercado brasileiro.",
-    },
-    {
-      icon: Building2,
-      title: "Construção Civil",
-      description: "Materiais e equipamentos para construção e infraestrutura.",
+      title: "Indústria Alimentícia",
+      description: "Equipamentos e insumos para a indústria de alimentos e bebidas.",
+      image: alimenticiaImg,
     },
   ];
 
@@ -47,17 +40,22 @@ const Segments = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {segments.map((segment, index) => (
             <Card 
               key={index}
               className="hover:shadow-lg-custom transition-all duration-300 hover:-translate-y-2 border-border/50 shadow-card overflow-hidden animate-fade-in-up group"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src={segment.image} 
+                  alt={segment.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              </div>
               <CardHeader>
-                <div className="w-16 h-16 bg-gradient-primary rounded-lg flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(59,130,246,0.4)] group-hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] transition-all duration-500 group-hover:scale-110">
-                  <segment.icon className="text-white" size={32} />
-                </div>
                 <CardTitle className="text-2xl group-hover:text-primary transition-colors duration-300">
                   {segment.title}
                 </CardTitle>
