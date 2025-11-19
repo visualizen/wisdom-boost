@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Zap, DollarSign, ShieldCheck, Globe } from "lucide-react";
+import wisdomWatermark from "@/assets/wisdom-logo-watermark.jpg";
 
 const Benefits = () => {
   const benefits = [
@@ -36,8 +37,17 @@ const Benefits = () => {
   ];
 
   return (
-    <section id="benefits" className="py-24 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="benefits" className="py-24 bg-background relative overflow-hidden">
+      {/* Logo Watermark Background */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url(${wisdomWatermark})`,
+          backgroundSize: '60%'
+        }}
+      />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
             Vantagens de Trabalhar Conosco
