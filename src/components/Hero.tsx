@@ -1,18 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Globe } from "lucide-react";
 import heroVideo from "@/assets/hero-video.mp4";
-
 const Hero = () => {
-  return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20">
+  return <section id="home" className="relative min-h-screen flex items-center pt-20">
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
+        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
           <source src={heroVideo} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-primary/70 to-primary/50" />
@@ -20,10 +12,7 @@ const Hero = () => {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center text-white animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-            <Globe size={20} />
-            <span className="text-sm font-medium">Conectando Empresas ao Mundo</span>
-          </div>
+          
           
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
             Soluções Completas no{" "}
@@ -36,17 +25,11 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button 
-            size="lg" 
-            className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 text-lg px-8 py-6 group border border-white/20"
-          >
+          <Button size="lg" className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 text-lg px-8 py-6 group border border-white/20">
               Conheça Nossas Soluções
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </Button>
-            <Button 
-              size="lg" 
-              className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 text-lg px-8 py-6 border border-white/20"
-            >
+            <Button size="lg" className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 text-lg px-8 py-6 border border-white/20">
               Solicite uma Consultoria
             </Button>
           </div>
@@ -54,8 +37,6 @@ const Hero = () => {
       </div>
       
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent" />
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
