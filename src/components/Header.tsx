@@ -33,9 +33,9 @@ const Header = () => {
 
   const navItems = [
     { label: "Página Inicial", href: "#home" },
-    { label: "Sobre Nós", href: "#about" },
     { label: "Serviços", href: "#services" },
     { label: "Benefícios", href: "#benefits" },
+    { label: "Certificações", href: "#certifications" },
     { label: "Contato", href: "#contact" },
   ];
 
