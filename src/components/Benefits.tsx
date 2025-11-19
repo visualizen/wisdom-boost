@@ -40,10 +40,11 @@ const Benefits = () => {
     <section id="benefits" className="py-24 bg-background relative overflow-hidden">
       {/* Logo Watermark Background */}
       <div 
-        className="absolute inset-0 opacity-100 bg-center bg-no-repeat"
+        className="absolute left-0 top-1/2 -translate-y-1/2 opacity-100 bg-left bg-no-repeat w-full h-full"
         style={{
           backgroundImage: `url(${wisdomWatermark})`,
-          backgroundSize: '60%'
+          backgroundSize: '80%',
+          backgroundPosition: 'left center'
         }}
       />
       
