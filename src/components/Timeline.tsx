@@ -43,14 +43,14 @@ const Timeline = () => {
         <div className="max-w-7xl mx-auto">
           {/* Top Row */}
           <div className="relative mb-20">
-            <div className="flex justify-between items-start gap-4 mb-8">
+            <div className="flex justify-between items-start gap-4 mb-12">
               {topSteps.map((step, index) => (
                 <div 
                   key={index} 
                   className="flex flex-col items-center animate-fade-in-up group"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-lg border-4 border-primary group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-8 shadow-lg border-4 border-primary group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
                     <step.icon className="text-primary" size={32} />
                   </div>
                   {index < topSteps.length - 1 && (
