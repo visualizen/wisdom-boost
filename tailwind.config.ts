@@ -139,6 +139,26 @@ export default {
             transform: "translateX(-50%)",
           },
         },
+        "line-grow-horizontal": {
+          "0%": {
+            width: "0%",
+            opacity: "0",
+          },
+          "100%": {
+            width: "100%",
+            opacity: "1",
+          },
+        },
+        "line-grow-vertical": {
+          "0%": {
+            height: "0%",
+            opacity: "0",
+          },
+          "100%": {
+            height: "100%",
+            opacity: "1",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -149,6 +169,8 @@ export default {
         "slide-up-bounce": "slide-up-bounce 1s cubic-bezier(0.34, 1.56, 0.64, 1)",
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",
         "scroll-infinite": "scroll-infinite 15s linear infinite",
+        "line-grow-horizontal": "line-grow-horizontal 1s ease-out forwards",
+        "line-grow-vertical": "line-grow-vertical 0.5s ease-out forwards",
       },
     },
   },
