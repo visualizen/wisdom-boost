@@ -1,18 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Globe } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
+import heroVideo from "@/assets/hero-video.mp4";
 
 const Hero = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-20">
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `linear-gradient(135deg, rgba(16, 125, 197, 0.9), rgba(16, 125, 197, 0.7)), url(${heroBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70" />
+      </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center text-white animate-fade-in-up">
