@@ -57,14 +57,20 @@ const Timeline = () => {
                     <step.icon className="text-black" size={32} />
                   </div>
                   {/* Vertical connector line */}
-                  <div className="w-0.5 h-16 bg-white" />
+                  <div 
+                    className="w-0.5 h-16 bg-white animate-line-grow-vertical origin-top"
+                    style={{ animationDelay: `${index * 0.3 + 0.5}s` }}
+                  />
                   <p className="text-sm font-semibold text-white mt-4 text-center">{step.label}</p>
                 </div>
               ))}
             </div>
             
             {/* Horizontal Line */}
-            <div className="absolute top-[120px] left-0 w-full h-1 bg-white" />
+            <div 
+              className="absolute top-[120px] left-0 w-full h-1 bg-white animate-line-grow-horizontal origin-left"
+              style={{ animationDelay: `${topSteps.length * 0.3 + 0.5}s` }}
+            />
           </div>
 
           {/* Bottom Row */}
@@ -78,7 +84,10 @@ const Timeline = () => {
                 >
                   <p className="text-sm font-semibold text-white mb-4 text-center min-h-[40px] flex items-end">{step.label}</p>
                   {/* Vertical connector line */}
-                  <div className="w-0.5 h-16 bg-white" />
+                  <div 
+                    className="w-0.5 h-16 bg-white animate-line-grow-vertical origin-top"
+                    style={{ animationDelay: `${(topSteps.length + index) * 0.3 + 1.5}s` }}
+                  />
                   <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110 relative z-10">
                     <step.icon className="text-black" size={32} />
                   </div>
