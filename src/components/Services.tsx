@@ -1,27 +1,37 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Package, Shield, TrendingUp, Users } from "lucide-react";
+import { Package, Shield, TrendingUp, Users, FileText, ClipboardCheck } from "lucide-react";
 
 const Services = () => {
   const services = [
     {
-      icon: Shield,
-      title: "Importação com Segurança",
-      description: "Processos seguros e conformes com todas as regulamentações aduaneiras, garantindo tranquilidade em cada operação.",
-    },
-    {
       icon: Package,
-      title: "Assessoria Completa",
-      description: "Suporte integral em importação e exportação, desde a seleção de fornecedores até a entrega final.",
-    },
-    {
-      icon: TrendingUp,
-      title: "Estratégia para Exportação",
-      description: "Desenvolvemos estratégias personalizadas para expandir seus produtos no mercado internacional.",
+      title: "Importação por Encomenda e por Conta e Ordem (C&O)",
+      description: "Soluções completas para importação sob encomenda e operações por conta e ordem, otimizando custos e processos.",
     },
     {
       icon: Users,
-      title: "Seleção de Fornecedores",
-      description: "Identificamos e qualificamos os melhores fornecedores internacionais para o seu negócio.",
+      title: "Representação comercial internacional",
+      description: "Representamos sua empresa no mercado internacional, conectando você aos melhores parceiros comerciais globais.",
+    },
+    {
+      icon: FileText,
+      title: "Consultoria fiscal e tributária em Comércio exterior",
+      description: "Assessoria especializada em questões fiscais e tributárias para maximizar eficiência e conformidade nas operações.",
+    },
+    {
+      icon: Shield,
+      title: "Gestão logística internacional e seguro de carga da compra até a entrega",
+      description: "Gerenciamento completo da logística e proteção da sua carga desde a origem até o destino final.",
+    },
+    {
+      icon: TrendingUp,
+      title: "Estudos de NCM, acordos tarifários e regimes especiais",
+      description: "Análise detalhada de classificação fiscal e aproveitamento de benefícios tarifários e regimes especiais.",
+    },
+    {
+      icon: ClipboardCheck,
+      title: "Análise de viabilidade de importação/exportação",
+      description: "Estudos técnicos e financeiros para avaliar a viabilidade e rentabilidade das suas operações de comércio exterior.",
     },
   ];
 
@@ -46,7 +56,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 perspective-1000">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 perspective-1000">
           {services.map((service, index) => (
             <Card 
               key={index} 
