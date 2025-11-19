@@ -54,6 +54,7 @@ export default {
         'gradient-primary': 'var(--gradient-primary)',
         'gradient-hero': 'var(--gradient-hero)',
         'gradient-text': 'var(--gradient-text)',
+        'gradient-title': 'var(--gradient-title)',
       },
       boxShadow: {
         'card': 'var(--shadow-card)',
