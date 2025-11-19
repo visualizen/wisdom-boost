@@ -74,15 +74,19 @@ const Timeline = () => {
           </div>
 
           {/* Bottom Row */}
-          <div className="relative mt-16">
-            <div className="flex justify-center items-start gap-8">
+          <div className="relative mt-0" style={{ minHeight: '200px' }}>
+            <div className="flex justify-between items-start relative" style={{ paddingTop: '16px' }}>
               {bottomSteps.map((step, index) => (
                 <div 
                   key={index} 
-                  className="flex flex-col items-center animate-fade-in-up group"
-                  style={{ animationDelay: `${(index + topSteps.length) * 0.1}s` }}
+                  className="flex flex-col items-center animate-fade-in-up group absolute"
+                  style={{ 
+                    animationDelay: `${(index + topSteps.length) * 0.1}s`,
+                    left: `${((index + 0.5) / topSteps.length) * 100}%`,
+                    transform: 'translateX(-50%)'
+                  }}
                 >
-                  <p className="text-sm font-semibold text-white mb-4 text-center min-h-[40px] flex items-end">{step.label}</p>
+                  <p className="text-sm font-semibold text-white mb-4 text-center min-h-[40px] flex items-end w-32">{step.label}</p>
                   {/* Vertical connector line */}
                   <div 
                     className="w-0.5 h-16 bg-white animate-line-grow-vertical origin-top"
