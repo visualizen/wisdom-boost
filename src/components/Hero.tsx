@@ -25,7 +25,7 @@ const Hero = () => {
             <span className="text-sm font-medium">Conectando Empresas ao Mundo</span>
           </div>
           
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
             Soluções Completas no{" "}
             <span className="bg-gradient-text bg-clip-text text-transparent">Comércio Exterior</span>
           </h1>
