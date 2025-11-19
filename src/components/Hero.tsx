@@ -7,7 +7,7 @@ const Hero = () => {
         <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
           <source src={heroVideo} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/70 to-primary/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70" />
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
