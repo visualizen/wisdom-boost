@@ -27,7 +27,7 @@ const Hero = () => {
           
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Soluções Completas no{" "}
-            <span className="text-accent-foreground">Comércio Exterior</span>
+            <span className="bg-gradient-text bg-clip-text text-transparent">Comércio Exterior</span>
           </h1>
           
           <p className="text-xl sm:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
