@@ -1,36 +1,33 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Award, Shield, CheckCircle, Star } from "lucide-react";
+import cert1 from "@/assets/certifications/cert-1.png";
+import cert2 from "@/assets/certifications/cert-2.png";
+import cert3 from "@/assets/certifications/cert-3.png";
+import cert4 from "@/assets/certifications/cert-4.jpg";
+import cert5 from "@/assets/certifications/cert-5.png";
+import cert6 from "@/assets/certifications/cert-6.png";
+import cert7 from "@/assets/certifications/cert-7.png";
+import cert8 from "@/assets/certifications/cert-8.png";
+import cert9 from "@/assets/certifications/cert-9.png";
+import cert10 from "@/assets/certifications/cert-10.png";
 
 const Certifications = () => {
   const certifications = [
-    {
-      icon: Award,
-      title: "ISO 9001",
-      description: "Certificação internacional de gestão da qualidade, garantindo processos eficientes e padronizados.",
-      color: "from-primary to-primary-light",
-    },
-    {
-      icon: Shield,
-      title: "OEA - Operador Econômico Autorizado",
-      description: "Reconhecimento oficial de segurança e conformidade aduaneira pela Receita Federal.",
-      color: "from-primary-light to-primary",
-    },
-    {
-      icon: CheckCircle,
-      title: "Certificação INMETRO",
-      description: "Atendimento aos padrões de qualidade e segurança exigidos pelo Instituto Nacional de Metrologia.",
-      color: "from-primary to-primary-dark",
-    },
-    {
-      icon: Star,
-      title: "Certificações Internacionais",
-      description: "Reconhecimento por órgãos reguladores internacionais, facilitando operações globais.",
-      color: "from-primary-dark to-primary-light",
-    },
+    { name: "MAPA", logo: cert1 },
+    { name: "DECEX", logo: cert2 },
+    { name: "Ministério da Agricultura", logo: cert3 },
+    { name: "ANVISA", logo: cert4 },
+    { name: "IBAMA", logo: cert5 },
+    { name: "CNPq", logo: cert6 },
+    { name: "MCTI", logo: cert7 },
+    { name: "Polícia Federal", logo: cert8 },
+    { name: "E2", logo: cert9 },
+    { name: "ANEEL", logo: cert10 },
   ];
 
+  // Duplicar o array para criar o efeito de loop infinito
+  const duplicatedCertifications = [...certifications, ...certifications];
+
   return (
-    <section id="certifications" className="py-24 bg-secondary">
+    <section id="certifications" className="py-24 bg-secondary overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
@@ -41,27 +38,24 @@ const Certifications = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {certifications.map((cert, index) => (
-            <Card 
-              key={index}
-              className="hover:shadow-lg-custom transition-all duration-300 hover:-translate-y-2 border-none shadow-card overflow-hidden animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className={`h-2 bg-gradient-to-r ${cert.color}`} />
-              <CardHeader>
-                <div className="w-16 h-16 bg-accent rounded-lg flex items-center justify-center mb-4">
-                  <cert.icon className="text-primary" size={32} />
+        {/* Carrossel Infinito */}
+        <div className="relative">
+          <div className="overflow-hidden">
+            <div className="flex animate-scroll-infinite">
+              {duplicatedCertifications.map((cert, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 mx-8 w-32 h-32 flex items-center justify-center bg-white rounded-lg shadow-card hover:shadow-lg-custom transition-all duration-300 hover:scale-110"
+                >
+                  <img
+                    src={cert.logo}
+                    alt={cert.name}
+                    className="max-w-full max-h-full object-contain p-4"
+                  />
                 </div>
-                <CardTitle className="text-xl">{cert.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-base leading-relaxed">
-                  {cert.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
