@@ -68,7 +68,7 @@ const Timeline = () => {
             
             {/* Horizontal Line */}
             <div 
-              className="absolute top-[120px] left-0 w-full h-1 bg-white animate-line-grow-horizontal origin-left"
+              className="absolute top-10 left-0 w-full h-1 bg-white animate-line-grow-horizontal origin-left"
               style={{ animationDelay: `${topSteps.length * 0.3 + 0.5}s` }}
             />
           </div>
