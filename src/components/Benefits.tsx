@@ -1,25 +1,37 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { DollarSign, Clock, FileCheck } from "lucide-react";
+import { Users, Zap, DollarSign, ShieldCheck, Globe } from "lucide-react";
 
 const Benefits = () => {
   const benefits = [
     {
-      icon: DollarSign,
-      title: "Redução de Impostos",
-      description: "Benefícios fiscais e estratégias para reduzir custos de importação através de regimes especiais e drawback.",
+      icon: Users,
+      title: "Atendimento Personalizado",
+      description: "Atendimento próximo e personalizado, com foco real no negócio e nas necessidades do cliente.",
       color: "from-primary to-primary-light",
     },
     {
-      icon: FileCheck,
-      title: "Importação por Encomenda",
-      description: "Modelo que permite importar produtos específicos sob demanda, reduzindo riscos e otimizando capital de giro.",
+      icon: Zap,
+      title: "Estrutura Ágil",
+      description: "Estrutura ágil e altamente técnica, pronta para responder rápido e com assertividade.",
       color: "from-primary-light to-primary",
     },
     {
-      icon: Clock,
-      title: "Conta e Ordem de Terceiros",
-      description: "Operações simplificadas com redução de complexidade operacional e vantagens tributárias significativas.",
+      icon: DollarSign,
+      title: "Expertise Fiscal",
+      description: "Expertise fiscal, com resultados comprovados e redução de ICMS de até 70% por meio de benefícios tributários.",
       color: "from-primary to-primary-dark",
+    },
+    {
+      icon: ShieldCheck,
+      title: "Tecnologia Avançada",
+      description: "Utilização de sistemas avançados, tecnologia e IA para garantir controle, rastreabilidade e total conformidade.",
+      color: "from-primary-dark to-primary",
+    },
+    {
+      icon: Globe,
+      title: "Representação Internacional",
+      description: "Atuação como representante comercial internacional / comprador, gerando confiança e segurança para fornecedores estrangeiros.",
+      color: "from-primary-light to-primary-dark",
     },
   ];
 
@@ -35,7 +47,7 @@ const Benefits = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
             <Card 
               key={index}
