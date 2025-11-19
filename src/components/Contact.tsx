@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
-import cargoShipBg from "@/assets/cargo-ship-bg.png";
+import airplaneBg from "@/assets/airplane-bg.png";
 
 const Contact = () => {
   return (
@@ -11,7 +11,7 @@ const Contact = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url(${cargoShipBg})`,
+          backgroundImage: `url(${airplaneBg})`,
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-black/20" />
