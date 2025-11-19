@@ -19,12 +19,12 @@ const Timeline = () => {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-background to-secondary relative overflow-hidden">
+    <section className="py-24 bg-primary/10 relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
+      <div className="absolute inset-0 opacity-[0.05]">
         <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 25px 25px, hsl(var(--primary)) 2%, transparent 0%), 
-                           radial-gradient(circle at 75px 75px, hsl(var(--primary)) 2%, transparent 0%)`,
+          backgroundImage: `radial-gradient(circle at 25px 25px, white 2%, transparent 0%), 
+                           radial-gradient(circle at 75px 75px, white 2%, transparent 0%)`,
           backgroundSize: '100px 100px'
         }} />
       </div>
@@ -50,11 +50,11 @@ const Timeline = () => {
                   className="flex flex-col items-center animate-fade-in-up group"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(59,130,246,0.4)] group-hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] transition-all duration-300 group-hover:scale-110">
-                    <step.icon className="text-white" size={32} />
+                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4 shadow-lg border-4 border-primary group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                    <step.icon className="text-primary" size={32} />
                   </div>
                   {index < topSteps.length - 1 && (
-                    <div className="absolute top-10 left-0 w-full h-0.5 bg-gradient-to-r from-primary via-primary-light to-primary -z-10" 
+                    <div className="absolute top-10 left-0 w-full h-1 bg-white shadow-md -z-10" 
                          style={{ 
                            left: `${(index / (topSteps.length - 1)) * 100}%`,
                            width: `${100 / (topSteps.length - 1)}%`
@@ -76,7 +76,7 @@ const Timeline = () => {
             </div>
             
             {/* Horizontal Line */}
-            <div className="absolute top-10 left-0 w-full h-1 bg-gradient-to-r from-primary via-primary-light to-primary" />
+            <div className="absolute top-10 left-0 w-full h-2 bg-white shadow-md rounded-full" />
           </div>
 
           {/* Bottom Row */}
@@ -89,11 +89,11 @@ const Timeline = () => {
                   style={{ animationDelay: `${(index + topSteps.length) * 0.1}s` }}
                 >
                   <p className="text-sm font-semibold text-foreground mb-4 text-center min-h-[40px] flex items-end">{step.label}</p>
-                  <div className="w-20 h-20 bg-gradient-primary rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(59,130,246,0.4)] group-hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] transition-all duration-300 group-hover:scale-110">
-                    <step.icon className="text-white" size={32} />
+                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg border-4 border-primary group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                    <step.icon className="text-primary" size={32} />
                   </div>
                   {/* Connector Lines */}
-                  <div className="w-0.5 h-12 bg-primary absolute top-[-48px]" />
+                  <div className="w-1 h-12 bg-white shadow-md absolute top-[-48px] rounded-full" />
                 </div>
               ))}
             </div>
