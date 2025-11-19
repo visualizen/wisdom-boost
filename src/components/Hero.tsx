@@ -45,8 +45,7 @@ const Hero = () => {
             </Button>
             <Button 
               size="lg" 
-              variant="outline" 
-              className="border-2 border-white text-white hover:bg-white/10 text-lg px-8 py-6"
+              className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 text-lg px-8 py-6 border border-white/20"
             >
               Solicite uma Consultoria
             </Button>
