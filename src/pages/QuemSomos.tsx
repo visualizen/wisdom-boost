@@ -9,10 +9,10 @@ import portModernImage from "@/assets/port-modern.jpg";
 
 const QuemSomos = () => {
   const stats = [
-    { icon: Users, value: 30, suffix: "+", label: "Anos de Experiência", color: "from-sky-500 via-blue-500 to-indigo-500" },
-    { icon: Globe, value: 50, suffix: "+", label: "Países Atendidos", color: "from-blue-500 via-cyan-500 to-teal-500" },
-    { icon: Package, value: 1000, suffix: "+", label: "Operações Realizadas", color: "from-indigo-500 via-blue-600 to-cyan-600" },
-    { icon: Ship, value: 500000, suffix: "+", label: "Toneladas Movimentadas", color: "from-cyan-500 via-blue-500 to-sky-500" },
+    { icon: Users, value: 30, suffix: "+", label: "Anos de Experiência", color: "from-primary-light via-primary to-primary-dark" },
+    { icon: Globe, value: 50, suffix: "+", label: "Países Atendidos", color: "from-primary via-primary-dark to-primary" },
+    { icon: Package, value: 1000, suffix: "+", label: "Operações Realizadas", color: "from-primary-dark via-primary to-primary-light" },
+    { icon: Ship, value: 500000, suffix: "+", label: "Toneladas Movimentadas", color: "from-primary via-primary-light to-primary-dark" },
   ];
 
   return (
