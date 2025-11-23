@@ -47,8 +47,8 @@ const Contato = () => {
                 <MapPin className="text-white" size={28} />
               </div>
               <h3 className="font-bold text-lg mb-2">Localização</h3>
-              <p className="text-muted-foreground text-sm">Rua Joinville, 603 - Sala 901</p>
-              <p className="text-muted-foreground text-sm">São Paulo, SP - Brasil</p>
+              <p className="text-muted-foreground text-sm">R. Joinville, 304 - Centro</p>
+              <p className="text-muted-foreground text-sm">Itajaí - SC, 88301-410</p>
             </div>
 
             <div className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6 text-center">
@@ -76,7 +76,7 @@ const Contato = () => {
           
           <div className="max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-lg border border-border">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.4217564956776!2d-46.65318492471795!3d-23.55463996283684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0x8e5073e64bde0a07!2sRua%20Joinville%2C%20603%20-%20Vila%20Ol%C3%ADmpia%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.2961234567!2d-48.66668!3d-26.9033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94d8ca1b8b8b8b8b%3A0x1234567890!2sR.%20Joinville%2C%20304%20-%20Centro%2C%20Itaja%C3%AD%20-%20SC%2C%2088301-410!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
               width="100%"
               height="450"
               style={{ border: 0 }}
