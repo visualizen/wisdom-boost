@@ -5,6 +5,7 @@ import Benefits from "@/components/Benefits";
 import Timeline from "@/components/Timeline";
 import Certifications from "@/components/Certifications";
 import Segments from "@/components/Segments";
+import News from "@/components/News";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -18,6 +19,7 @@ const Index = () => {
       <Timeline />
       <Certifications />
       <Segments />
+      <News />
       <Contact />
       <Footer />
     </div>
