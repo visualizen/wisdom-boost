@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ContactForm from "@/components/ContactForm";
 import { Award, Globe, Target, Users, Shield, Zap, Package, Ship, TrendingUp, Sparkles, Rocket, ChartBar, Network } from "lucide-react";
 import heroImage from "@/assets/quem-somos-hero.jpg";
 import teamImage from "@/assets/quem-somos-team.jpg";
@@ -375,34 +376,10 @@ const QuemSomos = () => {
         </div>
       </section>
 
-      {/* CTA Final - Super Colorido */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-cyan-600 to-sky-600 opacity-90"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(255,255,255,0.1),transparent_50%)]"></div>
-        
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <div className="inline-flex items-center gap-2 mb-6 px-6 py-2 bg-white/20 backdrop-blur-sm rounded-full border border-white/30">
-              <Rocket className="w-5 h-5" />
-              <span className="font-semibold">Pronto para Começar?</span>
-            </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white drop-shadow-2xl">
-              Vamos Conectar Seu Negócio ao Mundo
-            </h2>
-            <p className="text-2xl text-white/90 mb-12 leading-relaxed">
-              Entre em contato conosco e descubra como podemos otimizar suas operações de comércio exterior
-            </p>
-            <a 
-              href="/#contato" 
-              className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-blue-600 font-bold text-lg rounded-2xl hover:bg-white/90 transition-all duration-300 shadow-2xl hover:shadow-white/50 hover:scale-105"
-            >
-              <span>Fale Conosco</span>
-              <Rocket className="w-6 h-6" />
-            </a>
-          </div>
-        </div>
-      </section>
+      <ContactForm 
+        title="Vamos Conectar Seu Negócio ao Mundo"
+        subtitle="Entre em contato conosco!"
+      />
 
       <Footer />
     </div>
