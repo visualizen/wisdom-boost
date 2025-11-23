@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
+import ImportCalculator from "@/components/ImportCalculator";
 import { Package, Users, FileText, Shield, TrendingUp, ClipboardCheck, CheckCircle, Sparkles, Briefcase } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import importExportImage from "@/assets/services/import-export.jpg";
@@ -194,6 +195,9 @@ const Servicos = () => {
           </div>
         </div>
       </section>
+
+      {/* Import Calculator Section */}
+      <ImportCalculator />
 
       {/* FAQ Section */}
       <section className="py-32 relative overflow-hidden bg-gradient-to-br from-blue-500/5 via-background to-cyan-500/5">
