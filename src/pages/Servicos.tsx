@@ -1,16 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Package, Users, FileText, Shield, TrendingUp, ClipboardCheck, CheckCircle, Sparkles, Briefcase, Send } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import ContactForm from "@/components/ContactForm";
+import { Package, Users, FileText, Shield, TrendingUp, ClipboardCheck, CheckCircle, Sparkles, Briefcase } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
-import { z } from "zod";
 import importExportImage from "@/assets/services/import-export.jpg";
 import internationalRepImage from "@/assets/services/international-representation.jpg";
 import fiscalConsultingImage from "@/assets/services/fiscal-consulting.jpg";
@@ -19,26 +11,7 @@ import tariffStudiesImage from "@/assets/services/tariff-studies.jpg";
 import viabilityAnalysisImage from "@/assets/services/viability-analysis.jpg";
 import heroImage from "@/assets/quem-somos-hero.jpg";
 
-const contactSchema = z.object({
-  name: z.string().trim().min(1, { message: "Nome é obrigatório" }).max(100, { message: "Nome deve ter menos de 100 caracteres" }),
-  email: z.string().trim().email({ message: "Email inválido" }).max(255, { message: "Email deve ter menos de 255 caracteres" }),
-  phone: z.string().trim().min(10, { message: "Telefone inválido" }).max(20, { message: "Telefone deve ter menos de 20 caracteres" }),
-  service: z.string().min(1, { message: "Selecione um serviço" }),
-  message: z.string().trim().min(10, { message: "Mensagem deve ter pelo menos 10 caracteres" }).max(1000, { message: "Mensagem deve ter menos de 1000 caracteres" })
-});
-
 const Servicos = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    service: "",
-    message: ""
-  });
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
   const services = [
     {
       icon: Package,
@@ -125,53 +98,6 @@ const Servicos = () => {
       ]
     }
   ];
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrors({});
-    
-    try {
-      const validatedData = contactSchema.parse(formData);
-      setIsSubmitting(true);
-
-      // Encode data for WhatsApp
-      const message = `*Novo contato - Serviços*%0A%0A*Nome:* ${encodeURIComponent(validatedData.name)}%0A*Email:* ${encodeURIComponent(validatedData.email)}%0A*Telefone:* ${encodeURIComponent(validatedData.phone)}%0A*Serviço:* ${encodeURIComponent(validatedData.service)}%0A*Mensagem:* ${encodeURIComponent(validatedData.message)}`;
-      
-      window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
-
-      toast({
-        title: "Mensagem enviada!",
-        description: "Entraremos em contato em breve.",
-      });
-
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        service: "",
-        message: ""
-      });
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const fieldErrors: Record<string, string> = {};
-        error.errors.forEach((err) => {
-          if (err.path[0]) {
-            fieldErrors[err.path[0].toString()] = err.message;
-          }
-        });
-        setErrors(fieldErrors);
-      }
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: "" }));
-    }
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -351,122 +277,11 @@ const Servicos = () => {
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-background to-cyan-900/10"></div>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <div className="inline-flex items-center gap-2 mb-6 px-6 py-2 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full border border-blue-500/20">
-                <Send className="w-5 h-5 text-primary" />
-                <span className="text-primary font-semibold">Entre em Contato</span>
-              </div>
-              <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
-                Solicite um Orçamento
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                Preencha o formulário e nossa equipe entrará em contato para apresentar a melhor solução para seu negócio
-              </p>
-            </div>
-
-            <div className="relative group">
-              <div className="absolute -inset-6 bg-gradient-to-r from-blue-600 via-cyan-600 to-sky-600 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-              <Card className="relative bg-card/80 backdrop-blur-xl border-2 border-blue-500/20">
-                <CardContent className="p-8 md:p-12">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="name" className="text-base font-semibold">Nome Completo *</Label>
-                        <Input
-                          id="name"
-                          value={formData.name}
-                          onChange={(e) => handleInputChange("name", e.target.value)}
-                          placeholder="Seu nome"
-                          className="h-12 border-blue-500/20 focus:border-primary"
-                          maxLength={100}
-                        />
-                        {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="email" className="text-base font-semibold">Email *</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => handleInputChange("email", e.target.value)}
-                          placeholder="seu@email.com"
-                          className="h-12 border-blue-500/20 focus:border-primary"
-                          maxLength={255}
-                        />
-                        {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
-                      </div>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <Label htmlFor="phone" className="text-base font-semibold">Telefone *</Label>
-                        <Input
-                          id="phone"
-                          value={formData.phone}
-                          onChange={(e) => handleInputChange("phone", e.target.value)}
-                          placeholder="(11) 99999-9999"
-                          className="h-12 border-blue-500/20 focus:border-primary"
-                          maxLength={20}
-                        />
-                        {errors.phone && <p className="text-sm text-red-500">{errors.phone}</p>}
-                      </div>
-
-                      <div className="space-y-2">
-                        <Label htmlFor="service" className="text-base font-semibold">Serviço de Interesse *</Label>
-                        <Select value={formData.service} onValueChange={(value) => handleInputChange("service", value)}>
-                          <SelectTrigger className="h-12 border-blue-500/20 focus:border-primary">
-                            <SelectValue placeholder="Selecione um serviço" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="importacao">Importação por Encomenda e C&O</SelectItem>
-                            <SelectItem value="representacao">Representação Comercial Internacional</SelectItem>
-                            <SelectItem value="consultoria">Consultoria Fiscal e Tributária</SelectItem>
-                            <SelectItem value="logistica">Gestão Logística Internacional</SelectItem>
-                            <SelectItem value="estudos">Estudos de NCM e Acordos Tarifários</SelectItem>
-                            <SelectItem value="viabilidade">Análise de Viabilidade</SelectItem>
-                            <SelectItem value="outros">Outros Serviços</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        {errors.service && <p className="text-sm text-red-500">{errors.service}</p>}
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="message" className="text-base font-semibold">Mensagem *</Label>
-                      <Textarea
-                        id="message"
-                        value={formData.message}
-                        onChange={(e) => handleInputChange("message", e.target.value)}
-                        placeholder="Conte-nos mais sobre sua necessidade..."
-                        className="min-h-[150px] border-blue-500/20 focus:border-primary resize-none"
-                        maxLength={1000}
-                      />
-                      <div className="flex justify-between items-center">
-                        {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
-                        <p className="text-sm text-muted-foreground ml-auto">{formData.message.length}/1000</p>
-                      </div>
-                    </div>
-
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full h-14 text-lg font-semibold bg-gradient-to-r from-primary-light via-primary to-primary-dark hover:opacity-90 transition-opacity"
-                    >
-                      {isSubmitting ? "Enviando..." : "Enviar Solicitação"}
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ContactForm 
+        showServiceSelect={true}
+        title="Solicite um Orçamento"
+        subtitle="Soluções personalizadas para seu negócio!"
+      />
 
       <Footer />
     </div>
