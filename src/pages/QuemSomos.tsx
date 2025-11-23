@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Award, Globe, Target, Users, Shield, Zap, Package, Ship, TrendingUp, Sparkles, Rocket, ChartBar, Network } from "lucide-react";
 import heroImage from "@/assets/quem-somos-hero.jpg";
-import teamImage from "@/assets/innovative-team.jpg";
+import teamImage from "@/assets/quem-somos-team.jpg";
 import globalCommerceImage from "@/assets/global-commerce.jpg";
 import techPatternImage from "@/assets/tech-pattern.jpg";
 import portModernImage from "@/assets/port-modern.jpg";
