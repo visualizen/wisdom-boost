@@ -62,8 +62,6 @@ const Contato = () => {
         </div>
       </section>
 
-      <ContactForm />
-
       {/* Mapa Section */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -90,6 +88,8 @@ const Contato = () => {
           </div>
         </div>
       </section>
+
+      <ContactForm />
 
       <Footer />
     </div>
