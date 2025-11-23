@@ -40,7 +40,7 @@ const Header = () => {
     { label: "Benefícios", href: "#benefits", isRoute: false },
     { label: "Certificações", href: "#certifications", isRoute: false },
     { label: "Segmentos", href: "#segments", isRoute: false },
-    { label: "Contato", href: "#contact", isRoute: false },
+    { label: "Contato", href: "/contato", isRoute: true },
   ];
 
   return (
@@ -98,11 +98,11 @@ const Header = () => {
                 </a>
               )
             ))}
-            <a href={location.pathname === "/" ? "#contact" : "/#contact"}>
+            <Link to="/contato">
               <Button variant="default" size="lg" className="bg-gradient-primary">
                 Fale Conosco
               </Button>
-            </a>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -138,11 +138,11 @@ const Header = () => {
                 </a>
               )
             ))}
-            <a href={location.pathname === "/" ? "#contact" : "/#contact"}>
+            <Link to="/contato">
               <Button variant="default" className="w-full mt-4 bg-gradient-primary" onClick={() => setIsMenuOpen(false)}>
                 Fale Conosco
               </Button>
-            </a>
+            </Link>
           </nav>
         )}
         </div>
