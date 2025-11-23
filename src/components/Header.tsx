@@ -51,18 +51,6 @@ const Header = () => {
     href: "/blog",
     isRoute: true
   }, {
-    label: "Benefícios",
-    href: "#benefits",
-    isRoute: false
-  }, {
-    label: "Certificações",
-    href: "#certifications",
-    isRoute: false
-  }, {
-    label: "Segmentos",
-    href: "#segments",
-    isRoute: false
-  }, {
     label: "Contato",
     href: "/contato",
     isRoute: true
