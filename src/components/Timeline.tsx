@@ -21,7 +21,7 @@ const Timeline = () => {
   return (
     <section className="py-24 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 opacity-30">
+      <div className="absolute inset-0 opacity-50">
         <img 
           src="/src/assets/cargo-ship-bg.png" 
           alt="" 
