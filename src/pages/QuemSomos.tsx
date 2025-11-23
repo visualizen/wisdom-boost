@@ -68,7 +68,7 @@ const QuemSomos = () => {
             <div className="inline-block mb-4 px-4 py-1 bg-primary/10 rounded-full backdrop-blur-sm">
               <span className="text-primary font-semibold text-sm">Conquistas em Números</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-transparent">
               Nossa Trajetória de Sucesso
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -127,7 +127,7 @@ const QuemSomos = () => {
               <div className="inline-block mb-4 px-4 py-1 bg-primary/10 rounded-full">
                 <span className="text-primary font-semibold text-sm">Nossa Jornada</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-transparent">
                 Nossa História
               </h2>
               <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
@@ -173,7 +173,7 @@ const QuemSomos = () => {
             <div className="inline-block mb-4 px-4 py-1 bg-primary/10 rounded-full">
               <span className="text-primary font-semibold text-sm">Nossos Pilares</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-transparent">
               Missão, Visão e Valores
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -188,7 +188,7 @@ const QuemSomos = () => {
                 <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/50 rounded-2xl flex items-center justify-center mb-6">
                   <Target className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4">Missão</h3>
+                <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Missão</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Facilitar e otimizar operações de comércio exterior, oferecendo soluções personalizadas 
                   e eficientes que conectam empresas brasileiras ao mercado global com segurança e agilidade.
@@ -202,7 +202,7 @@ const QuemSomos = () => {
                 <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/50 rounded-2xl flex items-center justify-center mb-6">
                   <Globe className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4">Visão</h3>
+                <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Visão</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   Ser referência nacional em trading e comércio exterior, reconhecida pela excelência 
                   operacional, inovação e pelo impacto positivo que geramos nos negócios dos nossos clientes.
@@ -216,7 +216,7 @@ const QuemSomos = () => {
                 <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/50 rounded-2xl flex items-center justify-center mb-6">
                   <Award className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4">Valores</h3>
+                <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Valores</h3>
                 <ul className="text-muted-foreground space-y-3">
                   <li className="flex items-start gap-2">
                     <span className="text-primary mt-1">▸</span>
@@ -252,7 +252,7 @@ const QuemSomos = () => {
             <div className="inline-block mb-4 px-4 py-1 bg-primary/10 rounded-full">
               <span className="text-primary font-semibold text-sm">Por Que Nos Escolher</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-transparent">
               Nossos Diferenciais
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -266,7 +266,7 @@ const QuemSomos = () => {
                 <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/50 rounded-lg flex items-center justify-center mb-4">
                   <Users className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Experiência Consolidada</h3>
+                <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Experiência Consolidada</h3>
                 <p className="text-muted-foreground">
                   Mais de 30 anos de atuação no mercado internacional com expertise comprovada.
                 </p>
@@ -278,7 +278,7 @@ const QuemSomos = () => {
                 <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/50 rounded-lg flex items-center justify-center mb-4">
                   <Globe className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Alcance Global</h3>
+                <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Alcance Global</h3>
                 <p className="text-muted-foreground">
                   Rede de contatos em mais de 50 países facilitando suas operações internacionais.
                 </p>
@@ -290,7 +290,7 @@ const QuemSomos = () => {
                 <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/50 rounded-lg flex items-center justify-center mb-4">
                   <Shield className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Segurança e Compliance</h3>
+                <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Segurança e Compliance</h3>
                 <p className="text-muted-foreground">
                   Processos certificados e conformidade com regulamentações internacionais.
                 </p>
@@ -302,7 +302,7 @@ const QuemSomos = () => {
                 <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/50 rounded-lg flex items-center justify-center mb-4">
                   <Zap className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Agilidade Operacional</h3>
+                <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">Agilidade Operacional</h3>
                 <p className="text-muted-foreground">
                   Soluções rápidas e eficientes com tecnologia de ponta e processos otimizados.
                 </p>
@@ -320,7 +320,7 @@ const QuemSomos = () => {
             <div className="inline-block mb-4 px-4 py-1 bg-primary/10 rounded-full">
               <span className="text-primary font-semibold text-sm">Pronto para Começar?</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary via-primary-light to-primary-dark bg-clip-text text-transparent">
               Vamos Conectar Seu Negócio ao Mundo
             </h2>
             <p className="text-xl text-muted-foreground mb-8">
