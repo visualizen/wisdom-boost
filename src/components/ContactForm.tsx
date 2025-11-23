@@ -150,6 +150,7 @@ const ContactForm = ({ showServiceSelect = false, title, subtitle }: ContactForm
                   </div>
                   <div>
                     <h3 className="font-bold text-white mb-1">Endereço</h3>
+                    <p className="text-white/80 text-sm">Rua Joinville, 603 - Sala 901</p>
                     <p className="text-white/80 text-sm">São Paulo, SP - Brasil</p>
                   </div>
                 </div>
