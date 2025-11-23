@@ -1,119 +1,43 @@
-import { useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Award, Globe, Target, Users, TrendingUp, Shield, Zap, Package, Ship, TrendingUp as Growth } from "lucide-react";
+import { Award, Globe, Target, Users, Shield, Zap, Package, Ship, TrendingUp } from "lucide-react";
 import heroImage from "@/assets/quem-somos-hero.jpg";
 import teamImage from "@/assets/quem-somos-team.jpg";
 import logisticsImage from "@/assets/quem-somos-logistics.jpg";
 
 const QuemSomos = () => {
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  
   const stats = [
-    { icon: Users, end: 30, suffix: "+", label: "Anos de Experiência", color: "from-blue-500 to-cyan-500" },
-    { icon: Globe, end: 50, suffix: "+", label: "Países Atendidos", color: "from-purple-500 to-pink-500" },
-    { icon: Package, end: 1000, suffix: "+", label: "Operações Realizadas", color: "from-orange-500 to-red-500" },
-    { icon: Ship, end: 500000, suffix: "+", label: "Toneladas Movimentadas", color: "from-green-500 to-emerald-500" },
+    { icon: Users, value: 30, suffix: "+", label: "Anos de Experiência", color: "from-blue-500 to-cyan-500" },
+    { icon: Globe, value: 50, suffix: "+", label: "Países Atendidos", color: "from-purple-500 to-pink-500" },
+    { icon: Package, value: 1000, suffix: "+", label: "Operações Realizadas", color: "from-orange-500 to-red-500" },
+    { icon: Ship, value: 500000, suffix: "+", label: "Toneladas Movimentadas", color: "from-green-500 to-emerald-500" },
   ];
-
-  const [counts, setCounts] = useState(stats.map(() => 0));
-
-  useEffect(() => {
-    // Scroll animations with better threshold
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-in");
-          }
-        });
-      },
-      { threshold: 0.2, rootMargin: '0px 0px -50px 0px' }
-    );
-
-    const elements = document.querySelectorAll(".fade-on-scroll");
-    elements.forEach((el) => observerRef.current?.observe(el));
-
-    // Optimized stats animation using requestAnimationFrame
-    const statsObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            setHasAnimated(true);
-            
-            const duration = 2000;
-            const startTime = performance.now();
-            let animationFrameId: number;
-            
-            const animate = (currentTime: number) => {
-              const elapsed = currentTime - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-              
-              // Easing function for smooth animation
-              const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-              
-              setCounts(stats.map(stat => 
-                Math.floor(stat.end * easeOutQuart)
-              ));
-              
-              if (progress < 1) {
-                animationFrameId = requestAnimationFrame(animate);
-              }
-            };
-            
-            animationFrameId = requestAnimationFrame(animate);
-            
-            return () => {
-              if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
-              }
-            };
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    if (statsRef.current) {
-      statsObserver.observe(statsRef.current);
-    }
-
-    return () => {
-      observerRef.current?.disconnect();
-      statsObserver.disconnect();
-    };
-  }, [hasAnimated]);
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section com Parallax */}
+      {/* Hero Section */}
       <section className="relative h-[70vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ 
-            backgroundImage: `url(${heroImage})`,
-            transform: 'translateZ(0)',
-          }}
+          style={{ backgroundImage: `url(${heroImage})` }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background"></div>
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block mb-6 px-6 py-2 bg-primary/10 backdrop-blur-sm rounded-full border border-primary/20 animate-fade-in">
+            <div className="inline-block mb-6 px-6 py-2 bg-primary/10 backdrop-blur-sm rounded-full border border-primary/20">
               <span className="text-primary font-semibold">Excelência em Comércio Exterior</span>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
               Quem Somos
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground animate-fade-in mb-8">
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8">
               Conectando empresas brasileiras ao mercado global com tecnologia e expertise
             </p>
-            <div className="flex flex-wrap gap-4 justify-center animate-fade-in">
+            <div className="flex flex-wrap gap-4 justify-center">
               <div className="px-6 py-3 bg-card/50 backdrop-blur-md rounded-lg border border-border/50">
                 <div className="text-2xl font-bold text-primary">+30</div>
                 <div className="text-sm text-muted-foreground">Anos de Experiência</div>
@@ -130,18 +54,17 @@ const QuemSomos = () => {
           </div>
         </div>
 
-        {/* Animated gradient overlay */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
       </section>
 
-      {/* Estatísticas Animadas */}
-      <section ref={statsRef} className="py-24 relative overflow-hidden">
+      {/* Estatísticas */}
+      <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(var(--primary)/0.05),transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(var(--primary)/0.05),transparent_50%)]"></div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16 fade-on-scroll opacity-0">
+          <div className="text-center mb-16">
             <div className="inline-block mb-4 px-4 py-1 bg-primary/10 rounded-full backdrop-blur-sm">
               <span className="text-primary font-semibold text-sm">Conquistas em Números</span>
             </div>
@@ -157,23 +80,17 @@ const QuemSomos = () => {
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <div
-                  key={index}
-                  className="group relative"
-                >
-                  <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 will-change-transform">
-                    {/* Gradient Background */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}></div>
+                <div key={index} className="group relative">
+                  <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 rounded-2xl`}></div>
                     
-                    {/* Icon */}
-                    <div className={`relative w-16 h-16 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300`}>
+                    <div className={`relative w-16 h-16 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mb-6`}>
                       <Icon className="w-8 h-8 text-white" />
                     </div>
                     
-                    {/* Animated Number */}
                     <div className="relative">
                       <div className="text-5xl font-bold mb-2 bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
-                        {counts[index].toLocaleString('pt-BR')}
+                        {stat.value.toLocaleString('pt-BR')}
                         <span className="text-primary">{stat.suffix}</span>
                       </div>
                       <div className="text-muted-foreground font-medium">
@@ -181,7 +98,6 @@ const QuemSomos = () => {
                       </div>
                     </div>
 
-                    {/* Decorative Element */}
                     <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-xl opacity-50"></div>
                   </div>
                 </div>
@@ -196,7 +112,7 @@ const QuemSomos = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-            <div className="fade-on-scroll opacity-0">
+            <div>
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-primary/5 rounded-2xl blur-xl"></div>
                 <img 
@@ -207,7 +123,7 @@ const QuemSomos = () => {
                 />
               </div>
             </div>
-            <div className="fade-on-scroll opacity-0">
+            <div>
               <div className="inline-block mb-4 px-4 py-1 bg-primary/10 rounded-full">
                 <span className="text-primary font-semibold text-sm">Nossa Jornada</span>
               </div>
@@ -246,14 +162,14 @@ const QuemSomos = () => {
         </div>
       </section>
 
-      {/* Missão, Visão e Valores - Modern Cards */}
+      {/* Missão, Visão e Valores */}
       <section className="py-24 relative">
         <div 
           className="absolute inset-0 opacity-5 bg-cover bg-center"
           style={{ backgroundImage: `url(${logisticsImage})` }}
         ></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16 fade-on-scroll opacity-0">
+          <div className="text-center mb-16">
             <div className="inline-block mb-4 px-4 py-1 bg-primary/10 rounded-full">
               <span className="text-primary font-semibold text-sm">Nossos Pilares</span>
             </div>
@@ -266,10 +182,10 @@ const QuemSomos = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            <div className="fade-on-scroll opacity-0 group">
-              <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 will-change-transform">
+            <div className="group">
+              <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/50 rounded-t-2xl"></div>
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/50 rounded-2xl flex items-center justify-center mb-6">
                   <Target className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4">Missão</h3>
@@ -280,10 +196,10 @@ const QuemSomos = () => {
               </div>
             </div>
 
-            <div className="fade-on-scroll opacity-0 group" style={{ animationDelay: '100ms' }}>
-              <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 will-change-transform">
+            <div className="group">
+              <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/50 rounded-t-2xl"></div>
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/50 rounded-2xl flex items-center justify-center mb-6">
                   <Globe className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4">Visão</h3>
@@ -294,10 +210,10 @@ const QuemSomos = () => {
               </div>
             </div>
 
-            <div className="fade-on-scroll opacity-0 group" style={{ animationDelay: '200ms' }}>
-              <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 will-change-transform">
+            <div className="group">
+              <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/50 rounded-t-2xl"></div>
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/50 rounded-2xl flex items-center justify-center mb-6">
                   <Award className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4">Valores</h3>
@@ -329,10 +245,10 @@ const QuemSomos = () => {
         </div>
       </section>
 
-      {/* Diferenciais - Grid Moderno */}
+      {/* Diferenciais */}
       <section className="py-24 bg-gradient-to-b from-background via-muted/30 to-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 fade-on-scroll opacity-0">
+          <div className="text-center mb-16">
             <div className="inline-block mb-4 px-4 py-1 bg-primary/10 rounded-full">
               <span className="text-primary font-semibold text-sm">Por Que Nos Escolher</span>
             </div>
@@ -345,54 +261,50 @@ const QuemSomos = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-            <div className="fade-on-scroll opacity-0 group">
-              <div className="relative h-full p-6 bg-card/50 backdrop-blur-sm rounded-xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <Users className="w-7 h-7 text-primary" />
+            <div className="group">
+              <div className="relative h-full p-6 bg-card/50 backdrop-blur-sm rounded-xl border border-border/50">
+                <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/50 rounded-lg flex items-center justify-center mb-4">
+                  <Users className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Experiência Consolidada</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Mais de 30 anos de expertise em comércio exterior e conhecimento profundo 
-                  do mercado internacional.
+                <h3 className="text-xl font-bold mb-2">Experiência Consolidada</h3>
+                <p className="text-muted-foreground">
+                  Mais de 30 anos de atuação no mercado internacional com expertise comprovada.
                 </p>
               </div>
             </div>
 
-            <div className="fade-on-scroll opacity-0 group" style={{ animationDelay: '100ms' }}>
-              <div className="relative h-full p-6 bg-card/50 backdrop-blur-sm rounded-xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <Globe className="w-7 h-7 text-primary" />
+            <div className="group">
+              <div className="relative h-full p-6 bg-card/50 backdrop-blur-sm rounded-xl border border-border/50">
+                <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/50 rounded-lg flex items-center justify-center mb-4">
+                  <Globe className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Rede Global</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Parcerias estratégicas em diversos países, facilitando operações em 
-                  mercados-chave ao redor do mundo.
+                <h3 className="text-xl font-bold mb-2">Alcance Global</h3>
+                <p className="text-muted-foreground">
+                  Rede de contatos em mais de 50 países facilitando suas operações internacionais.
                 </p>
               </div>
             </div>
 
-            <div className="fade-on-scroll opacity-0 group" style={{ animationDelay: '200ms' }}>
-              <div className="relative h-full p-6 bg-card/50 backdrop-blur-sm rounded-xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <Award className="w-7 h-7 text-primary" />
+            <div className="group">
+              <div className="relative h-full p-6 bg-card/50 backdrop-blur-sm rounded-xl border border-border/50">
+                <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/50 rounded-lg flex items-center justify-center mb-4">
+                  <Shield className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Certificações de Qualidade</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Certificados internacionais que garantem os mais altos padrões de 
-                  qualidade e conformidade.
+                <h3 className="text-xl font-bold mb-2">Segurança e Compliance</h3>
+                <p className="text-muted-foreground">
+                  Processos certificados e conformidade com regulamentações internacionais.
                 </p>
               </div>
             </div>
 
-            <div className="fade-on-scroll opacity-0 group" style={{ animationDelay: '300ms' }}>
-              <div className="relative h-full p-6 bg-card/50 backdrop-blur-sm rounded-xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <Target className="w-7 h-7 text-primary" />
+            <div className="group">
+              <div className="relative h-full p-6 bg-card/50 backdrop-blur-sm rounded-xl border border-border/50">
+                <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/50 rounded-lg flex items-center justify-center mb-4">
+                  <Zap className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Soluções Personalizadas</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Atendimento customizado e estratégias específicas para cada cliente 
-                  e segmento de atuação.
+                <h3 className="text-xl font-bold mb-2">Agilidade Operacional</h3>
+                <p className="text-muted-foreground">
+                  Soluções rápidas e eficientes com tecnologia de ponta e processos otimizados.
                 </p>
               </div>
             </div>
@@ -400,29 +312,25 @@ const QuemSomos = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative py-32 overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${logisticsImage})` }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-primary/90"></div>
-        </div>
-        
+      {/* CTA Final */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-primary/5"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center text-white fade-on-scroll opacity-0">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-block mb-4 px-4 py-1 bg-primary/10 rounded-full">
+              <span className="text-primary font-semibold text-sm">Pronto para Começar?</span>
+            </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Pronto para Expandir seu Negócio?
+              Vamos Conectar Seu Negócio ao Mundo
             </h2>
-            <p className="text-xl mb-10 opacity-90 leading-relaxed">
-              Entre em contato conosco e descubra como podemos ajudar sua empresa 
-              a alcançar novos mercados com segurança e eficiência.
+            <p className="text-xl text-muted-foreground mb-8">
+              Entre em contato conosco e descubra como podemos otimizar suas operações de comércio exterior
             </p>
-            <a href="/#contact">
-              <button className="group px-10 py-5 bg-white text-primary rounded-xl font-bold text-lg hover:bg-white/95 transition-all duration-300 hover:shadow-2xl hover:scale-105">
-                Fale Conosco
-                <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
-              </button>
+            <a 
+              href="/#contato" 
+              className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90"
+            >
+              Fale Conosco
             </a>
           </div>
         </div>
