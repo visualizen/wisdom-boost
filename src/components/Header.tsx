@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, TrendingUp } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import wisdomLogo from "@/assets/wisdom-logo.png";
 
@@ -12,6 +13,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [usdRate, setUsdRate] = useState<CurrencyRate | null>(null);
   const [eurRate, setEurRate] = useState<CurrencyRate | null>(null);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchRates = async () => {
@@ -32,12 +34,13 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { label: "Página Inicial", href: "#home" },
-    { label: "Serviços", href: "#services" },
-    { label: "Benefícios", href: "#benefits" },
-    { label: "Certificações", href: "#certifications" },
-    { label: "Segmentos", href: "#segments" },
-    { label: "Contato", href: "#contact" },
+    { label: "Página Inicial", href: "/", isRoute: true },
+    { label: "Quem Somos", href: "/quem-somos", isRoute: true },
+    { label: "Serviços", href: "#services", isRoute: false },
+    { label: "Benefícios", href: "#benefits", isRoute: false },
+    { label: "Certificações", href: "#certifications", isRoute: false },
+    { label: "Segmentos", href: "#segments", isRoute: false },
+    { label: "Contato", href: "#contact", isRoute: false },
   ];
 
   return (
@@ -77,17 +80,29 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
-              >
-                {item.label}
-              </a>
+              item.isRoute ? (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.label}
+                  href={location.pathname === "/" ? item.href : `/${item.href}`}
+                  className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+                >
+                  {item.label}
+                </a>
+              )
             ))}
-            <Button variant="default" size="lg" className="bg-gradient-primary">
-              Fale Conosco
-            </Button>
+            <a href={location.pathname === "/" ? "#contact" : "/#contact"}>
+              <Button variant="default" size="lg" className="bg-gradient-primary">
+                Fale Conosco
+              </Button>
+            </a>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -103,18 +118,31 @@ const Header = () => {
         {isMenuOpen && (
           <nav className="md:hidden py-4 animate-fade-in-up">
             {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="block py-3 text-foreground hover:text-primary transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.label}
-              </a>
+              item.isRoute ? (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="block py-3 text-foreground hover:text-primary transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <a
+                  key={item.label}
+                  href={location.pathname === "/" ? item.href : `/${item.href}`}
+                  className="block py-3 text-foreground hover:text-primary transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              )
             ))}
-            <Button variant="default" className="w-full mt-4 bg-gradient-primary">
-              Fale Conosco
-            </Button>
+            <a href={location.pathname === "/" ? "#contact" : "/#contact"}>
+              <Button variant="default" className="w-full mt-4 bg-gradient-primary" onClick={() => setIsMenuOpen(false)}>
+                Fale Conosco
+              </Button>
+            </a>
           </nav>
         )}
         </div>
