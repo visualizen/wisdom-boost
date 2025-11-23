@@ -39,7 +39,7 @@ const News = () => {
             <Newspaper className="w-5 h-5 text-blue-500" />
             <span className="text-primary font-semibold">Fique Atualizado</span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-500 via-cyan-500 to-sky-500 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-sky-400 via-blue-500 to-blue-700 bg-clip-text text-transparent">
             Notícias do Setor
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
