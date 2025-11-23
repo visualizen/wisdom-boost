@@ -4,87 +4,21 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, Tag, ArrowRight, Newspaper } from "lucide-react";
 import { useState } from "react";
-import tradeNewsImg from "@/assets/blog/trade-news.jpg";
-import digitalCustomsImg from "@/assets/blog/digital-customs.jpg";
-import sustainableTradeImg from "@/assets/blog/sustainable-trade.jpg";
-import asianMarketsImg from "@/assets/blog/asian-markets.jpg";
-import taxReformImg from "@/assets/blog/tax-reform.jpg";
-import ecommerceGlobalImg from "@/assets/blog/ecommerce-global.jpg";
+import { useNavigate } from "react-router-dom";
+import { blogPosts } from "@/data/blogPosts";
 import heroImage from "@/assets/quem-somos-hero.jpg";
 
 const Blog = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("Todas");
 
   const categories = ["Todas", "Tendências", "Legislação", "Logística", "Mercados", "Tecnologia"];
 
-  const posts = [
-    {
-      id: 1,
-      title: "Tendências do Comércio Exterior para 2025",
-      excerpt: "Análise completa das principais tendências que moldarão o comércio internacional nos próximos anos, incluindo digitalização e sustentabilidade.",
-      image: tradeNewsImg,
-      category: "Tendências",
-      date: "15 de Janeiro, 2025",
-      readTime: "5 min",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "Digitalização Aduaneira: O Futuro já Chegou",
-      excerpt: "Como a tecnologia blockchain e IA estão revolucionando os processos aduaneiros e tornando as operações mais eficientes e seguras.",
-      image: digitalCustomsImg,
-      category: "Tecnologia",
-      date: "10 de Janeiro, 2025",
-      readTime: "7 min",
-      featured: true
-    },
-    {
-      id: 3,
-      title: "Comércio Sustentável: Novas Exigências ESG",
-      excerpt: "Entenda como as práticas ESG estão impactando as operações de importação e exportação e o que sua empresa precisa fazer.",
-      image: sustainableTradeImg,
-      category: "Tendências",
-      date: "5 de Janeiro, 2025",
-      readTime: "6 min",
-      featured: false
-    },
-    {
-      id: 4,
-      title: "Oportunidades nos Mercados Asiáticos",
-      excerpt: "Guia completo sobre como aproveitar o crescimento dos mercados asiáticos, com foco em China, Índia e Sudeste Asiático.",
-      image: asianMarketsImg,
-      category: "Mercados",
-      date: "28 de Dezembro, 2024",
-      readTime: "8 min",
-      featured: false
-    },
-    {
-      id: 5,
-      title: "Reforma Tributária e Impactos no Comex",
-      excerpt: "Análise detalhada da reforma tributária brasileira e seus impactos nas operações de comércio exterior.",
-      image: taxReformImg,
-      category: "Legislação",
-      date: "20 de Dezembro, 2024",
-      readTime: "10 min",
-      featured: false
-    },
-    {
-      id: 6,
-      title: "E-commerce Cross-Border em Ascensão",
-      excerpt: "Como o comércio eletrônico internacional está crescendo e as oportunidades para empresas brasileiras expandirem globalmente.",
-      image: ecommerceGlobalImg,
-      category: "Tendências",
-      date: "15 de Dezembro, 2024",
-      readTime: "6 min",
-      featured: false
-    }
-  ];
-
   const filteredPosts = selectedCategory === "Todas" 
-    ? posts 
-    : posts.filter(post => post.category === selectedCategory);
+    ? blogPosts 
+    : blogPosts.filter(post => post.category === selectedCategory);
 
-  const featuredPosts = posts.filter(post => post.featured);
+  const featuredPosts = blogPosts.filter(post => post.featured);
   const regularPosts = filteredPosts.filter(post => !post.featured);
 
   return (
@@ -157,6 +91,7 @@ const Blog = () => {
                 <Card 
                   key={post.id}
                   className="group overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-500 hover:shadow-xl cursor-pointer"
+                  onClick={() => navigate(`/blog/${post.id}`)}
                 >
                   <div className="relative overflow-hidden h-64">
                     <img 
@@ -218,6 +153,7 @@ const Blog = () => {
               <Card 
                 key={post.id}
                 className="group overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
+                onClick={() => navigate(`/blog/${post.id}`)}
               >
                 <div className="relative overflow-hidden h-48">
                   <img 
