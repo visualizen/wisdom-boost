@@ -170,6 +170,56 @@ const QuemSomos = () => {
         </div>
       </section>
 
+      {/* Vídeo Institucional */}
+      <section className="py-32 relative overflow-hidden bg-gradient-to-br from-background via-blue-500/5 to-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 mb-6 px-6 py-2 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full border border-blue-500/20">
+              <Sparkles className="w-5 h-5 text-blue-500" />
+              <span className="text-primary font-semibold">Conheça Nossa Empresa</span>
+            </div>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-500 via-cyan-500 to-sky-500 bg-clip-text text-transparent">
+              Vídeo Institucional
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Descubra como transformamos o comércio exterior em resultados concretos
+            </p>
+          </div>
+          
+          <div className="max-w-5xl mx-auto">
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 via-cyan-600 to-sky-600 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="relative aspect-video rounded-3xl overflow-hidden border-4 border-blue-500/30 shadow-2xl bg-card">
+                {/* Placeholder para o vídeo - substitua o src com o link do vídeo real */}
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-900/20 to-cyan-900/20">
+                  <div className="text-center space-y-4">
+                    <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-blue-500/50">
+                      <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                    <p className="text-muted-foreground text-lg font-semibold">
+                      Vídeo Institucional
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Adicione o link do seu vídeo aqui
+                    </p>
+                  </div>
+                </div>
+                {/* Descomente e adicione o link do vídeo quando estiver disponível */}
+                {/* <iframe
+                  className="w-full h-full"
+                  src="SEU_LINK_DO_VIDEO_AQUI"
+                  title="Vídeo Institucional Wisdom Trading"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                /> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Seção de Comércio Global com Nova Imagem */}
       <section className="py-32 relative overflow-hidden">
         <div 
