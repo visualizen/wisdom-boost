@@ -16,7 +16,7 @@ const Hero = () => {
           
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
             Soluções Completas no{" "}
-            <span className="drop-shadow-[0_0_15px_rgba(59,130,246,0.5)] text-[#132d52]">Comércio Exterior</span>
+            <span className="drop-shadow-[0_0_15px_rgba(59,130,246,0.5)] text-gray-100">Comércio Exterior</span>
           </h1>
           
           <p className="text-xl sm:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
