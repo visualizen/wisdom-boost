@@ -36,7 +36,7 @@ const Header = () => {
   const navItems = [
     { label: "Página Inicial", href: "/", isRoute: true },
     { label: "Quem Somos", href: "/quem-somos", isRoute: true },
-    { label: "Serviços", href: "#services", isRoute: false },
+    { label: "Serviços", href: "/servicos", isRoute: true },
     { label: "Benefícios", href: "#benefits", isRoute: false },
     { label: "Certificações", href: "#certifications", isRoute: false },
     { label: "Segmentos", href: "#segments", isRoute: false },
