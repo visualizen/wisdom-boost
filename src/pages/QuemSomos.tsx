@@ -21,6 +21,7 @@ const QuemSomos = () => {
   const [counts, setCounts] = useState(stats.map(() => 0));
 
   useEffect(() => {
+    // Scroll animations with better threshold
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -29,38 +30,46 @@ const QuemSomos = () => {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.2, rootMargin: '0px 0px -50px 0px' }
     );
 
     const elements = document.querySelectorAll(".fade-on-scroll");
     elements.forEach((el) => observerRef.current?.observe(el));
 
-    // Stats animation observer
+    // Optimized stats animation using requestAnimationFrame
     const statsObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasAnimated) {
             setHasAnimated(true);
             
-            stats.forEach((stat, index) => {
-              const duration = 2000;
-              const steps = 60;
-              const increment = stat.end / steps;
-              let current = 0;
+            const duration = 2000;
+            const startTime = performance.now();
+            let animationFrameId: number;
+            
+            const animate = (currentTime: number) => {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
               
-              const timer = setInterval(() => {
-                current += increment;
-                if (current >= stat.end) {
-                  current = stat.end;
-                  clearInterval(timer);
-                }
-                setCounts((prev) => {
-                  const newCounts = [...prev];
-                  newCounts[index] = Math.floor(current);
-                  return newCounts;
-                });
-              }, duration / steps);
-            });
+              // Easing function for smooth animation
+              const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+              
+              setCounts(stats.map(stat => 
+                Math.floor(stat.end * easeOutQuart)
+              ));
+              
+              if (progress < 1) {
+                animationFrameId = requestAnimationFrame(animate);
+              }
+            };
+            
+            animationFrameId = requestAnimationFrame(animate);
+            
+            return () => {
+              if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+              }
+            };
           }
         });
       },
@@ -128,8 +137,8 @@ const QuemSomos = () => {
       {/* Estatísticas Animadas */}
       <section ref={statsRef} className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(var(--primary-rgb),0.1),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(var(--primary-rgb),0.1),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,hsl(var(--primary)/0.05),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,hsl(var(--primary)/0.05),transparent_50%)]"></div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16 fade-on-scroll opacity-0">
@@ -150,15 +159,14 @@ const QuemSomos = () => {
               return (
                 <div
                   key={index}
-                  className="group relative fade-on-scroll opacity-0"
-                  style={{ animationDelay: `${index * 100}ms` }}
+                  className="group relative"
                 >
-                  <div className="relative h-full bg-card/50 backdrop-blur-md p-8 rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2">
+                  <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 will-change-transform">
                     {/* Gradient Background */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`}></div>
+                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}></div>
                     
                     {/* Icon */}
-                    <div className={`relative w-16 h-16 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`relative w-16 h-16 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-300`}>
                       <Icon className="w-8 h-8 text-white" />
                     </div>
                     
@@ -174,7 +182,7 @@ const QuemSomos = () => {
                     </div>
 
                     {/* Decorative Element */}
-                    <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+                    <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-xl opacity-50"></div>
                   </div>
                 </div>
               );
@@ -190,11 +198,12 @@ const QuemSomos = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
             <div className="fade-on-scroll opacity-0">
               <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-primary/5 rounded-2xl blur-2xl"></div>
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-primary/5 rounded-2xl blur-xl"></div>
                 <img 
                   src={teamImage} 
                   alt="Equipe Wisdom Trading" 
                   className="relative rounded-2xl shadow-2xl w-full h-auto"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -258,7 +267,7 @@ const QuemSomos = () => {
           
           <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             <div className="fade-on-scroll opacity-0 group">
-              <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
+              <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 will-change-transform">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/50 rounded-t-2xl"></div>
                 <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Target className="w-8 h-8 text-white" />
@@ -272,7 +281,7 @@ const QuemSomos = () => {
             </div>
 
             <div className="fade-on-scroll opacity-0 group" style={{ animationDelay: '100ms' }}>
-              <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
+              <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 will-change-transform">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/50 rounded-t-2xl"></div>
                 <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Globe className="w-8 h-8 text-white" />
@@ -286,7 +295,7 @@ const QuemSomos = () => {
             </div>
 
             <div className="fade-on-scroll opacity-0 group" style={{ animationDelay: '200ms' }}>
-              <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
+              <div className="relative h-full bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 will-change-transform">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/50 rounded-t-2xl"></div>
                 <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                   <Award className="w-8 h-8 text-white" />
