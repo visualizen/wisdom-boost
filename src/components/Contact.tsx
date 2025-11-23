@@ -20,7 +20,7 @@ const Contact = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* CTA Header */}
         <div className="text-center mb-16 animate-fade-in-up max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-sky-400 via-blue-500 to-blue-700 bg-clip-text text-transparent leading-tight">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent leading-tight">
             Prontos para elevar o seu<br />comércio exterior ao próximo nível?
           </h2>
           <p className="text-3xl text-primary font-bold mb-4">
