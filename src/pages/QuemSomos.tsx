@@ -1,13 +1,24 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Award, Globe, Target, Users, TrendingUp, Shield, Zap } from "lucide-react";
+import { Award, Globe, Target, Users, TrendingUp, Shield, Zap, Package, Ship, TrendingUp as Growth } from "lucide-react";
 import heroImage from "@/assets/quem-somos-hero.jpg";
 import teamImage from "@/assets/quem-somos-team.jpg";
 import logisticsImage from "@/assets/quem-somos-logistics.jpg";
 
 const QuemSomos = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  
+  const stats = [
+    { icon: Users, end: 30, suffix: "+", label: "Anos de Experiência", color: "from-blue-500 to-cyan-500" },
+    { icon: Globe, end: 50, suffix: "+", label: "Países Atendidos", color: "from-purple-500 to-pink-500" },
+    { icon: Package, end: 1000, suffix: "+", label: "Operações Realizadas", color: "from-orange-500 to-red-500" },
+    { icon: Ship, end: 500000, suffix: "+", label: "Toneladas Movimentadas", color: "from-green-500 to-emerald-500" },
+  ];
+
+  const [counts, setCounts] = useState(stats.map(() => 0));
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -24,8 +35,47 @@ const QuemSomos = () => {
     const elements = document.querySelectorAll(".fade-on-scroll");
     elements.forEach((el) => observerRef.current?.observe(el));
 
-    return () => observerRef.current?.disconnect();
-  }, []);
+    // Stats animation observer
+    const statsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+            
+            stats.forEach((stat, index) => {
+              const duration = 2000;
+              const steps = 60;
+              const increment = stat.end / steps;
+              let current = 0;
+              
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= stat.end) {
+                  current = stat.end;
+                  clearInterval(timer);
+                }
+                setCounts((prev) => {
+                  const newCounts = [...prev];
+                  newCounts[index] = Math.floor(current);
+                  return newCounts;
+                });
+              }, duration / steps);
+            });
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (statsRef.current) {
+      statsObserver.observe(statsRef.current);
+    }
+
+    return () => {
+      observerRef.current?.disconnect();
+      statsObserver.disconnect();
+    };
+  }, [hasAnimated]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -73,6 +123,64 @@ const QuemSomos = () => {
 
         {/* Animated gradient overlay */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
+      </section>
+
+      {/* Estatísticas Animadas */}
+      <section ref={statsRef} className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(var(--primary-rgb),0.1),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(var(--primary-rgb),0.1),transparent_50%)]"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16 fade-on-scroll opacity-0">
+            <div className="inline-block mb-4 px-4 py-1 bg-primary/10 rounded-full backdrop-blur-sm">
+              <span className="text-primary font-semibold text-sm">Conquistas em Números</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+              Nossa Trajetória de Sucesso
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Décadas de excelência refletidas em resultados concretos
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
+                <div
+                  key={index}
+                  className="group relative fade-on-scroll opacity-0"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="relative h-full bg-card/50 backdrop-blur-md p-8 rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2">
+                    {/* Gradient Background */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-500`}></div>
+                    
+                    {/* Icon */}
+                    <div className={`relative w-16 h-16 bg-gradient-to-br ${stat.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="w-8 h-8 text-white" />
+                    </div>
+                    
+                    {/* Animated Number */}
+                    <div className="relative">
+                      <div className="text-5xl font-bold mb-2 bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
+                        {counts[index].toLocaleString('pt-BR')}
+                        <span className="text-primary">{stat.suffix}</span>
+                      </div>
+                      <div className="text-muted-foreground font-medium">
+                        {stat.label}
+                      </div>
+                    </div>
+
+                    {/* Decorative Element */}
+                    <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </section>
 
       {/* História com Imagem */}
