@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import ContactForm from "@/components/ContactForm";
+import GlobalPresenceMap from "@/components/GlobalPresenceMap";
 import { Link } from "react-router-dom";
 
 const RepresentacaoInternacional = () => {
@@ -303,6 +304,50 @@ const RepresentacaoInternacional = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Global Presence Map Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
+              <MapPin className="mr-2 h-4 w-4" />
+              Mapa de Presença Global
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
+              Nossa Rede Internacional
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Explore nosso mapa interativo e descubra onde a Wisdom Trading tem presença estabelecida e parceiros comerciais ao redor do mundo
+            </p>
+          </div>
+
+          <GlobalPresenceMap />
+
+          <div className="mt-12 grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <Card className="border-border/50 bg-card text-center">
+              <CardContent className="p-6">
+                <Globe className="h-10 w-10 mx-auto mb-3 text-primary" />
+                <div className="text-3xl font-bold bg-gradient-title bg-clip-text text-transparent mb-2">40+</div>
+                <div className="text-muted-foreground">Países Atendidos</div>
+              </CardContent>
+            </Card>
+            <Card className="border-border/50 bg-card text-center">
+              <CardContent className="p-6">
+                <Users className="h-10 w-10 mx-auto mb-3 text-primary" />
+                <div className="text-3xl font-bold bg-gradient-title bg-clip-text text-transparent mb-2">24</div>
+                <div className="text-muted-foreground">Parceiros Estratégicos</div>
+              </CardContent>
+            </Card>
+            <Card className="border-border/50 bg-card text-center">
+              <CardContent className="p-6">
+                <MapPin className="h-10 w-10 mx-auto mb-3 text-primary" />
+                <div className="text-3xl font-bold bg-gradient-title bg-clip-text text-transparent mb-2">6</div>
+                <div className="text-muted-foreground">Continentes</div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
