@@ -47,6 +47,10 @@ const Header = () => {
     href: "/servicos",
     isRoute: true
   }, {
+    label: "Representação Comercial",
+    href: "/representacao-comercial",
+    isRoute: true
+  }, {
     label: "Blog",
     href: "/blog",
     isRoute: true

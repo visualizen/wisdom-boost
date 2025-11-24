@@ -7,6 +7,7 @@ import WhatsAppFloat from "@/components/WhatsAppFloat";
 import Index from "./pages/Index";
 import QuemSomos from "./pages/QuemSomos";
 import Servicos from "./pages/Servicos";
+import RepresentacaoComercial from "./pages/RepresentacaoComercial";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contato from "./pages/Contato";
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/quem-somos" element={<QuemSomos />} />
           <Route path="/servicos" element={<Servicos />} />
+          <Route path="/representacao-comercial" element={<RepresentacaoComercial />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/contato" element={<Contato />} />
