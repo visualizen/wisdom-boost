@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Globe } from "lucide-react";
-import heroVideo from "@/assets/hero-video-new.mp4";
+import heroVideo from "@/assets/hero-video-final.mp4";
 const Hero = () => {
   return <section id="home" className="relative min-h-screen flex items-center pt-20">
       <div className="absolute inset-0 z-0 overflow-hidden">
