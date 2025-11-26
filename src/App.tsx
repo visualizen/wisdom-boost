@@ -13,6 +13,10 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contato from "./pages/Contato";
 import NotFound from "./pages/NotFound";
+import Fundicao from "./pages/segments/Fundicao";
+import FerroAco from "./pages/segments/FerroAco";
+import Quimicos from "./pages/segments/Quimicos";
+import Alimenticia from "./pages/segments/Alimenticia";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +32,10 @@ const App = () => (
           <Route path="/servicos" element={<Servicos />} />
           <Route path="/representacao-comercial" element={<RepresentacaoComercial />} />
           <Route path="/representacao-internacional" element={<RepresentacaoInternacional />} />
+          <Route path="/segmentos/fundicao" element={<Fundicao />} />
+          <Route path="/segmentos/ferro-aco" element={<FerroAco />} />
+          <Route path="/segmentos/quimicos" element={<Quimicos />} />
+          <Route path="/segmentos/alimenticia" element={<Alimenticia />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/contato" element={<Contato />} />

@@ -18,18 +18,19 @@ const contactSchema = z.object({
 
 interface ContactFormProps {
   showServiceSelect?: boolean;
+  defaultService?: string;
   title?: string;
   subtitle?: string;
 }
 
-const ContactForm = ({ showServiceSelect = false, title, subtitle }: ContactFormProps) => {
+const ContactForm = ({ showServiceSelect = false, defaultService = "", title, subtitle }: ContactFormProps) => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    service: "",
+    service: defaultService,
     message: ""
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
