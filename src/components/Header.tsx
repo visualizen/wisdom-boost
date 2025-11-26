@@ -11,11 +11,12 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [usdRate, setUsdRate] = useState<CurrencyRate | null>(null);
   const [eurRate, setEurRate] = useState<CurrencyRate | null>(null);
+  const [gbpRate, setGbpRate] = useState<CurrencyRate | null>(null);
   const location = useLocation();
   useEffect(() => {
     const fetchRates = async () => {
       try {
-        const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL');
+        const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL');
         const data = await response.json();
         setUsdRate({
           bid: data.USDBRL.bid,
@@ -24,6 +25,10 @@ const Header = () => {
         setEurRate({
           bid: data.EURBRL.bid,
           name: 'EUR'
+        });
+        setGbpRate({
+          bid: data.GBPBRL.bid,
+          name: 'GBP'
         });
       } catch (error) {
         console.error('Erro ao buscar cotações:', error);
@@ -62,7 +67,7 @@ const Header = () => {
   return <header className="fixed top-0 w-full z-50 animate-fade-in">
       {/* Barra de Cotações */}
       <div className="bg-gradient-primary text-white py-2">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center gap-6 text-sm">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center gap-4 sm:gap-6 text-sm">
           <TrendingUp size={16} className="hidden sm:inline" />
           {usdRate && <div className="flex items-center gap-2">
               <span className="font-semibold">USD:</span>
@@ -72,6 +77,11 @@ const Header = () => {
           {eurRate && <div className="flex items-center gap-2">
               <span className="font-semibold">EUR:</span>
               <span>R$ {parseFloat(eurRate.bid).toFixed(2)}</span>
+            </div>}
+          <div className="hidden sm:inline text-white/50">|</div>
+          {gbpRate && <div className="flex items-center gap-2">
+              <span className="font-semibold">GBP:</span>
+              <span>R$ {parseFloat(gbpRate.bid).toFixed(2)}</span>
             </div>}
         </div>
       </div>
