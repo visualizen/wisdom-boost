@@ -4,7 +4,16 @@ import heroVideo from "@/assets/hero-video-final.mp4";
 const Hero = () => {
   return <section id="home" className="relative min-h-screen flex items-center pt-20">
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
+        <video 
+          key={heroVideo}
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-cover"
+          onError={(e) => console.error("Erro ao carregar vídeo:", e)}
+          onLoadedData={() => console.log("Vídeo carregado:", heroVideo)}
+        >
           <source src={heroVideo} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-primary/20" />
