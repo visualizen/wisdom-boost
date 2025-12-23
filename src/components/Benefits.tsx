@@ -1,37 +1,40 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Users, Zap, DollarSign, ShieldCheck, Globe } from "lucide-react";
 import wisdomWatermark from "@/assets/wisdom-logo-watermark.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Benefits = () => {
+  const { t } = useLanguage();
+
   const benefits = [
     {
       icon: Users,
-      title: "Atendimento Personalizado",
-      description: "Atendimento próximo e personalizado, com foco real no negócio e nas necessidades do cliente.",
+      title: t('benefits.items.personalized.title'),
+      description: t('benefits.items.personalized.desc'),
       color: "from-primary to-primary-light",
     },
     {
       icon: Zap,
-      title: "Estrutura Ágil",
-      description: "Estrutura ágil e altamente técnica, pronta para responder rápido e com assertividade.",
+      title: t('benefits.items.agile.title'),
+      description: t('benefits.items.agile.desc'),
       color: "from-primary-light to-primary",
     },
     {
       icon: DollarSign,
-      title: "Expertise Fiscal",
-      description: "Expertise fiscal, com resultados comprovados e redução de ICMS de até 70% por meio de benefícios tributários.",
+      title: t('benefits.items.fiscal.title'),
+      description: t('benefits.items.fiscal.desc'),
       color: "from-primary to-primary-dark",
     },
     {
       icon: ShieldCheck,
-      title: "Tecnologia Avançada",
-      description: "Utilização de sistemas avançados, tecnologia e IA para garantir controle, rastreabilidade e total conformidade.",
+      title: t('benefits.items.technology.title'),
+      description: t('benefits.items.technology.desc'),
       color: "from-primary-dark to-primary",
     },
     {
       icon: Globe,
-      title: "Representação Internacional",
-      description: "Atuação como representante comercial internacional / comprador, gerando confiança e segurança para fornecedores estrangeiros.",
+      title: t('benefits.items.international.title'),
+      description: t('benefits.items.international.desc'),
       color: "from-primary-light to-primary-dark",
     },
   ];
@@ -39,7 +42,7 @@ const Benefits = () => {
   return (
     <section id="benefits" className="py-24 bg-background relative overflow-hidden">
       {/* Logo Watermark Background */}
-      <div 
+      <div
         className="absolute left-0 top-0 opacity-100 bg-left-top bg-no-repeat w-full h-full"
         style={{
           backgroundImage: `url(${wisdomWatermark})`,
@@ -47,20 +50,20 @@ const Benefits = () => {
           backgroundPosition: 'left top'
         }}
       />
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
-            Vantagens de Trabalhar Conosco
+            {t('benefits.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Benefícios exclusivos que fazem a diferença no seu negócio
+            {t('benefits.subtitle')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {benefits.map((benefit, index) => (
-            <Card 
+            <Card
               key={index}
               className="hover:shadow-lg-custom transition-all duration-300 hover:-translate-y-2 border-none shadow-card overflow-hidden animate-fade-in-up"
               style={{ animationDelay: `${index * 0.1}s` }}

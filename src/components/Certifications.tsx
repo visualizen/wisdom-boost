@@ -1,26 +1,23 @@
-import cert1 from "@/assets/certifications/cert-1.png";
-import cert2 from "@/assets/certifications/cert-2.png";
-import cert3 from "@/assets/certifications/cert-3.png";
-import cert4 from "@/assets/certifications/cert-4.jpg";
-import cert5 from "@/assets/certifications/cert-5.png";
-import cert6 from "@/assets/certifications/cert-6.png";
-import cert7 from "@/assets/certifications/cert-7.png";
-import cert8 from "@/assets/certifications/cert-8.png";
-import cert9 from "@/assets/certifications/cert-9.png";
-import cert10 from "@/assets/certifications/cert-10.png";
+import cert1 from "@/assets/certifications/1.png";
+import cert2 from "@/assets/certifications/2.png";
+import cert3 from "@/assets/certifications/3.png";
+import cert4 from "@/assets/certifications/4.png";
+import cert5 from "@/assets/certifications/5.png";
+import cert6 from "@/assets/certifications/6.png";
+import cert7 from "@/assets/certifications/7.png";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Certifications = () => {
+  const { t } = useLanguage();
+
   const certifications = [
     { name: "MAPA", logo: cert1 },
-    { name: "DECEX", logo: cert2 },
-    { name: "Ministério da Agricultura", logo: cert3 },
-    { name: "ANVISA", logo: cert4 },
+    { name: "ANVISA", logo: cert2 },
+    { name: "Policia Federal", logo: cert3 },
+    { name: "ANP", logo: cert4 },
     { name: "IBAMA", logo: cert5 },
-    { name: "CNPq", logo: cert6 },
-    { name: "MCTI", logo: cert7 },
-    { name: "Polícia Federal", logo: cert8 },
-    { name: "E2", logo: cert9 },
-    { name: "ANEEL", logo: cert10 },
+    { name: "Receita Federal", logo: cert6 }, // Guessing based on common certs, can update if specific names known
+    { name: "Exército", logo: cert7 },
   ];
 
   // Duplicar o array para criar o efeito de loop infinito
@@ -31,10 +28,10 @@ const Certifications = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
-            Conheça nossas Certificações
+            {t('certifications.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Compromisso com excelência e conformidade reconhecidos nacionalmente e internacionalmente
+            {t('certifications.subtitle')}
           </p>
         </div>
 

@@ -3,7 +3,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
 import Index from "./pages/Index";
 import QuemSomos from "./pages/QuemSomos";
 import Servicos from "./pages/Servicos";
@@ -17,33 +16,46 @@ import Fundicao from "./pages/segments/Fundicao";
 import FerroAco from "./pages/segments/FerroAco";
 import Quimicos from "./pages/segments/Quimicos";
 import Alimenticia from "./pages/segments/Alimenticia";
+import Login from "./pages/Login";
+import AdminDashboard from "./pages/AdminDashboard";
+import PostEditor from "./pages/PostEditor";
+import ProtectedRoute from "./components/ProtectedRoute";
+import FloatingActionMenu from "./components/FloatingActionMenu";
+
+import { LanguageProvider } from "./contexts/LanguageContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/quem-somos" element={<QuemSomos />} />
-          <Route path="/servicos" element={<Servicos />} />
-          <Route path="/representacao-comercial" element={<RepresentacaoComercial />} />
-          <Route path="/representacao-internacional" element={<RepresentacaoInternacional />} />
-          <Route path="/segmentos/fundicao" element={<Fundicao />} />
-          <Route path="/segmentos/ferro-aco" element={<FerroAco />} />
-          <Route path="/segmentos/quimicos" element={<Quimicos />} />
-          <Route path="/segmentos/alimenticia" element={<Alimenticia />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:id" element={<BlogPost />} />
-          <Route path="/contato" element={<Contato />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <WhatsAppFloat />
-      </BrowserRouter>
-    </TooltipProvider>
+    <LanguageProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/quem-somos" element={<QuemSomos />} />
+            <Route path="/servicos" element={<Servicos />} />
+            <Route path="/representacao-comercial" element={<RepresentacaoComercial />} />
+            <Route path="/representacao-internacional" element={<RepresentacaoInternacional />} />
+            <Route path="/segmentos/fundicao" element={<Fundicao />} />
+            <Route path="/segmentos/ferro-aco" element={<FerroAco />} />
+            <Route path="/segmentos/quimicos" element={<Quimicos />} />
+            <Route path="/segmentos/alimenticia" element={<Alimenticia />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/contato" element={<Contato />} />
+            <Route path="/admin/login" element={<Login />} />
+            <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+            <Route path="/admin/posts/new" element={<ProtectedRoute><PostEditor /></ProtectedRoute>} />
+            <Route path="/admin/posts/:id" element={<ProtectedRoute><PostEditor /></ProtectedRoute>} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <FloatingActionMenu />
+        </BrowserRouter>
+      </TooltipProvider>
+    </LanguageProvider>
   </QueryClientProvider>
 );
 

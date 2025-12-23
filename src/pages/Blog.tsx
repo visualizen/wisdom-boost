@@ -1,51 +1,115 @@
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, Tag, ArrowRight, Newspaper } from "lucide-react";
-import { useState } from "react";
+import { Calendar, Clock, ArrowRight, Newspaper } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { blogPosts } from "@/data/blogPosts";
+import { supabase } from "@/integrations/supabase/client";
+import { blogPosts as initialStaticPosts, BlogPost } from "@/data/blogPosts";
 import heroImage from "@/assets/quem-somos-hero.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Blog = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState("Todas");
+  const [dbPosts, setDbPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const categories = ["Todas", "Tendências", "Legislação", "Logística", "Mercados", "Tecnologia"];
 
-  const filteredPosts = selectedCategory === "Todas" 
-    ? blogPosts 
-    : blogPosts.filter(post => post.category === selectedCategory);
+  const categoryKeys: Record<string, string> = {
+    "Todas": "all",
+    "Tendências": "trends",
+    "Legislação": "legislation",
+    "Logística": "logistics",
+    "Mercados": "markets",
+    "Tecnologia": "technology"
+  };
 
-  const featuredPosts = blogPosts.filter(post => post.featured);
-  const regularPosts = filteredPosts.filter(post => !post.featured);
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('posts')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error("Error fetching posts:", error);
+      }
+
+      if (data && data.length > 0) {
+        const mappedPosts: BlogPost[] = data.map(post => ({
+          id: post.id,
+          title: post.title,
+          excerpt: post.content ? post.content.substring(0, 150) + "..." : "",
+          content: post.content,
+          image: post.image_url || "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+          category: post.category || "Geral",
+          date: new Date(post.created_at).toLocaleDateString('pt-BR'),
+          readTime: "5 min",
+          featured: false,
+          author: "Equipe Wisdom",
+          tags: []
+        }));
+        setDbPosts(mappedPosts);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Combine static and DB posts, prioritizing DB posts but keeping static ones as fallback content
+  // If there are DB posts, we could choose to hide static ones, but for now let's mix them or
+  // just show static if DB is empty to make the site look populated.
+  const allPosts = dbPosts.length > 0 ? [...dbPosts, ...initialStaticPosts] : initialStaticPosts;
+
+  const filteredPosts = selectedCategory === "Todas"
+    ? allPosts
+    : allPosts.filter(post => post.category === selectedCategory);
+
+  const featuredPosts = allPosts.filter(post => post.featured);
+  // If no posts are marked as featured in DB, just pick the first one
+  const displayFeatured = featuredPosts.length > 0 ? featuredPosts : [allPosts[0]];
+
+  const regularPosts = filteredPosts.filter(post => !displayFeatured.includes(post));
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-        <div 
+      <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center justify-center overflow-hidden">
+        <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-cyan-900/70 to-sky-900/80"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_70%)]"></div>
+          {/* Darker Elegant Navy Overlay */}
+          <div className="absolute inset-0 bg-blue-950/70 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-950/90 via-slate-900/80 to-blue-900/80"></div>
+          {/* Subtle radial highlight */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.15),transparent_60%)]"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 mb-6 px-6 py-3 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 backdrop-blur-sm rounded-full border-2 border-blue-400/30">
               <Newspaper className="w-5 h-5 text-cyan-400" />
-              <span className="text-white font-semibold text-lg">Insights & Notícias</span>
+              <span className="text-white font-semibold text-lg">{t('blogPage.hero.badge')}</span>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-sky-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-2xl">
-              Blog Wisdom Trading
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-2xl animate-fade-in-up">
+              {t('blogPage.hero.title')}
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 font-light">
-              Fique por dentro das <span className="font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">últimas tendências</span> do comércio exterior
+            <p className="text-xl md:text-2xl text-white/90 font-light animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+              {t('blogPage.hero.subtitle')} <span className="font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">{t('blogPage.hero.subtitleHighlight')}</span> {t('blogPage.hero.desc')}
             </p>
           </div>
         </div>
@@ -62,11 +126,11 @@ const Blog = () => {
                 key={category}
                 variant={selectedCategory === category ? "default" : "outline"}
                 onClick={() => setSelectedCategory(category)}
-                className={selectedCategory === category 
-                  ? "bg-gradient-primary text-white" 
+                className={selectedCategory === category
+                  ? "bg-gradient-primary text-white"
                   : "border-primary/30 hover:border-primary/50"}
               >
-                {category}
+                {t(`blogPage.categories.${categoryKeys[category]}` as any)}
               </Button>
             ))}
           </div>
@@ -74,28 +138,28 @@ const Blog = () => {
       </section>
 
       {/* Featured Posts */}
-      {selectedCategory === "Todas" && featuredPosts.length > 0 && (
+      {selectedCategory === "Todas" && displayFeatured.length > 0 && (
         <section className="py-16 bg-gradient-to-br from-blue-500/5 via-background to-cyan-500/5">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
-                Destaques
+                {t('blogPage.featured.title')}
               </h2>
               <p className="text-xl text-muted-foreground">
-                Os artigos mais relevantes para o seu negócio
+                {t('blogPage.featured.subtitle')}
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              {featuredPosts.map((post) => (
-                <Card 
+              {displayFeatured.map((post) => (
+                <Card
                   key={post.id}
                   className="group overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-500 hover:shadow-xl cursor-pointer"
                   onClick={() => navigate(`/blog/${post.id}`)}
                 >
                   <div className="relative overflow-hidden h-64">
-                    <img 
-                      src={post.image} 
+                    <img
+                      src={post.image}
                       alt={post.title}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
@@ -119,11 +183,11 @@ const Blog = () => {
                     <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
                       {post.title}
                     </h3>
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                    <p className="text-muted-foreground mb-4 leading-relaxed line-clamp-3">
                       {post.excerpt}
                     </p>
                     <Button variant="ghost" className="group/btn p-0 h-auto font-semibold text-primary hover:text-primary/80">
-                      Ler mais
+                      {t('blogPage.readMore')}
                       <ArrowRight className="ml-2 transition-transform group-hover/btn:translate-x-1" size={18} />
                     </Button>
                   </CardContent>
@@ -140,24 +204,24 @@ const Blog = () => {
           {selectedCategory !== "Todas" && (
             <div className="mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
-                {selectedCategory}
+                {t(`blogPage.categories.${categoryKeys[selectedCategory]}` as any)}
               </h2>
               <p className="text-xl text-muted-foreground">
-                Artigos sobre {selectedCategory.toLowerCase()}
+                Artigos sobre {t(`blogPage.categories.${categoryKeys[selectedCategory]}` as any).toLowerCase()}
               </p>
             </div>
           )}
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularPosts.map((post) => (
-              <Card 
+              <Card
                 key={post.id}
                 className="group overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
                 onClick={() => navigate(`/blog/${post.id}`)}
               >
                 <div className="relative overflow-hidden h-48">
-                  <img 
-                    src={post.image} 
+                  <img
+                    src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
@@ -185,7 +249,7 @@ const Blog = () => {
                     {post.excerpt}
                   </p>
                   <Button variant="ghost" className="group/btn p-0 h-auto font-semibold text-primary hover:text-primary/80 text-sm">
-                    Ler mais
+                    {t('blogPage.readMore')}
                     <ArrowRight className="ml-2 transition-transform group-hover/btn:translate-x-1" size={16} />
                   </Button>
                 </CardContent>
@@ -196,39 +260,14 @@ const Blog = () => {
           {filteredPosts.length === 0 && (
             <div className="text-center py-16">
               <p className="text-xl text-muted-foreground">
-                Nenhum artigo encontrado nesta categoria.
+                {t('blogPage.notFound')}
               </p>
             </div>
           )}
         </div>
       </section>
 
-      {/* Newsletter CTA */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-cyan-600 to-sky-600 opacity-90"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_70%)]"></div>
-        
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl mx-auto text-center text-white">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Não Perca Nenhuma Atualização
-            </h2>
-            <p className="text-xl mb-8 text-white/90">
-              Receba as últimas notícias e insights sobre comércio exterior diretamente no seu email
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
-              <input
-                type="email"
-                placeholder="Seu melhor email"
-                className="flex-1 h-14 px-6 rounded-xl bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white placeholder:text-white/60 focus:outline-none focus:border-white"
-              />
-              <Button size="lg" className="h-14 px-8 bg-white text-primary hover:bg-white/90 font-bold">
-                Assinar Newsletter
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       <Footer />
     </div>

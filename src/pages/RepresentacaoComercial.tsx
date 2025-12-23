@@ -7,152 +7,164 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import ContactForm from "@/components/ContactForm";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const RepresentacaoComercial = () => {
   const [activeSegment, setActiveSegment] = useState("all");
+  const { t } = useLanguage();
 
   const benefits = [
     {
       icon: Building2,
-      title: "Presença Local Estabelecida",
-      description: "Representação física no Brasil com infraestrutura completa para suas operações comerciais"
+      title: t('commercialPage.benefits.items.localPresence.title'),
+      description: t('commercialPage.benefits.items.localPresence.desc')
     },
     {
       icon: Users,
-      title: "Rede de Contatos Consolidada",
-      description: "Acesso imediato a network de distribuidores, compradores e parceiros estratégicos brasileiros"
+      title: t('commercialPage.benefits.items.network.title'),
+      description: t('commercialPage.benefits.items.network.desc')
     },
     {
       icon: Globe,
-      title: "Conhecimento do Mercado",
-      description: "Expertise profunda sobre regulamentações, cultura de negócios e oportunidades no Brasil"
+      title: t('commercialPage.benefits.items.marketKnowledge.title'),
+      description: t('commercialPage.benefits.items.marketKnowledge.desc')
     },
     {
       icon: ShieldCheck,
-      title: "Conformidade Garantida",
-      description: "Gestão completa de documentação, certificações e compliance com legislação brasileira"
+      title: t('commercialPage.benefits.items.compliance.title'),
+      description: t('commercialPage.benefits.items.compliance.desc')
     },
     {
       icon: TrendingUp,
-      title: "Expansão Sem Riscos",
-      description: "Teste o mercado brasileiro sem necessidade de investimento em estrutura própria"
+      title: t('commercialPage.benefits.items.expansion.title'),
+      description: t('commercialPage.benefits.items.expansion.desc')
     },
     {
       icon: Clock,
-      title: "Time-to-Market Acelerado",
-      description: "Entre no mercado brasileiro em semanas, não anos, com nossa estrutura pronta"
+      title: t('commercialPage.benefits.items.timeToMarket.title'),
+      description: t('commercialPage.benefits.items.timeToMarket.desc')
     }
   ];
 
   const services = [
     {
       icon: Handshake,
-      title: "Prospecção de Clientes",
-      description: "Identificação e abordagem de potenciais compradores alinhados ao seu produto"
+      title: t('commercialPage.services.items.prospecting.title'),
+      description: t('commercialPage.services.items.prospecting.desc')
     },
     {
       icon: BarChart3,
-      title: "Análise de Mercado",
-      description: "Estudos detalhados sobre viabilidade, precificação e posicionamento competitivo"
+      title: t('commercialPage.services.items.analysis.title'),
+      description: t('commercialPage.services.items.analysis.desc')
     },
     {
       icon: FileCheck,
-      title: "Negociação Comercial",
-      description: "Condução de negociações, elaboração de propostas e fechamento de contratos"
+      title: t('commercialPage.services.items.negotiation.title'),
+      description: t('commercialPage.services.items.negotiation.desc')
     },
     {
       icon: Package,
-      title: "Gestão de Operações",
-      description: "Acompanhamento de pedidos, logística e suporte pós-venda aos clientes brasileiros"
+      title: t('commercialPage.services.items.management.title'),
+      description: t('commercialPage.services.items.management.desc')
     }
   ];
 
   const segments = [
     {
       id: "chemicals",
-      name: "Químicos & Petroquímicos",
-      description: "Representação para fabricantes de químicos industriais, especialidades e commodities",
+      name: t('commercialPage.segments.items.chemicals.name'),
+      description: t('commercialPage.segments.items.chemicals.desc'),
       color: "purple"
     },
     {
       id: "metals",
-      name: "Metais & Siderurgia",
-      description: "Conexão com indústrias brasileiras de aço, alumínio e metais não-ferrosos",
+      name: t('commercialPage.segments.items.metals.name'),
+      description: t('commercialPage.segments.items.metals.desc'),
       color: "slate"
     },
     {
       id: "food",
-      name: "Alimentos & Bebidas",
-      description: "Entrada no mercado brasileiro de ingredientes, aditivos e produtos alimentícios",
+      name: t('commercialPage.segments.items.food.name'),
+      description: t('commercialPage.segments.items.food.desc'),
       color: "emerald"
     },
     {
       id: "machinery",
-      name: "Máquinas & Equipamentos",
-      description: "Representação de fabricantes de equipamentos industriais e maquinário",
+      name: t('commercialPage.segments.items.machinery.name'),
+      description: t('commercialPage.segments.items.machinery.desc'),
       color: "amber"
     }
   ];
 
   const stats = [
-    { value: "15+", label: "Anos de Experiência", icon: Clock },
-    { value: "200+", label: "Empresas Representadas", icon: Building2 },
-    { value: "500+", label: "Negócios Fechados", icon: Handshake },
-    { value: "95%", label: "Taxa de Satisfação", icon: CheckCircle }
+    { value: "15+", label: t('commercialPage.stats.experience'), icon: Clock },
+    { value: "200+", label: t('commercialPage.stats.represented'), icon: Building2 },
+    { value: "500+", label: t('commercialPage.stats.deals'), icon: Handshake },
+    { value: "95%", label: t('commercialPage.stats.satisfaction'), icon: CheckCircle }
   ];
 
   const process = [
     {
       step: "01",
-      title: "Análise Inicial",
-      description: "Avaliamos seu produto, mercado-alvo e objetivos no Brasil"
+      title: t('commercialPage.process.steps.analysis.title'),
+      description: t('commercialPage.process.steps.analysis.desc')
     },
     {
       step: "02",
-      title: "Estratégia Comercial",
-      description: "Desenvolvemos plano de entrada e posicionamento no mercado"
+      title: t('commercialPage.process.steps.strategy.title'),
+      description: t('commercialPage.process.steps.strategy.desc')
     },
     {
       step: "03",
-      title: "Prospecção Ativa",
-      description: "Identificamos e contatamos potenciais compradores qualificados"
+      title: t('commercialPage.process.steps.prospecting.title'),
+      description: t('commercialPage.process.steps.prospecting.desc')
     },
     {
       step: "04",
-      title: "Negociação & Fechamento",
-      description: "Conduzimos negociações até o fechamento dos contratos"
+      title: t('commercialPage.process.steps.negotiation.title'),
+      description: t('commercialPage.process.steps.negotiation.desc')
     }
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-primary/5 via-background to-primary-light/5 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      {/* Hero Section - Standardized */}
+      <section className="relative min-h-[500px] pt-40 pb-16 flex items-center justify-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/assets/images/brazil-market-hero.jpg')" }}
+        >
+          {/* Standardized Dark Blue Map Overlay */}
+          <div className="absolute inset-0 bg-blue-900/60 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-cyan-900/70 to-sky-900/80"></div>
+        </div>
+
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 text-base px-4 py-2 bg-primary/10 text-primary border-primary/20">
-              <Globe className="mr-2 h-4 w-4" />
-              Commercial Representation in Brazil
-            </Badge>
-            
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-title bg-clip-text text-transparent leading-tight">
-              Your Gateway to the Brazilian Market
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+              <Globe className="mr-2 h-4 w-4 text-cyan-300" />
+              <span className="text-white font-medium text-sm">{t('commercialPage.hero.badge')}</span>
+            </div>
+
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-2xl animate-fade-in-up leading-tight pb-2">
+              {t('commercialPage.hero.title')}
             </h1>
-            
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
-              Expand your business in Brazil with a trusted local partner. We represent international companies seeking commercial presence in one of the world's largest markets.
+
+            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed animate-fade-in-up font-light" style={{ animationDelay: "0.2s" }}>
+              {t('commercialPage.hero.subtitle')} <span className="font-bold text-cyan-300">{t('commercialPage.hero.subtitleHighlight')}</span>. {t('commercialPage.hero.desc')}
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-primary text-lg px-8 py-6 group">
-                <a href="#contact">Start Your Expansion</a>
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <Button size="lg" className="bg-sky-500 hover:bg-sky-600 text-white rounded-full text-lg px-8 py-6 shadow-lg shadow-sky-500/20 border-0 transition-all duration-300 transform hover:-translate-y-1">
+                <a href="#contact">{t('commercialPage.hero.cta')}</a>
+                <ArrowRight className="ml-2 h-5 w-5 hover:translate-x-1 transition-transform" />
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6">
-                <Link to="/contato">Schedule a Consultation</Link>
+              <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20 rounded-full text-lg px-8 py-6">
+                <Link to="/contato">{t('commercialPage.hero.schedule')}</Link>
               </Button>
             </div>
           </div>
@@ -182,13 +194,13 @@ const RepresentacaoComercial = () => {
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
               <ShieldCheck className="mr-2 h-4 w-4" />
-              Why Wisdom Trading
+              {t('commercialPage.benefits.badge')}
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
-              Your Strategic Advantage in Brazil
+              {t('commercialPage.benefits.title')}
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Navigate the Brazilian market complexity with a partner who understands both your business needs and local market dynamics
+              {t('commercialPage.benefits.subtitle')}
             </p>
           </div>
 
@@ -214,13 +226,13 @@ const RepresentacaoComercial = () => {
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
               <Package className="mr-2 h-4 w-4" />
-              Our Services
+              {t('commercialPage.services.badge')}
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
-              Complete Commercial Representation
+              {t('commercialPage.services.title')}
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              End-to-end support for your business development in Brazil
+              {t('commercialPage.services.subtitle')}
             </p>
           </div>
 
@@ -246,20 +258,20 @@ const RepresentacaoComercial = () => {
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
               <Building2 className="mr-2 h-4 w-4" />
-              Industries We Serve
+              {t('commercialPage.segments.badge')}
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
-              Specialized Market Knowledge
+              {t('commercialPage.segments.title')}
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Deep expertise across key industrial segments in the Brazilian market
+              {t('commercialPage.segments.subtitle')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {segments.map((segment) => (
-              <Card 
-                key={segment.id} 
+              <Card
+                key={segment.id}
                 className="border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg cursor-pointer group"
                 onClick={() => setActiveSegment(segment.id)}
               >
@@ -286,13 +298,13 @@ const RepresentacaoComercial = () => {
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
               <ArrowRight className="mr-2 h-4 w-4" />
-              How It Works
+              {t('commercialPage.process.badge')}
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
-              Your Path to Brazilian Success
+              {t('commercialPage.process.title')}
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              A proven 4-step process to establish your presence in Brazil
+              {t('commercialPage.process.subtitle')}
             </p>
           </div>
 
@@ -319,13 +331,13 @@ const RepresentacaoComercial = () => {
       <section className="py-20 bg-gradient-primary text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Enter the Brazilian Market?
+            {t('commercialPage.cta.title')}
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-            Let's discuss how we can accelerate your business growth in Brazil with our proven commercial representation services
+            {t('commercialPage.cta.desc')}
           </p>
           <Button size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6 group border-0">
-            <a href="#contact">Get Started Today</a>
+            <a href="#contact">{t('commercialPage.cta.button')}</a>
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
@@ -338,13 +350,13 @@ const RepresentacaoComercial = () => {
             <div className="text-center mb-12">
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
                 <Users className="mr-2 h-4 w-4" />
-                Contact Us
+                {t('commercialPage.contact.badge')}
               </Badge>
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
-                Let's Start Your Brazilian Journey
+                {t('commercialPage.contact.title')}
               </h2>
               <p className="text-xl text-muted-foreground">
-                Fill out the form below and our team will contact you within 24 hours
+                {t('commercialPage.contact.subtitle')}
               </p>
             </div>
             <ContactForm />

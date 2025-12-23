@@ -7,14 +7,8 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { z } from "zod";
 import airplaneBg from "@/assets/airplane-bg.png";
-
-const contactSchema = z.object({
-  name: z.string().trim().min(1, { message: "Nome é obrigatório" }).max(100, { message: "Nome deve ter menos de 100 caracteres" }),
-  email: z.string().trim().email({ message: "Email inválido" }).max(255, { message: "Email deve ter menos de 255 caracteres" }),
-  phone: z.string().trim().min(10, { message: "Telefone inválido" }).max(20, { message: "Telefone deve ter menos de 20 caracteres" }).optional().or(z.literal("")),
-  service: z.string().optional(),
-  message: z.string().trim().min(10, { message: "Mensagem deve ter pelo menos 10 caracteres" }).max(1000, { message: "Mensagem deve ter menos de 1000 caracteres" })
-});
+import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
 
 interface ContactFormProps {
   showServiceSelect?: boolean;
@@ -25,6 +19,7 @@ interface ContactFormProps {
 
 const ContactForm = ({ showServiceSelect = false, defaultService = "", title, subtitle }: ContactFormProps) => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -35,28 +30,32 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const contactSchema = z.object({
+    name: z.string().trim().min(1, { message: t('contact.labels.name') + " é obrigatório" }).max(100),
+    email: z.string().trim().email({ message: "Email inválido" }).max(255),
+    phone: z.string().trim().optional().or(z.literal("")),
+    service: z.string().optional(),
+    message: z.string().trim().min(10, { message: "Mensagem muito curta" }).max(1000)
+  });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
-    
+
     try {
       const validatedData = contactSchema.parse(formData);
       setIsSubmitting(true);
 
-      // Encode data for WhatsApp
-      let message = `*Novo contato*%0A%0A*Nome:* ${encodeURIComponent(validatedData.name)}%0A*Email:* ${encodeURIComponent(validatedData.email)}`;
-      
-      if (validatedData.phone) {
-        message += `%0A*Telefone:* ${encodeURIComponent(validatedData.phone)}`;
+      // Call Supabase Edge Function
+      const { data, error } = await supabase.functions.invoke('send-email', {
+        body: validatedData,
+      });
+
+      if (error) {
+        throw error;
       }
-      
-      if (validatedData.service) {
-        message += `%0A*Serviço:* ${encodeURIComponent(validatedData.service)}`;
-      }
-      
-      message += `%0A*Mensagem:* ${encodeURIComponent(validatedData.message)}`;
-      
-      window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
+
+      console.log('Email sent:', data);
 
       toast({
         title: "Mensagem enviada!",
@@ -71,6 +70,8 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
         message: ""
       });
     } catch (error) {
+      console.error("Error sending message:", error);
+
       if (error instanceof z.ZodError) {
         const fieldErrors: Record<string, string> = {};
         error.errors.forEach((err) => {
@@ -79,6 +80,21 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
           }
         });
         setErrors(fieldErrors);
+      } else {
+        // Fallback to WhatsApp if email fails or other error
+        const validatedData = formData; // Fallback uses current state
+        let message = `*Novo contato (via Fallback)*%0A%0A*Nome:* ${encodeURIComponent(validatedData.name)}%0A*Email:* ${encodeURIComponent(validatedData.email)}`;
+        if (validatedData.phone) message += `%0A*Telefone:* ${encodeURIComponent(validatedData.phone)}`;
+        if (validatedData.service) message += `%0A*Serviço:* ${encodeURIComponent(validatedData.service)}`;
+        message += `%0A*Mensagem:* ${encodeURIComponent(validatedData.message)}`;
+
+        window.open(`https://wa.me/5547996256869?text=${message}`, '_blank');
+
+        toast({
+          title: "Erro no envio de email",
+          description: "Redirecionando para o WhatsApp...",
+          variant: "destructive"
+        });
       }
     } finally {
       setIsSubmitting(false);
@@ -93,26 +109,26 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
   };
 
   return (
-    <section id="contato" className="relative py-32 overflow-hidden">
+    <section id="contato" className="relative py-20 overflow-hidden">
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${airplaneBg})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-[#0f172a]/90" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* CTA Header */}
-        <div className="text-center mb-16 animate-fade-in-up max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text leading-tight text-slate-50 md:text-6xl">
-            {title || "Prontos para elevar o seu comércio exterior ao próximo nível?"}
+        <div className="text-center mb-12 animate-fade-in-up max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text leading-tight text-slate-50 md:text-5xl">
+            {title || t('contact.title')}
           </h2>
           <p className="text-3xl font-bold mb-4 text-slate-50">
-            {subtitle || "Vamos construir resultados juntos!"}
+            {subtitle || t('contact.subtitle')}
           </p>
           <p className="text-xl text-white/90">
-            Entre em contato e descubra como podemos transformar seu negócio
+            {t('contact.desc')}
           </p>
         </div>
 
@@ -126,7 +142,7 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
                     <Mail className="text-white" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white mb-1">Email</h3>
+                    <h3 className="font-bold text-white mb-1">{t('contact.labels.emailTitle')}</h3>
                     <p className="text-white/80 text-sm">contato@wisdomtrading.com.br</p>
                   </div>
                 </div>
@@ -138,8 +154,8 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
                     <Phone className="text-white" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white mb-1">Telefone</h3>
-                    <p className="text-white/80 text-sm">+55 (11) 1234-5678</p>
+                    <h3 className="font-bold text-white mb-1">{t('contact.labels.phoneTitle')}</h3>
+                    <p className="text-white/80 text-sm">+55 (47) 99625-6869</p>
                   </div>
                 </div>
               </div>
@@ -150,9 +166,9 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
                     <MapPin className="text-white" size={24} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white mb-1">Endereço</h3>
-                    <p className="text-white/80 text-sm">R. Joinville, 304 - Centro</p>
-                    <p className="text-white/80 text-sm">Itajaí - SC, 88301-410</p>
+                    <h3 className="font-bold text-white mb-1">{t('contact.labels.addressTitle')}</h3>
+                    <p className="text-white/80 text-sm">Rua Joinville, 304, Sala 302 – Edifício Athon</p>
+                    <p className="text-white/80 text-sm">Centro, 88301-410 - Itajaí, SC</p>
                   </div>
                 </div>
               </div>
@@ -164,12 +180,12 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-white">
-                      Nome Completo *
+                      {t('contact.labels.name')}
                     </label>
-                    <Input 
+                    <Input
                       value={formData.name}
                       onChange={(e) => handleInputChange("name", e.target.value)}
-                      placeholder="Digite seu nome" 
+                      placeholder={t('contact.placeholders.name')}
                       className="h-12 bg-white/10 backdrop-blur-sm border-white/30 text-white placeholder:text-white/50 focus:border-white focus:bg-white/20"
                       maxLength={100}
                     />
@@ -178,13 +194,13 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
 
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-white">
-                      Email *
+                      {t('contact.labels.email')}
                     </label>
-                    <Input 
+                    <Input
                       type="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange("email", e.target.value)}
-                      placeholder="seu@email.com" 
+                      placeholder={t('contact.placeholders.email')}
                       className="h-12 bg-white/10 backdrop-blur-sm border-white/30 text-white placeholder:text-white/50 focus:border-white focus:bg-white/20"
                       maxLength={255}
                     />
@@ -194,13 +210,13 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
 
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-white">
-                    Telefone
+                    {t('contact.labels.phone')}
                   </label>
-                  <Input 
+                  <Input
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
-                    placeholder="(11) 91234-5678" 
+                    placeholder={t('contact.placeholders.phone')}
                     className="h-12 bg-white/10 backdrop-blur-sm border-white/30 text-white placeholder:text-white/50 focus:border-white focus:bg-white/20"
                     maxLength={20}
                   />
@@ -210,11 +226,11 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
                 {showServiceSelect && (
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-white">
-                      Serviço de Interesse
+                      {t('contact.labels.service')}
                     </label>
                     <Select value={formData.service} onValueChange={(value) => handleInputChange("service", value)}>
                       <SelectTrigger className="h-12 bg-white/10 backdrop-blur-sm border-white/30 text-white focus:border-white focus:bg-white/20">
-                        <SelectValue placeholder="Selecione um serviço" />
+                        <SelectValue placeholder={t('contact.placeholders.service')} />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="importacao">Importação por Encomenda e C&O</SelectItem>
@@ -232,25 +248,25 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
 
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-white">
-                    Mensagem *
+                    {t('contact.labels.message')}
                   </label>
-                  <Textarea 
+                  <Textarea
                     value={formData.message}
                     onChange={(e) => handleInputChange("message", e.target.value)}
-                    placeholder="Conte-nos sobre suas necessidades..." 
+                    placeholder={t('contact.placeholders.message')}
                     className="min-h-[120px] resize-none bg-white/10 backdrop-blur-sm border-white/30 text-white placeholder:text-white/50 focus:border-white focus:bg-white/20"
                     maxLength={1000}
                   />
                   {errors.message && <p className="text-sm text-red-300">{errors.message}</p>}
                 </div>
 
-                <Button 
+                <Button
                   type="submit"
                   disabled={isSubmitting}
-                  size="lg" 
+                  size="lg"
                   className="w-full h-14 bg-primary hover:bg-primary/90 text-white text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group"
                 >
-                  <span>{isSubmitting ? "Enviando..." : "Enviar Mensagem"}</span>
+                  <span>{isSubmitting ? t('contact.button.sending') : t('contact.button.default')}</span>
                   <Send className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                 </Button>
               </form>

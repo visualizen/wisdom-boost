@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        heading: ["Montserrat", "sans-serif"],
+        sans: ["Open Sans", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -168,7 +172,7 @@ export default {
         "scale-in": "scale-in 0.5s ease-out",
         "slide-up-bounce": "slide-up-bounce 1s cubic-bezier(0.34, 1.56, 0.64, 1)",
         "glow-pulse": "glow-pulse 2s ease-in-out infinite",
-        "scroll-infinite": "scroll-infinite 15s linear infinite",
+        "scroll-infinite": "scroll-infinite 45s linear infinite",
         "line-grow-horizontal": "line-grow-horizontal 1s ease-out forwards",
         "line-grow-vertical": "line-grow-vertical 0.5s ease-out forwards",
       },

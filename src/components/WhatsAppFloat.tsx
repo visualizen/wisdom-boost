@@ -14,23 +14,20 @@ const WhatsAppFloat = () => {
   }, []);
 
   const handleClick = () => {
-    const phoneNumber = "5547988776655";
-    const message = "Olá! Gostaria de saber mais sobre os serviços da Wisdom Trading.";
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = "https://wa.me/+5547996256869";
     window.open(whatsappUrl, "_blank");
   };
 
   return (
     <button
       onClick={handleClick}
-      className={`fixed bottom-6 right-6 z-50 group transition-all duration-500 ${
-        isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
-      }`}
+      className={`fixed bottom-6 right-6 z-50 group transition-all duration-500 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
+        }`}
       aria-label="Fale conosco no WhatsApp"
     >
       {/* Glow effect */}
       <div className="absolute -inset-2 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-300 animate-pulse" />
-      
+
       {/* Botão principal */}
       <div className="relative bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white rounded-full p-4 shadow-2xl transition-all duration-300 group-hover:scale-110">
         <MessageCircle size={32} className="animate-pulse" />

@@ -7,146 +7,148 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import ContactForm from "@/components/ContactForm";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const RepresentacaoInternacional = () => {
   const [activeRegion, setActiveRegion] = useState("all");
+  const { t } = useLanguage();
 
   const benefits = [
     {
       icon: Globe,
-      title: "Acesso a Mercados Globais",
-      description: "Expanda suas vendas para mercados internacionais estratégicos com nossa rede de contatos estabelecida"
+      title: t('internationalPage.benefits.items.access.title'),
+      description: t('internationalPage.benefits.items.access.desc')
     },
     {
       icon: Users,
-      title: "Rede Internacional Consolidada",
-      description: "Conexão direta com compradores, distribuidores e importadores qualificados em diversos países"
+      title: t('internationalPage.benefits.items.network.title'),
+      description: t('internationalPage.benefits.items.network.desc')
     },
     {
       icon: Building2,
-      title: "Representação Local nos Mercados",
-      description: "Presença física e expertise local em cada mercado-alvo para suas operações de exportação"
+      title: t('internationalPage.benefits.items.localRep.title'),
+      description: t('internationalPage.benefits.items.localRep.desc')
     },
     {
       icon: ShieldCheck,
-      title: "Conformidade Internacional",
-      description: "Gestão completa de documentação de exportação, certificações e compliance regulatório de cada país"
+      title: t('internationalPage.benefits.items.compliance.title'),
+      description: t('internationalPage.benefits.items.compliance.desc')
     },
     {
       icon: TrendingUp,
-      title: "Crescimento Sem Investimento Pesado",
-      description: "Expanda internacionalmente sem necessidade de abrir escritórios ou estrutura própria no exterior"
+      title: t('internationalPage.benefits.items.growth.title'),
+      description: t('internationalPage.benefits.items.growth.desc')
     },
     {
       icon: Clock,
-      title: "Entrada Rápida no Mercado",
-      description: "Comece a exportar em semanas utilizando nossa infraestrutura e relacionamentos já estabelecidos"
+      title: t('internationalPage.benefits.items.speed.title'),
+      description: t('internationalPage.benefits.items.speed.desc')
     }
   ];
 
   const services = [
     {
       icon: Handshake,
-      title: "Prospecção Internacional",
-      description: "Identificação e abordagem de potenciais compradores internacionais para seus produtos"
+      title: t('internationalPage.services.items.prospecting.title'),
+      description: t('internationalPage.services.items.prospecting.desc')
     },
     {
       icon: BarChart3,
-      title: "Inteligência de Mercado",
-      description: "Estudos sobre viabilidade, precificação competitiva e oportunidades em cada mercado-alvo"
+      title: t('internationalPage.services.items.intelligence.title'),
+      description: t('internationalPage.services.items.intelligence.desc')
     },
     {
       icon: FileCheck,
-      title: "Negociação e Contratos",
-      description: "Condução de negociações internacionais e elaboração de contratos de exportação"
+      title: t('internationalPage.services.items.negotiation.title'),
+      description: t('internationalPage.services.items.negotiation.desc')
     },
     {
       icon: Package,
-      title: "Suporte Logístico",
-      description: "Coordenação de embarques, documentação e follow-up com compradores internacionais"
+      title: t('internationalPage.services.items.logistics.title'),
+      description: t('internationalPage.services.items.logistics.desc')
     }
   ];
 
   const regions = [
     {
       id: "americas",
-      name: "América Latina e América do Norte",
-      description: "Representação comercial em países das Américas, incluindo EUA, Canadá, México, Argentina e Chile",
+      name: t('internationalPage.regions.items.americas.name'),
+      description: t('internationalPage.regions.items.americas.desc'),
       color: "emerald",
       icon: MapPin
     },
     {
       id: "europe",
-      name: "Europa",
-      description: "Acesso aos mercados europeus através de parceiros em países-chave da União Europeia",
+      name: t('internationalPage.regions.items.europe.name'),
+      description: t('internationalPage.regions.items.europe.desc'),
       color: "blue",
       icon: MapPin
     },
     {
       id: "asia",
-      name: "Ásia e Oriente Médio",
-      description: "Conexões estratégicas em mercados asiáticos emergentes e países do Golfo Pérsico",
+      name: t('internationalPage.regions.items.asia.name'),
+      description: t('internationalPage.regions.items.asia.desc'),
       color: "amber",
       icon: MapPin
     },
     {
       id: "africa",
-      name: "África",
-      description: "Representação em mercados africanos de alto potencial, especialmente países lusófonos",
+      name: t('internationalPage.regions.items.africa.name'),
+      description: t('internationalPage.regions.items.africa.desc'),
       color: "orange",
       icon: MapPin
     }
   ];
 
   const stats = [
-    { value: "15+", label: "Anos no Mercado", icon: Clock },
-    { value: "40+", label: "Países Atendidos", icon: Globe },
-    { value: "300+", label: "Exportações Facilitadas", icon: Package },
-    { value: "98%", label: "Clientes Satisfeitos", icon: CheckCircle }
+    { value: "15+", label: t('internationalPage.stats.years'), icon: Clock },
+    { value: "40+", label: t('internationalPage.stats.countries'), icon: Globe },
+    { value: "300+", label: t('internationalPage.stats.exports'), icon: Package },
+    { value: "98%", label: t('internationalPage.stats.satisfaction'), icon: CheckCircle }
   ];
 
   const process = [
     {
       step: "01",
-      title: "Diagnóstico e Planejamento",
-      description: "Analisamos seu produto, capacidade produtiva e definimos mercados-alvo estratégicos"
+      title: t('internationalPage.process.steps.diagnosis.title'),
+      description: t('internationalPage.process.steps.diagnosis.desc')
     },
     {
       step: "02",
-      title: "Estratégia de Entrada",
-      description: "Desenvolvemos plano comercial e posicionamento competitivo para cada mercado"
+      title: t('internationalPage.process.steps.strategy.title'),
+      description: t('internationalPage.process.steps.strategy.desc')
     },
     {
       step: "03",
-      title: "Prospecção Ativa",
-      description: "Identificamos e contatamos compradores qualificados nos mercados internacionais"
+      title: t('internationalPage.process.steps.prospecting.title'),
+      description: t('internationalPage.process.steps.prospecting.desc')
     },
     {
       step: "04",
-      title: "Negociação e Fechamento",
-      description: "Conduzimos negociações e estruturamos contratos de exportação seguros"
+      title: t('internationalPage.process.steps.negotiation.title'),
+      description: t('internationalPage.process.steps.negotiation.desc')
     }
   ];
 
   const segments = [
     {
-      name: "Alimentos e Bebidas",
-      description: "Exportação de produtos alimentícios, bebidas, ingredientes e commodities agrícolas",
+      name: t('internationalPage.segments.items.food.name'),
+      description: t('internationalPage.segments.items.food.desc'),
       icon: Package
     },
     {
-      name: "Manufaturados",
-      description: "Produtos industrializados, componentes, equipamentos e bens de capital",
+      name: t('internationalPage.segments.items.manufactured.name'),
+      description: t('internationalPage.segments.items.manufactured.desc'),
       icon: Building2
     },
     {
-      name: "Químicos e Farmacêuticos",
-      description: "Produtos químicos industriais, especialidades químicas e produtos farmacêuticos",
+      name: t('internationalPage.segments.items.chemicals.name'),
+      description: t('internationalPage.segments.items.chemicals.desc'),
       icon: ShieldCheck
     },
     {
-      name: "Têxteis e Calçados",
-      description: "Produtos têxteis, confecções, calçados e acessórios de moda",
+      name: t('internationalPage.segments.items.textiles.name'),
+      description: t('internationalPage.segments.items.textiles.desc'),
       icon: Package
     }
   ];
@@ -154,32 +156,44 @@ const RepresentacaoInternacional = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-primary/5 via-background to-primary-light/5 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      {/* Hero Section - Standardized */}
+      {/* Hero Section - Standardized */}
+      <section className="relative min-h-[500px] pt-40 pb-16 flex items-center justify-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/assets/images/representation-hero.jpg')" }}
+        >
+          {/* Standardized Dark Blue Map Overlay */}
+          <div className="absolute inset-0 bg-blue-900/60 mix-blend-multiply"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-cyan-900/70 to-sky-900/80"></div>
+        </div>
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <Badge className="mb-6 text-base px-4 py-2 bg-primary/10 text-primary border-primary/20">
-              <Globe className="mr-2 h-4 w-4" />
-              Representação Comercial Internacional
-            </Badge>
-            
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-title bg-clip-text text-transparent leading-tight">
-              Leve Seus Produtos para o Mundo
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+              <Globe className="mr-2 h-4 w-4 text-cyan-300" />
+              <span className="text-white font-medium text-sm">{t('internationalPage.hero.badge')}</span>
+            </div>
+
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-2xl animate-fade-in-up leading-tight pb-2">
+              {t('internationalPage.hero.title')}
             </h1>
-            
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
-              Expanda sua empresa para mercados internacionais com um parceiro experiente. Representamos empresas brasileiras que desejam exportar e conquistar clientes globais.
+
+            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed animate-fade-in-up font-light" style={{ animationDelay: "0.2s" }}>
+              {t('internationalPage.hero.subtitle')} <span className="font-bold text-cyan-300">{t('internationalPage.hero.subtitleHighlight')}</span>. {t('internationalPage.hero.desc')}
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-gradient-primary text-lg px-8 py-6 group">
-                <a href="#contact">Comece a Exportar</a>
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <Button size="lg" className="bg-sky-500 hover:bg-sky-600 text-white rounded-full text-lg px-8 py-6 shadow-lg shadow-sky-500/20 border-0 transition-all duration-300 transform hover:-translate-y-1">
+                <a href="#contact" className="flex items-center">
+                  {t('internationalPage.hero.cta')}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
               </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8 py-6">
-                <Link to="/contato">Agende uma Consultoria</Link>
+              <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20 rounded-full text-lg px-8 py-6">
+                <Link to="/contato">{t('internationalPage.hero.schedule')}</Link>
               </Button>
             </div>
           </div>
@@ -209,13 +223,13 @@ const RepresentacaoInternacional = () => {
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
               <ShieldCheck className="mr-2 h-4 w-4" />
-              Por Que Escolher a Wisdom Trading
+              {t('internationalPage.benefits.badge')}
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
-              Sua Vantagem Competitiva Internacional
+              {t('internationalPage.benefits.title')}
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Conquiste mercados globais com um parceiro que entende tanto as necessidades da sua empresa quanto as complexidades de cada mercado internacional
+              {t('internationalPage.benefits.subtitle')}
             </p>
           </div>
 
@@ -241,13 +255,13 @@ const RepresentacaoInternacional = () => {
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
               <Package className="mr-2 h-4 w-4" />
-              Nossos Serviços
+              {t('internationalPage.services.badge')}
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
-              Representação Comercial Completa
+              {t('internationalPage.services.title')}
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Suporte integral para o desenvolvimento do seu negócio em mercados internacionais
+              {t('internationalPage.services.subtitle')}
             </p>
           </div>
 
@@ -273,20 +287,20 @@ const RepresentacaoInternacional = () => {
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
               <Globe className="mr-2 h-4 w-4" />
-              Mercados Internacionais
+              {t('internationalPage.regions.badge')}
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
-              Presença Global Estabelecida
+              {t('internationalPage.regions.title')}
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Rede de contatos e expertise em mercados estratégicos ao redor do mundo
+              {t('internationalPage.regions.subtitle')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {regions.map((region) => (
-              <Card 
-                key={region.id} 
+              <Card
+                key={region.id}
                 className="border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg cursor-pointer group"
                 onClick={() => setActiveRegion(region.id)}
               >
@@ -313,13 +327,13 @@ const RepresentacaoInternacional = () => {
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
               <Building2 className="mr-2 h-4 w-4" />
-              Segmentos Atendidos
+              {t('internationalPage.segments.badge')}
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
-              Experiência em Diversos Setores
+              {t('internationalPage.segments.title')}
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Conhecimento especializado para representar produtos brasileiros em mercados globais
+              {t('internationalPage.segments.subtitle')}
             </p>
           </div>
 
@@ -345,13 +359,13 @@ const RepresentacaoInternacional = () => {
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
               <ArrowRight className="mr-2 h-4 w-4" />
-              Como Funciona
+              {t('internationalPage.process.badge')}
             </Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
-              Seu Caminho para o Sucesso Internacional
+              {t('internationalPage.process.title')}
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Processo comprovado em 4 etapas para estabelecer sua presença em mercados globais
+              {t('internationalPage.process.subtitle')}
             </p>
           </div>
 
@@ -378,13 +392,13 @@ const RepresentacaoInternacional = () => {
       <section className="py-20 bg-gradient-primary text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Pronto para Conquistar Mercados Internacionais?
+            {t('internationalPage.cta.title')}
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-            Vamos conversar sobre como podemos acelerar o crescimento das suas exportações com nossos serviços de representação comercial internacional
+            {t('internationalPage.cta.desc')}
           </p>
           <Button size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6 group border-0">
-            <a href="#contact">Comece Hoje Mesmo</a>
+            <a href="#contact">{t('internationalPage.cta.button')}</a>
             <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
@@ -397,13 +411,13 @@ const RepresentacaoInternacional = () => {
             <div className="text-center mb-12">
               <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
                 <Users className="mr-2 h-4 w-4" />
-                Entre em Contato
+                {t('internationalPage.contact.badge')}
               </Badge>
               <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
-                Inicie Sua Jornada Internacional
+                {t('internationalPage.contact.title')}
               </h2>
               <p className="text-xl text-muted-foreground">
-                Preencha o formulário abaixo e nossa equipe entrará em contato em até 24 horas
+                {t('internationalPage.contact.subtitle')}
               </p>
             </div>
             <ContactForm />
