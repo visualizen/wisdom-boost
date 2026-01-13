@@ -9,6 +9,7 @@ import techPatternImage from "@/assets/tech-pattern.jpg";
 import portModernImage from "@/assets/port-modern.jpg";
 import heroVideo from "@/assets/hero-video.mp4";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { SEO } from "@/components/SEO";
 
 const QuemSomos = () => {
   const { t } = useLanguage();
@@ -22,6 +23,10 @@ const QuemSomos = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Quem Somos"
+        description="Conheça a Wisdom Trading, sua parceira estratégica em comércio exterior com mais de 30 anos de experiência conectando empresas ao mundo."
+      />
       <Header />
 
       {/* Hero Section - Standardized */}

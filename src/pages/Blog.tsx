@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { blogPosts as initialStaticPosts, BlogPost } from "@/data/blogPosts";
 import heroImage from "@/assets/quem-somos-hero.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { SEO } from "@/components/SEO";
 
 const Blog = () => {
   const navigate = useNavigate();
@@ -84,6 +85,10 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Blog"
+        description="Fique por dentro das novidades, tendências e atualizações do mercado de comércio exterior em nosso blog."
+      />
       <Header />
 
       {/* Hero Section */}

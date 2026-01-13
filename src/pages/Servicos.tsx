@@ -11,6 +11,7 @@ import tariffStudiesImage from "@/assets/services/tariff-studies.jpg";
 import viabilityAnalysisImage from "@/assets/services/viability-analysis.jpg";
 import heroImage from "@/assets/quem-somos-hero.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { SEO } from "@/components/SEO";
 
 const Servicos = () => {
   const { t } = useLanguage();
@@ -68,6 +69,10 @@ const Servicos = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Serviços"
+        description="Oferecemos soluções completas em importação, exportação, logística internacional e consultoria fiscal para otimizar seus negócios globais."
+      />
       <Header />
 
       {/* Hero Section */}

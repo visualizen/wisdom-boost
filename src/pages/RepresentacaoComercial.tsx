@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import ContactForm from "@/components/ContactForm";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { SEO } from "@/components/SEO";
 
 const RepresentacaoComercial = () => {
   const [activeSegment, setActiveSegment] = useState("all");
@@ -128,6 +129,10 @@ const RepresentacaoComercial = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Representação Comercial"
+        description="Potencialize suas vendas no mercado brasileiro com nossa representação comercial estratégica e especializada."
+      />
       <Header />
 
       {/* Hero Section */}

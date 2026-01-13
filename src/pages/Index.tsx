@@ -8,10 +8,15 @@ import Timeline from "@/components/Timeline";
 import News from "@/components/News";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { SEO } from "@/components/SEO";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Soluções em Comércio Exterior"
+        description="Importação e exportação ágil, segura e econômica. A Wisdom Trading conecta sua empresa ao mercado global com soluções completas em comércio exterior."
+      />
       <Header />
       <Hero />
       <Services />

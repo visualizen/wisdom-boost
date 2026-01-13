@@ -3,12 +3,17 @@ import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import { Mail, MapPin, Clock, Globe, Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { SEO } from "@/components/SEO";
 
 const Contato = () => {
   const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Contato"
+        description="Entre em contato com a Wisdom Trading. Estamos prontos para atender suas necessidades em comércio exterior."
+      />
       <Header />
 
       {/* Hero Section - Standardized */}

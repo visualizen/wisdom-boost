@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import ContactForm from "@/components/ContactForm";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { SEO } from "@/components/SEO";
 
 const RepresentacaoInternacional = () => {
   const [activeRegion, setActiveRegion] = useState("all");
@@ -155,6 +156,10 @@ const RepresentacaoInternacional = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Representação Internacional"
+        description="Expandimos sua presença global com nossa rede de parceiros e conhecimento em mercados internacionais."
+      />
       <Header />
 
       {/* Hero Section */}
