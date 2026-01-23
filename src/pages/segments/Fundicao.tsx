@@ -92,11 +92,11 @@ const Fundicao = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img 
+          <img
             src={fundicaoImg}
             alt="Fundição Industrial"
             className="w-full h-full object-cover"
@@ -117,23 +117,23 @@ const Fundicao = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-8 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
               Nossa Atuação no Setor de Fundição
             </h2>
             <div className="prose prose-lg max-w-none text-muted-foreground">
               <p className="text-lg leading-relaxed mb-6">
-                A Wisdom é especialista na importação e representação de equipamentos de última geração para o setor de fundição. 
-                Trabalhamos com fundições de ferro, aço, alumínio e ligas especiais, oferecendo soluções completas desde a fusão 
+                A Wisdom é especialista na importação e representação de equipamentos de última geração para o setor de fundição.
+                Trabalhamos com fundições de ferro, aço, alumínio e ligas especiais, oferecendo soluções completas desde a fusão
                 até o acabamento final das peças.
               </p>
               <p className="text-lg leading-relaxed mb-6">
-                Nossa atuação abrange toda a cadeia de valor da fundição: fornos de indução, sistemas de moldagem automatizados, 
-                equipamentos de macharia, refratários especiais, sistemas de controle de qualidade e tecnologias de acabamento. 
+                Nossa atuação abrange toda a cadeia de valor da fundição: fornos de indução, sistemas de moldagem automatizados,
+                equipamentos de macharia, refratários especiais, sistemas de controle de qualidade e tecnologias de acabamento.
                 Mantemos parcerias estratégicas com fabricantes líderes na Europa, Estados Unidos e Ásia.
               </p>
               <p className="text-lg leading-relaxed">
-                Com profundo conhecimento técnico e experiência consolidada, auxiliamos fundições a modernizarem seus processos, 
-                aumentarem produtividade, reduzirem custos operacionais e atenderem aos mais rigorosos padrões de qualidade 
+                Com profundo conhecimento técnico e experiência consolidada, auxiliamos fundições a modernizarem seus processos,
+                aumentarem produtividade, reduzirem custos operacionais e atenderem aos mais rigorosos padrões de qualidade
                 exigidos por setores como automotivo, aeroespacial, energia e construção civil.
               </p>
             </div>
@@ -144,7 +144,7 @@ const Fundicao = () => {
       {/* Cases de Sucesso - Timeline */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-12 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
             Cases de Sucesso
           </h2>
 
@@ -154,11 +154,10 @@ const Fundicao = () => {
               <button
                 key={index}
                 onClick={() => setActiveCase(index)}
-                className={`px-6 py-3 rounded-lg font-semibold transition-all ${
-                  activeCase === index
-                    ? 'bg-primary text-primary-foreground shadow-lg scale-105'
-                    : 'bg-card text-muted-foreground hover:bg-card/80'
-                }`}
+                className={`px-6 py-3 rounded-lg font-semibold transition-all ${activeCase === index
+                  ? 'bg-primary text-primary-foreground shadow-lg scale-105'
+                  : 'bg-card text-muted-foreground hover:bg-card/80'
+                  }`}
               >
                 Case {index + 1}
               </button>
@@ -198,7 +197,7 @@ const Fundicao = () => {
             {/* Timeline */}
             <div className="relative">
               <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-primary/30" />
-              
+
               {cases[activeCase].timeline.map((phase, idx) => (
                 <div key={idx} className="relative pl-20 pb-12 last:pb-0">
                   <div className="absolute left-6 w-5 h-5 rounded-full bg-primary border-4 border-background" />
@@ -225,7 +224,7 @@ const Fundicao = () => {
       {/* Produtos e Serviços */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-12 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
             Produtos e Serviços para Fundição
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -256,7 +255,7 @@ const Fundicao = () => {
       {/* Diferenciais Competitivos */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-12 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
             Por Que Escolher a Wisdom para Fundição
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">

@@ -93,11 +93,11 @@ const Quimicos = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img 
+          <img
             src={quimicosImg}
             alt="Indústria Química"
             className="w-full h-full object-cover"
@@ -118,24 +118,24 @@ const Quimicos = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-8 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
               Nossa Atuação no Setor Químico
             </h2>
             <div className="prose prose-lg max-w-none text-muted-foreground">
               <p className="text-lg leading-relaxed mb-6">
-                A Wisdom é especialista na importação de insumos químicos e equipamentos para a indústria química brasileira. 
-                Nossa atuação abrange desde produtos químicos commodities até especialidades químicas de alta pureza, atendendo 
+                A Wisdom é especialista na importação de insumos químicos e equipamentos para a indústria química brasileira.
+                Nossa atuação abrange desde produtos químicos commodities até especialidades químicas de alta pureza, atendendo
                 setores como petroquímico, farmacêutico, cosmético, alimentício, tratamento de água e manufatura em geral.
               </p>
               <p className="text-lg leading-relaxed mb-6">
-                Trabalhamos com fornecedores certificados internacionalmente, garantindo produtos com especificações técnicas 
-                rigorosas e documentação completa (FDS, CoA, certificados de análise). Nossa expertise inclui o complexo processo 
-                de importação de produtos controlados, perigosos e de uso restrito, navegando por todas as exigências regulatórias 
+                Trabalhamos com fornecedores certificados internacionalmente, garantindo produtos com especificações técnicas
+                rigorosas e documentação completa (FDS, CoA, certificados de análise). Nossa expertise inclui o complexo processo
+                de importação de produtos controlados, perigosos e de uso restrito, navegando por todas as exigências regulatórias
                 brasileiras (ANVISA, IBAMA, Exército, Polícia Federal, entre outros).
               </p>
               <p className="text-lg leading-relaxed">
-                Além de insumos, oferecemos equipamentos para processos químicos: reatores, destiladores, evaporadores, sistemas 
-                de filtração, equipamentos de análise laboratorial e instrumentação de processo. Prestamos consultoria técnica para 
+                Além de insumos, oferecemos equipamentos para processos químicos: reatores, destiladores, evaporadores, sistemas
+                de filtração, equipamentos de análise laboratorial e instrumentação de processo. Prestamos consultoria técnica para
                 seleção adequada de produtos e equipamentos, otimização de processos e compliance regulatório.
               </p>
             </div>
@@ -146,7 +146,7 @@ const Quimicos = () => {
       {/* Cases de Sucesso - Timeline */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-12 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
             Cases de Sucesso
           </h2>
 
@@ -156,11 +156,10 @@ const Quimicos = () => {
               <button
                 key={index}
                 onClick={() => setActiveCase(index)}
-                className={`px-6 py-3 rounded-lg font-semibold transition-all ${
-                  activeCase === index
-                    ? 'bg-primary text-primary-foreground shadow-lg scale-105'
-                    : 'bg-card text-muted-foreground hover:bg-card/80'
-                }`}
+                className={`px-6 py-3 rounded-lg font-semibold transition-all ${activeCase === index
+                  ? 'bg-primary text-primary-foreground shadow-lg scale-105'
+                  : 'bg-card text-muted-foreground hover:bg-card/80'
+                  }`}
               >
                 Case {index + 1}
               </button>
@@ -200,7 +199,7 @@ const Quimicos = () => {
             {/* Timeline */}
             <div className="relative">
               <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-primary/30" />
-              
+
               {cases[activeCase].timeline.map((phase, idx) => (
                 <div key={idx} className="relative pl-20 pb-12 last:pb-0">
                   <div className="absolute left-6 w-5 h-5 rounded-full bg-primary border-4 border-background" />
@@ -227,7 +226,7 @@ const Quimicos = () => {
       {/* Produtos e Serviços */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-12 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
             Produtos e Serviços para Indústria Química
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -258,7 +257,7 @@ const Quimicos = () => {
       {/* Diferenciais Competitivos */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-12 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
             Por Que Escolher a Wisdom para Químicos
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">

@@ -103,3 +103,37 @@ All colors MUST be HSL.
     @apply font-heading;
   }
 }
+
+/* Custom scrollbar utilities */
+@layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Glass-style scrollbar */
+  .glass-scrollbar::-webkit-scrollbar {
+    height: 6px;
+    background: transparent;
+  }
+  
+  .glass-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .glass-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .glass-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}

@@ -95,11 +95,11 @@ const FerroAco = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img 
+          <img
             src={ferroAcoImg}
             alt="Indústria de Ferro e Aço"
             className="w-full h-full object-cover"
@@ -120,23 +120,23 @@ const FerroAco = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-8 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
               Nossa Atuação no Setor Siderúrgico
             </h2>
             <div className="prose prose-lg max-w-none text-muted-foreground">
               <p className="text-lg leading-relaxed mb-6">
-                A Wisdom é parceira estratégica das principais siderúrgicas brasileiras há mais de uma década. Nossa expertise 
+                A Wisdom é parceira estratégica das principais siderúrgicas brasileiras há mais de uma década. Nossa expertise
                 abrange toda a cadeia produtiva do aço: desde a redução do minério até a laminação e acabamento de produtos finais.
               </p>
               <p className="text-lg leading-relaxed mb-6">
-                Trabalhamos com os maiores fabricantes mundiais de equipamentos siderúrgicos, incluindo empresas alemãs, austríacas, 
-                japonesas e coreanas. Oferecemos desde componentes críticos como refratários de alta performance até linhas completas 
-                de laminação e tratamento térmico. Nossa atuação inclui também a importação de insumos estratégicos como ferro-ligas, 
+                Trabalhamos com os maiores fabricantes mundiais de equipamentos siderúrgicos, incluindo empresas alemãs, austríacas,
+                japonesas e coreanas. Oferecemos desde componentes críticos como refratários de alta performance até linhas completas
+                de laminação e tratamento térmico. Nossa atuação inclui também a importação de insumos estratégicos como ferro-ligas,
                 eletrodos especiais e aditivos para controle metalúrgico.
               </p>
               <p className="text-lg leading-relaxed">
-                Além da importação de equipamentos, prestamos consultoria técnica especializada, auxiliando na especificação correta 
-                de materiais e equipamentos, otimização de processos existentes e planejamento de expansões e modernizações. Nossa 
+                Além da importação de equipamentos, prestamos consultoria técnica especializada, auxiliando na especificação correta
+                de materiais e equipamentos, otimização de processos existentes e planejamento de expansões e modernizações. Nossa
                 equipe conta com engenheiros metalurgistas com vasta experiência em processos siderúrgicos.
               </p>
             </div>
@@ -147,7 +147,7 @@ const FerroAco = () => {
       {/* Cases de Sucesso - Timeline */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-12 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
             Cases de Sucesso
           </h2>
 
@@ -157,11 +157,10 @@ const FerroAco = () => {
               <button
                 key={index}
                 onClick={() => setActiveCase(index)}
-                className={`px-6 py-3 rounded-lg font-semibold transition-all ${
-                  activeCase === index
-                    ? 'bg-primary text-primary-foreground shadow-lg scale-105'
-                    : 'bg-card text-muted-foreground hover:bg-card/80'
-                }`}
+                className={`px-6 py-3 rounded-lg font-semibold transition-all ${activeCase === index
+                  ? 'bg-primary text-primary-foreground shadow-lg scale-105'
+                  : 'bg-card text-muted-foreground hover:bg-card/80'
+                  }`}
               >
                 Case {index + 1}
               </button>
@@ -201,7 +200,7 @@ const FerroAco = () => {
             {/* Timeline */}
             <div className="relative">
               <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-primary/30" />
-              
+
               {cases[activeCase].timeline.map((phase, idx) => (
                 <div key={idx} className="relative pl-20 pb-12 last:pb-0">
                   <div className="absolute left-6 w-5 h-5 rounded-full bg-primary border-4 border-background" />
@@ -228,7 +227,7 @@ const FerroAco = () => {
       {/* Produtos e Serviços */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-12 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
             Produtos e Serviços para Siderurgia
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -259,7 +258,7 @@ const FerroAco = () => {
       {/* Diferenciais Competitivos */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-12 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
             Por Que Escolher a Wisdom para Siderurgia
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">

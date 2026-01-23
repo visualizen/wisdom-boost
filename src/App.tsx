@@ -21,6 +21,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import PostEditor from "./pages/PostEditor";
 import ProtectedRoute from "./components/ProtectedRoute";
 import FloatingActionMenu from "./components/FloatingActionMenu";
+import ScrollToTop from "./components/ScrollToTop";
 
 import { LanguageProvider } from "./contexts/LanguageContext";
 
@@ -33,6 +34,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/quem-somos" element={<QuemSomos />} />

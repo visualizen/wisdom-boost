@@ -6,7 +6,8 @@ import { Calendar, Clock, ArrowLeft, Tag, Share2, ArrowRight } from "lucide-reac
 import { useParams, useNavigate } from "react-router-dom";
 import { blogPosts, getRelatedPosts, BlogPost } from "@/data/blogPosts";
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+// import { supabase } from "@/integrations/supabase/client";
+import { postsService } from "@/services/postsService";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -37,52 +38,41 @@ const BlogPostPage = () => {
   const loadPost = async (postId: string) => {
     console.log("Loading post:", postId);
 
-    // 1. Check static posts first (fallback)
+    // 1. Check Supabase (via postsService)
+    try {
+      const localPost = await postsService.getPost(postId);
+      if (localPost) {
+        console.log("Found post in Supabase:", localPost.title);
+        setPost({
+          id: localPost.id,
+          title: localPost.title,
+          excerpt: localPost.meta_description || "",
+          content: localPost.content,
+          image: localPost.image_url || "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+          category: localPost.category || "Geral",
+          date: new Date(localPost.created_at).toLocaleDateString('pt-BR'),
+          readTime: "5 min",
+          featured: false,
+          author: "Equipe Wisdom",
+          tags: localPost.keywords ? localPost.keywords.split(',').map(s => s.trim()) : []
+        });
+        setLoading(false);
+        return;
+      }
+    } catch (e) {
+      console.error("Error loading post from Supabase", e);
+    }
+
+    // 2. Check static posts (fallback)
     const staticPost = blogPosts.find(p => p.id === postId);
     if (staticPost) {
-      console.log("Found static post:", staticPost.title);
       setPost(staticPost);
       setLoading(false);
       return;
     }
 
-    // 2. Fetch from Supabase
-    try {
-      console.log("Fetching from Supabase...");
-      const { data, error } = await supabase
-        .from('posts')
-        .select('*')
-        .eq('id', postId)
-        .maybeSingle(); // Changed from single() to maybeSingle() to avoid errors if not found
-
-      if (error) {
-        console.error("Supabase error:", error);
-        throw error;
-      }
-
-      if (data) {
-        console.log("Found Supabase post:", data.title);
-        setPost({
-          id: data.id,
-          title: data.title,
-          excerpt: "",
-          content: data.content,
-          image: data.image_url || "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
-          category: data.category || "Geral",
-          date: new Date(data.created_at).toLocaleDateString('pt-BR'),
-          readTime: "5 min",
-          featured: false,
-          author: "Equipe Wisdom",
-          tags: []
-        });
-      } else {
-        console.log("Post not found in Supabase");
-      }
-    } catch (error) {
-      console.error("Error loading post:", error);
-    } finally {
-      setLoading(false);
-    }
+    // 3. (Supabase removed)
+    setLoading(false);
   };
 
   if (loading) {

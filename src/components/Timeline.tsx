@@ -1,21 +1,59 @@
-import { User, ShoppingBag, DollarSign, Plane, Package, Truck, Users, FileText, TrendingUp, FileCheck, Home } from "lucide-react";
+import {
+  User, ShoppingBag, DollarSign, Plane, Package, Truck, Users, FileText,
+  TrendingUp, FileCheck, Home, ChevronLeft, ChevronRight
+} from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import cargoShipBg from "@/assets/cargo-ship-bg.png";
+import { useRef, useEffect, useState } from "react";
 
 const Timeline = () => {
   const { t } = useLanguage();
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const isPausedRef = useRef(isPaused);
 
-  // Logical order assuming specific flow:
-  // 1. Cliente (Start)
-  // 2. Pedido de Compra
-  // 3. Fornecedores
-  // 4. Planejamento Tributário
-  // 5. Trade Finance
-  // 6. Gestão Operacional
-  // 7. Transporte Internacional
-  // 8. Desembaraço Aduaneiro
-  // 9. Armazenagem Estratégica
-  // 10. Transporte Rodoviário
-  // 11. Entrega ao Cliente (End)
+  // Keep ref in sync with state
+  useEffect(() => {
+    isPausedRef.current = isPaused;
+  }, [isPaused]);
+
+  // Auto-scroll animation - runs once on mount
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let animationFrameId: number;
+    const speed = 0.7;
+
+    const animate = () => {
+      // Use ref to get current pause state (avoids stale closure)
+      if (!isPausedRef.current && scrollContainer) {
+        const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+        if (scrollContainer.scrollLeft < maxScroll - 1) {
+          scrollContainer.scrollLeft += speed;
+        }
+      }
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    // Start animation immediately
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []); // Empty dependency - runs once
+
+  // Manual scroll handler
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = 400;
+      scrollRef.current.scrollBy({
+        left: direction === 'right' ? scrollAmount : -scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const steps = [
     { icon: User, label: t('timeline.steps.client.label'), description: t('timeline.steps.client.desc') },
@@ -32,60 +70,91 @@ const Timeline = () => {
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-slate-900 via-blue-950 to-slate-900 relative overflow-hidden">
-      {/* Background Ambience */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(6,182,212,0.15),transparent_70%)]"></div>
+    <section className="py-24 relative overflow-hidden group/section">
+      {/* Background Image with Overlay */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-fixed"
+        style={{ backgroundImage: `url(${cargoShipBg})` }}
+      >
+        <div className="absolute inset-0 bg-blue-900/80 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-blue-900/70 to-slate-900/90"></div>
+      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20 animate-fade-in-up">
-          <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-blue-500/10 rounded-full border border-blue-500/20 backdrop-blur-sm">
+        <div className="text-center mb-16 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-white/10 rounded-full border border-white/20 backdrop-blur-sm">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
             <span className="text-cyan-400 font-medium text-sm">{t('timeline.badge')}</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white text-shadow-lg">
             {t('timeline.title')}
           </h2>
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+          <p className="text-xl text-blue-100 max-w-2xl mx-auto drop-shadow-md">
             {t('timeline.subtitle')}
           </p>
         </div>
 
-        <div className="relative max-w-5xl mx-auto">
-          {/* Vertical Line */}
-          <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-cyan-500/50 to-transparent transform md:-translate-x-1/2"></div>
+        {/* Timeline Container with External Arrows */}
+        <div className="flex items-center justify-center gap-4 md:gap-8">
+          {/* Left Utility Button */}
+          <button
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onClick={() => scroll('left')}
+            className="hidden md:flex flex-shrink-0 z-20 bg-slate-900/80 p-4 rounded-full border border-cyan-500/50 hover:bg-cyan-600 hover:text-white hover:border-white text-cyan-400 transition-all duration-300 transform hover:scale-110 shadow-lg backdrop-blur-sm cursor-pointer"
+            aria-label="Scroll Left"
+          >
+            <ChevronLeft size={32} />
+          </button>
 
-          {/* Steps */}
-          <div className="space-y-12">
-            {steps.map((step, index) => {
-              const Icon = step.icon;
-              const isEven = index % 2 === 0;
+          {/* Scrollable Content Area */}
+          <div
+            ref={scrollRef}
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={() => setIsPaused(true)}
+            onTouchEnd={() => setIsPaused(false)}
+            className="relative w-full overflow-x-auto pb-12 glass-scrollbar cursor-grab active:cursor-grabbing flex-1"
+          >
+            {/* Connecting Line (Visual) - spans all 11 items */}
+            <div className="absolute top-[60px] left-0 h-1 bg-gradient-to-r from-cyan-500/30 via-cyan-500/50 to-cyan-500/30 w-[3600px]"></div>
 
-              return (
-                <div key={index} className={`relative flex items-center ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} group`}>
+            <div className="flex gap-8 min-w-max px-4 pt-10">
+              {steps.map((step, index) => {
+                const Icon = step.icon;
+                return (
+                  <div key={index} className="flex flex-col items-center w-72 group relative">
+                    {/* Icon Marker */}
+                    <div className="w-20 h-20 bg-slate-900/80 backdrop-blur-md border-2 border-cyan-500 rounded-full flex items-center justify-center mb-6 relative z-10 group-hover:scale-110 group-hover:border-white group-hover:bg-cyan-600 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+                      <Icon size={32} className="text-cyan-400 group-hover:text-white transition-colors" />
 
-                  {/* Icon Marker */}
-                  <div className="absolute left-[20px] md:left-1/2 w-10 h-10 md:w-14 md:h-14 bg-slate-900 border-2 border-cyan-500 rounded-full flex items-center justify-center transform -translate-x-1/2 z-20 group-hover:scale-110 group-hover:border-cyan-400 group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)] transition-all duration-300">
-                    <Icon size={20} className="hidden md:block text-cyan-400" />
-                    <Icon size={16} className="md:hidden text-cyan-400" />
-                  </div>
-
-                  {/* Content Card */}
-                  <div className={`ml-16 md:ml-0 md:w-1/2 ${isEven ? 'md:pr-16 text-left md:text-right' : 'md:pl-16 text-left'}`}>
-                    <div className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:bg-white/10 hover:border-cyan-500/30 transition-all duration-300 group-hover:-translate-y-1 shadow-lg">
-                      <div className="flex items-center gap-3 mb-2 md:hidden">
-                        {/* Mobile Title Icon if need be, but central icon is fine */}
+                      {/* Step Number Badge */}
+                      <div className="absolute -top-2 -right-2 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center border-2 border-slate-900 text-white font-bold text-sm">
+                        {index + 1}
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-2">{step.label}</h3>
-                      <p className="text-slate-400 text-sm leading-relaxed">{step.description}</p>
+                    </div>
+
+                    {/* Content Card */}
+                    <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:bg-white/20 hover:border-cyan-500/50 transition-all duration-300 text-center w-full h-full flex flex-col hover:-translate-y-2 hover:shadow-xl">
+                      <h3 className="text-xl font-bold text-white mb-3">{step.label}</h3>
+                      <p className="text-blue-100 text-sm leading-relaxed">{step.description}</p>
                     </div>
                   </div>
-
-                  {/* Empty space for the other side */}
-                  <div className="hidden md:block md:w-1/2"></div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
+
+          {/* Right Utility Button */}
+          <button
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onClick={() => scroll('right')}
+            className="hidden md:flex flex-shrink-0 z-20 bg-slate-900/80 p-4 rounded-full border border-cyan-500/50 hover:bg-cyan-600 hover:text-white hover:border-white text-cyan-400 transition-all duration-300 transform hover:scale-110 shadow-lg backdrop-blur-sm cursor-pointer"
+            aria-label="Scroll Right"
+          >
+            <ChevronRight size={32} />
+          </button>
         </div>
       </div>
     </section>

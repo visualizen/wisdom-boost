@@ -37,10 +37,10 @@ const Segments = () => {
   ];
 
   return (
-    <section id="segments" className="py-24 bg-background">
+    <section id="segments" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 pb-2 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
             {t('segments.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

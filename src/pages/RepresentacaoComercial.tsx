@@ -183,7 +183,7 @@ const RepresentacaoComercial = () => {
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <stat.icon className="h-8 w-8 mx-auto mb-3 text-primary" />
-                <div className="text-4xl font-bold bg-gradient-title bg-clip-text text-transparent mb-2">
+                <div className="text-4xl font-bold bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent mb-2">
                   {stat.value}
                 </div>
                 <div className="text-muted-foreground">{stat.label}</div>
@@ -201,7 +201,7 @@ const RepresentacaoComercial = () => {
               <ShieldCheck className="mr-2 h-4 w-4" />
               {t('commercialPage.benefits.badge')}
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 pb-2 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
               {t('commercialPage.benefits.title')}
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -233,7 +233,7 @@ const RepresentacaoComercial = () => {
               <Package className="mr-2 h-4 w-4" />
               {t('commercialPage.services.badge')}
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 pb-2 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
               {t('commercialPage.services.title')}
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -265,7 +265,7 @@ const RepresentacaoComercial = () => {
               <Building2 className="mr-2 h-4 w-4" />
               {t('commercialPage.segments.badge')}
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 pb-2 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
               {t('commercialPage.segments.title')}
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -305,7 +305,7 @@ const RepresentacaoComercial = () => {
               <ArrowRight className="mr-2 h-4 w-4" />
               {t('commercialPage.process.badge')}
             </Badge>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 pb-2 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
               {t('commercialPage.process.title')}
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -349,25 +349,10 @@ const RepresentacaoComercial = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section id="contact" className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">
-                <Users className="mr-2 h-4 w-4" />
-                {t('commercialPage.contact.badge')}
-              </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-title bg-clip-text text-transparent">
-                {t('commercialPage.contact.title')}
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                {t('commercialPage.contact.subtitle')}
-              </p>
-            </div>
-            <ContactForm />
-          </div>
-        </div>
-      </section>
+      <ContactForm
+        title={t('commercialPage.contact.title')}
+        subtitle={t('commercialPage.contact.subtitle')}
+      />
 
       <Footer />
     </div>

@@ -13,24 +13,32 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
 
+
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
 
-        try {
-            const { error } = await supabase.auth.signInWithPassword({
-                email,
-                password,
-            });
+        const trimmedEmail = email.trim();
+        const trimmedPassword = password.trim();
 
-            if (error) throw error;
+        console.log("Tentando login com:", trimmedEmail);
 
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: trimmedEmail,
+            password: trimmedPassword,
+        });
+
+        if (error) {
+            console.error("Erro detalhado do Supabase:", error);
+            console.error("Status:", error.status);
+            console.error("Nome:", error.name);
+            console.error("Msg:", error.message);
+            toast.error(`Erro: ${error.message}`);
+            setLoading(false);
+        } else {
+            console.log("Login sucesso!", data);
             toast.success("Login realizado com sucesso!");
             navigate("/admin");
-        } catch (error: any) {
-            toast.error(error.message || "Erro ao fazer login");
-        } finally {
-            setLoading(false);
         }
     };
 

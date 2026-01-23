@@ -1,23 +1,17 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus, Trash2, Edit } from "lucide-react";
 import { toast } from "sonner";
-
-interface Post {
-    id: string;
-    title: string;
-    category: string;
-    created_at: string;
-}
+import { postsService, BlogPost } from "@/services/postsService";
+import { supabase } from "@/integrations/supabase/client";
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-    const [posts, setPosts] = useState<Post[]>([]);
+    const [posts, setPosts] = useState<BlogPost[]>([]);
 
     useEffect(() => {
         checkAuth();
@@ -33,13 +27,8 @@ const AdminDashboard = () => {
 
     const fetchPosts = async () => {
         try {
-            const { data, error } = await supabase
-                .from('posts')
-                .select('*')
-                .order('created_at', { ascending: false });
-
-            if (error) throw error;
-            setPosts(data || []);
+            const data = await postsService.getPosts();
+            setPosts(data);
         } catch (error: any) {
             toast.error("Erro ao carregar posts: " + error.message);
         } finally {
@@ -51,13 +40,7 @@ const AdminDashboard = () => {
         if (!confirm("Tem certeza que deseja excluir este post?")) return;
 
         try {
-            const { error } = await supabase
-                .from('posts')
-                .delete()
-                .eq('id', id);
-
-            if (error) throw error;
-
+            await postsService.deletePost(id);
             toast.success("Post excluído com sucesso!");
             fetchPosts();
         } catch (error: any) {

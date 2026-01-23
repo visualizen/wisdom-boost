@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { blogPosts as initialStaticPosts, BlogPost } from "@/data/blogPosts";
+import { postsService } from "@/services/postsService";
 import heroImage from "@/assets/quem-somos-hero.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SEO } from "@/components/SEO";
@@ -36,26 +37,19 @@ const Blog = () => {
 
   const fetchPosts = async () => {
     try {
-      const { data, error } = await supabase
-        .from('posts')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error("Error fetching posts:", error);
-      }
+      const data = await postsService.getPosts();
 
       if (data && data.length > 0) {
         const mappedPosts: BlogPost[] = data.map(post => ({
           id: post.id,
           title: post.title,
-          excerpt: post.content ? post.content.substring(0, 150) + "..." : "",
+          excerpt: post.content ? post.content.substring(0, 150).replace(/<[^>]*>?/gm, '') + "..." : "", // Strip HTML
           content: post.content,
           image: post.image_url || "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
           category: post.category || "Geral",
           date: new Date(post.created_at).toLocaleDateString('pt-BR'),
           readTime: "5 min",
-          featured: false,
+          featured: post.featured || false,
           author: "Equipe Wisdom",
           tags: []
         }));
@@ -147,7 +141,7 @@ const Blog = () => {
         <section className="py-16 bg-gradient-to-br from-blue-500/5 via-background to-cyan-500/5">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 pb-2 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
                 {t('blogPage.featured.title')}
               </h2>
               <p className="text-xl text-muted-foreground">
@@ -208,7 +202,7 @@ const Blog = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {selectedCategory !== "Todas" && (
             <div className="mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 pb-2 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
                 {t(`blogPage.categories.${categoryKeys[selectedCategory]}` as any)}
               </h2>
               <p className="text-xl text-muted-foreground">

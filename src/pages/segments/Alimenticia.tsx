@@ -95,11 +95,11 @@ const Alimenticia = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img 
+          <img
             src={alimenticiaImg}
             alt="Indústria Alimentícia"
             className="w-full h-full object-cover"
@@ -120,25 +120,25 @@ const Alimenticia = () => {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-8 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
               Nossa Atuação na Indústria Alimentícia
             </h2>
             <div className="prose prose-lg max-w-none text-muted-foreground">
               <p className="text-lg leading-relaxed mb-6">
-                A Wisdom atua há mais de uma década no fornecimento de equipamentos e soluções tecnológicas para a indústria 
-                alimentícia brasileira. Nossa expertise abrange todos os segmentos: bebidas, laticínios, carnes, panificação, 
+                A Wisdom atua há mais de uma década no fornecimento de equipamentos e soluções tecnológicas para a indústria
+                alimentícia brasileira. Nossa expertise abrange todos os segmentos: bebidas, laticínios, carnes, panificação,
                 confeitaria, alimentos processados, frutas e vegetais, entre outros.
               </p>
               <p className="text-lg leading-relaxed mb-6">
-                Oferecemos equipamentos de processamento de última geração: linhas de envase asséptico, pasteurizadores, 
-                esterilizadores, sistemas de refrigeração industrial, equipamentos de mistura e homogeneização, extrusoras, 
-                secadores, sistemas de embalagem e muito mais. Trabalhamos com fabricantes europeus (Itália, Alemanha, Holanda, 
+                Oferecemos equipamentos de processamento de última geração: linhas de envase asséptico, pasteurizadores,
+                esterilizadores, sistemas de refrigeração industrial, equipamentos de mistura e homogeneização, extrusoras,
+                secadores, sistemas de embalagem e muito mais. Trabalhamos com fabricantes europeus (Itália, Alemanha, Holanda,
                 Dinamarca) reconhecidos mundialmente pela qualidade e inovação tecnológica.
               </p>
               <p className="text-lg leading-relaxed">
-                Nosso diferencial está no profundo conhecimento das exigências regulatórias do setor alimentício. Todos os 
-                equipamentos fornecidos atendem às normas ANVISA, MAPA e são compatíveis com sistemas de gestão de segurança 
-                alimentar (HACCP, ISO 22000, FSSC 22000). Prestamos consultoria completa, desde a seleção do equipamento até 
+                Nosso diferencial está no profundo conhecimento das exigências regulatórias do setor alimentício. Todos os
+                equipamentos fornecidos atendem às normas ANVISA, MAPA e são compatíveis com sistemas de gestão de segurança
+                alimentar (HACCP, ISO 22000, FSSC 22000). Prestamos consultoria completa, desde a seleção do equipamento até
                 a validação de processos (IQ, OQ, PQ) e obtenção de certificações.
               </p>
             </div>
@@ -149,7 +149,7 @@ const Alimenticia = () => {
       {/* Cases de Sucesso - Timeline */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-12 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
             Cases de Sucesso
           </h2>
 
@@ -159,11 +159,10 @@ const Alimenticia = () => {
               <button
                 key={index}
                 onClick={() => setActiveCase(index)}
-                className={`px-6 py-3 rounded-lg font-semibold transition-all ${
-                  activeCase === index
-                    ? 'bg-primary text-primary-foreground shadow-lg scale-105'
-                    : 'bg-card text-muted-foreground hover:bg-card/80'
-                }`}
+                className={`px-6 py-3 rounded-lg font-semibold transition-all ${activeCase === index
+                  ? 'bg-primary text-primary-foreground shadow-lg scale-105'
+                  : 'bg-card text-muted-foreground hover:bg-card/80'
+                  }`}
               >
                 Case {index + 1}
               </button>
@@ -203,7 +202,7 @@ const Alimenticia = () => {
             {/* Timeline */}
             <div className="relative">
               <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-primary/30" />
-              
+
               {cases[activeCase].timeline.map((phase, idx) => (
                 <div key={idx} className="relative pl-20 pb-12 last:pb-0">
                   <div className="absolute left-6 w-5 h-5 rounded-full bg-primary border-4 border-background" />
@@ -230,7 +229,7 @@ const Alimenticia = () => {
       {/* Produtos e Serviços */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-12 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
             Produtos e Serviços para Indústria Alimentícia
           </h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -261,7 +260,7 @@ const Alimenticia = () => {
       {/* Diferenciais Competitivos */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-12 pb-2 text-center bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
             Por Que Escolher a Wisdom para Alimentos
           </h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">

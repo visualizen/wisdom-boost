@@ -155,7 +155,7 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
                   </div>
                   <div>
                     <h3 className="font-bold text-white mb-1">{t('contact.labels.phoneTitle')}</h3>
-                    <p className="text-white/80 text-sm">+55 (47) 99625-6869</p>
+                    <p className="text-white/80 text-sm">+55 (47) 3508-1104</p>
                   </div>
                 </div>
               </div>

@@ -45,7 +45,10 @@ const FloatingActionMenu = () => {
 
                 {/* Orçamento - Primary Action */}
                 <Button
-                    onClick={() => navigate('/contato')}
+                    onClick={() => {
+                        navigate('/contato');
+                        window.scrollTo(0, 0);
+                    }}
                     className="rounded-full bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white shadow-lg shadow-blue-500/25 px-8 py-4 h-auto"
                 >
                     <FileText size={18} className="mr-2" />

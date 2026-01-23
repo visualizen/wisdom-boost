@@ -6,25 +6,25 @@ export const translations = {
             home: "Página Inicial",
             about: "Quem Somos",
             services: "Serviços",
-            representation: "Representação Comercial",
+            representation: "Representação comercial",
             export: "Exportação",
             blog: "Blog",
             contact: "Contato",
             cta: "Fale Conosco"
         },
         hero: {
-            title: "Soluções Completas no",
-            titleHighlight: "Comércio Exterior",
+            title: "Soluções completas no",
+            titleHighlight: "comércio exterior",
             description: "Importação e exportação ágil, segura e econômica. Eliminamos barreiras e conectamos sua empresa ao mercado global.",
             cta: "Embarque com a Wisdom!"
         },
         services: {
-            title: "Nossos Serviços",
+            title: "Nossos serviços",
             subtitle: "Soluções completas e personalizadas para potecializar seu negócio no comércio exterior",
             learnMore: "Saiba mais",
             items: {
                 import: {
-                    title: "Importação por Encomenda e por Conta e Ordem (C&O)",
+                    title: "Importação por encomenda e por conta e ordem (C&O)",
                     desc: "Soluções completas para importação sob encomenda e operações por conta e ordem, otimizando custos e processos."
                 },
                 representation: {
@@ -32,11 +32,11 @@ export const translations = {
                     desc: "Representamos sua empresa no mercado internacional, conectando você aos melhores parceiros comerciais globais."
                 },
                 consulting: {
-                    title: "Consultoria fiscal e tributária em Comércio exterior",
+                    title: "Consultoria fiscal e tributária em comércio exterior",
                     desc: "Assessoria especializada em questões fiscais e tributárias para maximizar eficiência e conformidade nas operações."
                 },
                 logistics: {
-                    title: "Gestão logística internacional e seguro de carga da compra até a entrega",
+                    title: "Gestão logística internacional e seguro de carga",
                     desc: "Gerenciamento completo da logística e proteção da sua carga desde a origem até o destino final."
                 },
                 ncm: {
@@ -50,54 +50,54 @@ export const translations = {
             }
         },
         benefits: {
-            title: "Vantagens de Trabalhar Conosco",
+            title: "Vantagens de trabalhar conosco",
             subtitle: "Benefícios exclusivos que fazem a diferença no seu negócio",
             items: {
-                personalized: { title: "Atendimento Personalizado", desc: "Atendimento próximo e personalizado, com foco real no negócio e nas necessidades do cliente." },
-                agile: { title: "Estrutura Ágil", desc: "Estrutura ágil e altamente técnica, pronta para responder rápido e com assertividade." },
-                fiscal: { title: "Expertise Fiscal", desc: "Expertise fiscal, com resultados comprovados e redução de ICMS de até 70% por meio de benefícios tributários." },
-                technology: { title: "Tecnologia Avançada", desc: "Utilização de sistemas avançados, tecnologia e IA para garantir controle, rastreabilidade e total conformidade." },
-                international: { title: "Representação Internacional", desc: "Atuação como representante comercial internacional / comprador, gerando confiança e segurança para fornecedores estrangeiros." }
+                personalized: { title: "Atendimento personalizado", desc: "Atendimento próximo e personalizado, com foco real no negócio e nas necessidades do cliente." },
+                agile: { title: "Estrutura ágil", desc: "Estrutura ágil e altamente técnica, pronta para responder rápido e com assertividade." },
+                fiscal: { title: "Expertise fiscal", desc: "Expertise fiscal, com resultados comprovados e redução de ICMS de até 70% por meio de benefícios tributários." },
+                technology: { title: "Tecnologia avançada", desc: "Utilização de sistemas avançados, tecnologia e IA para garantir controle, rastreabilidade e total conformidade." },
+                international: { title: "Representação internacional", desc: "Atuação como representante comercial internacional / comprador, gerando confiança e segurança para fornecedores estrangeiros." }
             }
         },
         segments: {
-            title: "Nossos Segmentos",
+            title: "Nossos segmentos",
             subtitle: "Atuamos em diversos setores da economia, oferecendo soluções personalizadas para cada segmento",
             learnMore: "Saiba mais →",
             items: {
                 foundry: { title: "Fundição", desc: "Equipamentos e insumos especializados para o setor de fundição industrial." },
-                ironSteel: { title: "Ferro e Aço", desc: "Produtos siderúrgicos e materiais para a indústria de ferro e aço." },
+                ironSteel: { title: "Ferro e aço", desc: "Produtos siderúrgicos e materiais para a indústria de ferro e aço." },
                 chemicals: { title: "Químicos", desc: "Insumos químicos e reagentes para diversos processos industriais." },
-                food: { title: "Indústria Alimentícia", desc: "Equipamentos e insumos para a indústria de alimentos e bebidas." }
+                food: { title: "Indústria alimentícia", desc: "Equipamentos e insumos para a indústria de alimentos e bebidas." }
             }
         },
         certifications: {
-            title: "Conheça nossas Certificações",
+            title: "Conheça nossas certificações",
             subtitle: "Compromisso com excelência e conformidade reconhecidos nacionalmente e internacionalmente"
         },
         timeline: {
-            title: "Linha do Tempo",
-            badge: "Processo Ponta a Ponta",
+            title: "Linha do tempo",
+            badge: "Processo ponta a ponta",
             subtitle: "O caminho completo da sua operação de comércio exterior, simplificado e eficiente.",
             steps: {
                 client: { label: "Cliente", desc: "Início do processo com a necessidade do cliente." },
-                purchase: { label: "Pedido de Compra", desc: "Formalização do pedido junto aos fornecedores." },
+                purchase: { label: "Pedido de compra", desc: "Formalização do pedido junto aos fornecedores." },
                 suppliers: { label: "Fornecedores", desc: "Conexão com parceiros globais confiáveis." },
-                tax: { label: "Planejamento Tributário", desc: "Análise fiscal para otimização de custos." },
+                tax: { label: "Planejamento tributário", desc: "Análise fiscal para otimização de custos." },
                 finance: { label: "Trade Finance", desc: "Soluções financeiras para viabilizar a operação." },
-                operational: { label: "Gestão Operacional", desc: "Coordenação de todos os detalhes logísticos." },
-                transport: { label: "Transporte Internacional", desc: "Movimentação da carga (Aéreo/Marítimo)." },
-                customs: { label: "Desembaraço Aduaneiro", desc: "Liberação da mercadoria nas alfândegas." },
-                storage: { label: "Armazenagem Estratégica", desc: "Gestão de estoque e armazenagem segura." },
-                road: { label: "Transporte Rodoviário", desc: "Transporte interno até o destino final." },
+                operational: { label: "Gestão operacional", desc: "Coordenação de todos os detalhes logísticos." },
+                transport: { label: "Transporte internacional", desc: "Movimentação da carga (Aéreo/Marítimo)." },
+                customs: { label: "Desembaraço aduaneiro", desc: "Liberação da mercadoria nas alfândegas." },
+                storage: { label: "Armazenagem estratégica", desc: "Gestão de estoque e armazenagem segura." },
+                road: { label: "Transporte rodoviário", desc: "Transporte interno até o destino final." },
                 delivery: { label: "Entrega ao Cliente", desc: "Conclusão com a entrega porta-a-porta." }
             }
         },
         news: {
-            badge: "Fique Atualizado",
-            title: "Notícias do Setor",
+            badge: "Fique atualizado",
+            title: "Notícias do setor",
             subtitle: "Acompanhe as últimas novidades e tendências do comércio exterior",
-            viewAll: "Ver Todas as Notícias",
+            viewAll: "Ver todas as notícias",
             readMore: "Ler mais"
         },
         contact: {
@@ -105,10 +105,10 @@ export const translations = {
             subtitle: "Vamos construir resultados juntos!",
             desc: "Entre em contato e descubra como podemos transformar seu negócio",
             labels: {
-                name: "Nome Completo *",
+                name: "Nome completo *",
                 email: "Email *",
                 phone: "Telefone",
-                service: "Serviço de Interesse",
+                service: "Serviço de interesse",
                 message: "Mensagem *",
                 emailTitle: "Email",
                 phoneTitle: "Telefone",
@@ -122,46 +122,46 @@ export const translations = {
                 service: "Selecione um serviço"
             },
             button: {
-                default: "Enviar Mensagem",
+                default: "Enviar mensagem",
                 sending: "Enviando..."
             }
         },
         footer: {
-            about: "Sobre Nós",
+            about: "Sobre nós",
             aboutText: "A Wisdom Trading é sua parceira ideal no comércio exterior, oferecendo soluções completas e personalizadas para conectar sua empresa ao mercado global.",
-            quickLinks: "Links Rápidos",
+            quickLinks: "Links rápidos",
             legal: "Legal",
-            privacy: "Política de Privacidade",
-            terms: "Termos de Uso",
+            privacy: "Política de privacidade",
+            terms: "Termos de uso",
             copyright: "© 2024 Wisdom Trading. Todos os direitos reservados.",
             developedBy: "Desenvolvido por"
         },
         aboutPage: {
             hero: {
-                badge: "Inovação em Comércio Exterior",
-                title: "Quem Somos",
+                badge: "Inovação em comércio exterior",
+                title: "Quem somos",
                 subtitle: "Conectando empresas ao futuro do",
                 subtitleHighlight: "comércio global",
                 stats: {
-                    experience: "Anos de Experiência",
-                    countries: "Países Atendidos",
+                    experience: "Anos de experiência",
+                    countries: "Países atendidos",
                     satisfaction: "Satisfação"
                 }
             },
             stats: {
-                badge: "Conquistas em Números",
-                title: "Nossa Trajetória de Sucesso",
+                badge: "Conquistas em números",
+                title: "Nossa trajetória de sucesso",
                 subtitle: "Décadas de excelência refletidas em resultados concretos",
                 items: {
-                    experience: "Anos de Experiência",
-                    countries: "Países Atendidos",
-                    operations: "Operações Realizadas",
-                    tonnage: "Toneladas Movimentadas"
+                    experience: "Anos de experiência",
+                    countries: "Países atendidos",
+                    operations: "Operações realizadas",
+                    tonnage: "Toneladas movimentadas"
                 }
             },
             history: {
                 badge: "Nossa Jornada",
-                title: "Nossa História",
+                title: "Nossa história",
                 p1: "A Wisdom Trading nasceu da experiência e paixão de profissionais com mais de 30 anos de atuação no mercado de comércio exterior. Fundada com o propósito de facilitar e otimizar operações internacionais, nos especializamos em conectar empresas brasileiras ao mercado global.",
                 p2: "Ao longo dos anos, construímos uma sólida reputação baseada em confiança, transparência e resultados. Nossa trajetória é marcada por parcerias de sucesso e pela constante busca por inovação e excelência em todos os serviços prestados.",
                 pillars: {
@@ -177,7 +177,7 @@ export const translations = {
             },
             global: {
                 badge: "Alcance Global",
-                title: "Conectados ao Mundo",
+                title: "Conectados ao mundo",
                 description: "Nossa rede global permite que sua empresa alcance os mercados mais importantes do planeta, com suporte completo em todas as etapas do processo.",
                 stats: {
                     countries: "Países",
@@ -187,7 +187,7 @@ export const translations = {
             },
             mission: {
                 badge: "Nossos Pilares",
-                title: "Missão, Visão e Valores",
+                title: "Missão, visão e valores",
                 subtitle: "Os princípios que guiam nossa atuação no mercado global",
                 mission: {
                     title: "Missão",
@@ -210,90 +210,90 @@ export const translations = {
             },
             differentials: {
                 badge: "Por Que Nos Escolher",
-                title: "Nossos Diferenciais",
+                title: "Nossos diferenciais",
                 subtitle: "O que nos torna únicos no mercado de comércio exterior",
                 items: {
-                    experience: { title: "Experiência Consolidada", desc: "Mais de 30 anos de atuação no mercado internacional com expertise comprovada." },
-                    global: { title: "Alcance Global", desc: "Rede de contatos em mais de 50 países facilitando suas operações internacionais." },
-                    security: { title: "Segurança e Compliance", desc: "Processos certificados e conformidade com regulamentações internacionais." },
-                    agility: { title: "Agilidade Operacional", desc: "Soluções rápidas e eficientes com tecnologia de ponta e processos otimizados." }
+                    experience: { title: "Experiência consolidada", desc: "Mais de 30 anos de atuação no mercado internacional com expertise comprovada." },
+                    global: { title: "Alcance global", desc: "Rede de contatos em mais de 50 países facilitando suas operações internacionais." },
+                    security: { title: "Segurança e compliance", desc: "Processos certificados e conformidade com regulamentações internacionais." },
+                    agility: { title: "Agilidade operacional", desc: "Soluções rápidas e eficientes com tecnologia de ponta e processos otimizados." }
                 }
             },
             contact: {
-                title: "Vamos Conectar Seu Negócio ao Mundo",
+                title: "Vamos conectar seu negócio ao mundo",
                 subtitle: "Entre em contato conosco!"
             }
         },
         commercialPage: {
             hero: {
-                badge: "Representação Comercial no Brasil",
-                title: "Sua Porta de Entrada para o Mercado Brasileiro",
+                badge: "Representação comercial no Brasil",
+                title: "Sua porta de entrada para o mercado brasileiro",
                 subtitle: "Expanda seus negócios no Brasil com um",
                 subtitleHighlight: "parceiro local confiável",
                 desc: "Representamos empresas internacionais que buscam presença comercial em um dos maiores mercados do mundo.",
-                cta: "Comece sua Expansão",
-                schedule: "Agende uma Consultoria"
+                cta: "Comece sua expansão",
+                schedule: "Agende uma consultoria"
             },
             stats: {
-                experience: "Anos de Experiência",
-                represented: "Empresas Representadas",
-                deals: "Negócios Fechados",
-                satisfaction: "Taxa de Satisfação"
+                experience: "Anos de experiência",
+                represented: "Empresas representadas",
+                deals: "Negócios fechados",
+                satisfaction: "Taxa de satisfação"
             },
             benefits: {
-                badge: "Por Que Wisdom Trading",
-                title: "Sua Vantagem Estratégica no Brasil",
+                badge: "Por que Wisdom Trading",
+                title: "Sua vantagem estratégica no Brasil",
                 subtitle: "Navegue pela complexidade do mercado brasileiro com um parceiro que entende tanto suas necessidades de negócio quanto a dinâmica local",
                 items: {
-                    localPresence: { title: "Presença Local Estabelecida", desc: "Representação física no Brasil com infraestrutura completa para suas operações comerciais" },
-                    network: { title: "Rede de Contatos Consolidada", desc: "Acesso imediato a network de distribuidores, compradores e parceiros estratégicos brasileiros" },
-                    marketKnowledge: { title: "Conhecimento do Mercado", desc: "Expertise profunda sobre regulamentações, cultura de negócios e oportunidades no Brasil" },
-                    compliance: { title: "Conformidade Garantida", desc: "Gestão completa de documentação, certificações e compliance com legislação brasileira" },
-                    expansion: { title: "Expansão Sem Riscos", desc: "Teste o mercado brasileiro sem necessidade de investimento em estrutura própria" },
-                    timeToMarket: { title: "Time-to-Market Acelerado", desc: "Entre no mercado brasileiro em semanas, não anos, com nossa estrutura pronta" }
+                    localPresence: { title: "Presença local estabelecida", desc: "Representação física no Brasil com infraestrutura completa para suas operações comerciais" },
+                    network: { title: "Rede de contatos consolidada", desc: "Acesso imediato a network de distribuidores, compradores e parceiros estratégicos brasileiros" },
+                    marketKnowledge: { title: "Conhecimento do mercado", desc: "Expertise profunda sobre regulamentações, cultura de negócios e oportunidades no Brasil" },
+                    compliance: { title: "Conformidade garantida", desc: "Gestão completa de documentação, certificações e compliance com legislação brasileira" },
+                    expansion: { title: "Expansão sem riscos", desc: "Teste o mercado brasileiro sem necessidade de investimento em estrutura própria" },
+                    timeToMarket: { title: "Time-to-market acelerado", desc: "Entre no mercado brasileiro em semanas, não anos, com nossa estrutura pronta" }
                 }
             },
             services: {
-                badge: "Nossos Serviços",
-                title: "Representação Comercial Completa",
+                badge: "Nossos serviços",
+                title: "Representação comercial completa",
                 subtitle: "Suporte ponta a ponta para o desenvolvimento do seu negócio no Brasil",
                 items: {
-                    prospecting: { title: "Prospecção de Clientes", desc: "Identificação e abordagem de potenciais compradores alinhados ao seu produto" },
-                    analysis: { title: "Análise de Mercado", desc: "Estudos detalhados sobre viabilidade, precificação e posicionamento competitivo" },
-                    negotiation: { title: "Negociação Comercial", desc: "Condução de negociações, elaboração de propostas e fechamento de contratos" },
-                    management: { title: "Gestão de Operações", desc: "Acompanhamento de pedidos, logística e suporte pós-venda aos clientes brasileiros" }
+                    prospecting: { title: "Prospecção de clientes", desc: "Identificação e abordagem de potenciais compradores alinhados ao seu produto" },
+                    analysis: { title: "Análise de mercado", desc: "Estudos detalhados sobre viabilidade, precificação e posicionamento competitivo" },
+                    negotiation: { title: "Negociação comercial", desc: "Condução de negociações, elaboração de propostas e fechamento de contratos" },
+                    management: { title: "Gestão de operações", desc: "Acompanhamento de pedidos, logística e suporte pós-venda aos clientes brasileiros" }
                 }
             },
             segments: {
-                badge: "Indústrias que Atendemos",
-                title: "Conhecimento de Mercado Especializado",
+                badge: "Indústrias que atendemos",
+                title: "Conhecimento de mercado especializado",
                 subtitle: "Profunda expertise nos principais segmentos industriais do mercado brasileiro",
                 items: {
-                    chemicals: { name: "Químicos & Petroquímicos", desc: "Representação para fabricantes de químicos industriais, especialidades e commodities" },
-                    metals: { name: "Metais & Siderurgia", desc: "Conexão com indústrias brasileiras de aço, alumínio e metais não-ferrosos" },
-                    food: { name: "Alimentos & Bebidas", desc: "Entrada no mercado brasileiro de ingredientes, aditivos e produtos alimentícios" },
-                    machinery: { name: "Máquinas & Equipamentos", desc: "Representação de fabricantes de equipamentos industriais e maquinário" }
+                    chemicals: { name: "Químicos & petroquímicos", desc: "Representação para fabricantes de químicos industriais, especialidades e commodities" },
+                    metals: { name: "Metais & siderurgia", desc: "Conexão com indústrias brasileiras de aço, alumínio e metais não-ferrosos" },
+                    food: { name: "Alimentos & bebidas", desc: "Entrada no mercado brasileiro de ingredientes, aditivos e produtos alimentícios" },
+                    machinery: { name: "Máquinas & equipamentos", desc: "Representação de fabricantes de equipamentos industriais e maquinário" }
                 }
             },
             process: {
-                badge: "Como Funciona",
-                title: "Seu Caminho para o Sucesso no Brasil",
+                badge: "Como funciona",
+                title: "Seu caminho para o sucesso no Brasil",
                 subtitle: "Um processo comprovado de 4 etapas para estabelecer sua presença no Brasil",
                 steps: {
-                    analysis: { title: "Análise Inicial", desc: "Avaliamos seu produto, mercado-alvo e objetivos no Brasil" },
-                    strategy: { title: "Estratégia Comercial", desc: "Desenvolvemos plano de entrada e posicionamento no mercado" },
-                    prospecting: { title: "Prospecção Ativa", desc: "Identificamos e contatamos potenciais compradores qualificados" },
-                    negotiation: { title: "Negociação & Fechamento", desc: "Conduzimos negociações até o fechamento dos contratos" }
+                    analysis: { title: "Análise inicial", desc: "Avaliamos seu produto, mercado-alvo e objetivos no Brasil" },
+                    strategy: { title: "Estratégia comercial", desc: "Desenvolvemos plano de entrada e posicionamento no mercado" },
+                    prospecting: { title: "Prospecção ativa", desc: "Identificamos e contatamos potenciais compradores qualificados" },
+                    negotiation: { title: "Negociação & fechamento", desc: "Conduzimos negociações até o fechamento dos contratos" }
                 }
             },
             cta: {
-                title: "Pronto para Entrar no Mercado Brasileiro?",
+                title: "Pronto para entrar no mercado brasileiro?",
                 desc: "Vamos discutir como podemos acelerar o crescimento do seu negócio no Brasil com nossos serviços de representação comercial comprovados",
                 button: "Comece Hoje Mesmo"
             },
             contact: {
                 badge: "Fale Conosco",
-                title: "Vamos Iniciar Sua Jornada Brasileira",
+                title: "Vamos iniciar sua jornada brasileira",
                 subtitle: "Preencha o formulário abaixo e nossa equipe entrará em contato em até 24 horas"
             }
         },
@@ -403,47 +403,47 @@ export const translations = {
         },
         internationalPage: {
             hero: {
-                badge: "Representação Comercial Internacional",
-                title: "Leve Seus Produtos para o Mundo",
+                badge: "Representação comercial internacional",
+                title: "Leve seus produtos para o mundo",
                 subtitle: "Expanda sua empresa para mercados internacionais com um",
                 subtitleHighlight: "parceiro experiente",
                 desc: "Representamos empresas brasileiras que desejam exportar e conquistar clientes globais.",
-                cta: "Comece a Exportar",
-                schedule: "Agende uma Consultoria"
+                cta: "Comece a exportar",
+                schedule: "Agende uma consultoria"
             },
             stats: {
-                years: "Anos no Mercado",
-                countries: "Países Atendidos",
-                exports: "Exportações Facilitadas",
-                satisfaction: "Clientes Satisfeitos"
+                years: "Anos no mercado",
+                countries: "Países atendidos",
+                exports: "Exportações facilitadas",
+                satisfaction: "Clientes satisfeitos"
             },
             benefits: {
-                badge: "Por Que Escolher a Wisdom Trading",
-                title: "Sua Vantagem Competitiva Internacional",
+                badge: "Por que escolher a Wisdom Trading",
+                title: "Sua vantagem competitiva internacional",
                 subtitle: "Conquiste mercados globais com um parceiro que entende tanto as necessidades da sua empresa quanto as complexidades de cada mercado internacional",
                 items: {
-                    access: { title: "Acesso a Mercados Globais", desc: "Expanda suas vendas para mercados internacionais estratégicos com nossa rede de contatos estabelecida" },
-                    network: { title: "Rede Internacional Consolidada", desc: "Conexão direta com compradores, distribuidores e importadores qualificados em diversos países" },
-                    localRep: { title: "Representação Local nos Mercados", desc: "Presença física e expertise local em cada mercado-alvo para suas operações de exportação" },
-                    compliance: { title: "Conformidade Internacional", desc: "Gestão completa de documentação de exportação, certificações e compliance regulatório de cada país" },
-                    growth: { title: "Crescimento Sem Investimento Pesado", desc: "Expanda internacionalmente sem necessidade de abrir escritórios ou estrutura própria no exterior" },
-                    speed: { title: "Entrada Rápida no Mercado", desc: "Comece a exportar em semanas utilizando nossa infraestrutura e relacionamentos já estabelecidos" }
+                    access: { title: "Acesso a mercados globais", desc: "Expanda suas vendas para mercados internacionais estratégicos com nossa rede de contatos estabelecida" },
+                    network: { title: "Rede internacional consolidada", desc: "Conexão direta com compradores, distribuidores e importadores qualificados em diversos países" },
+                    localRep: { title: "Representação local nos mercados", desc: "Presença física e expertise local em cada mercado-alvo para suas operações de exportação" },
+                    compliance: { title: "Conformidade internacional", desc: "Gestão completa de documentação de exportação, certificações e compliance regulatório de cada país" },
+                    growth: { title: "Crescimento sem investimento pesado", desc: "Expanda internacionalmente sem necessidade de abrir escritórios ou estrutura própria no exterior" },
+                    speed: { title: "Entrada rápida no mercado", desc: "Comece a exportar em semanas utilizando nossa infraestrutura e relacionamentos já estabelecidos" }
                 }
             },
             services: {
-                badge: "Nossos Serviços",
-                title: "Representação Comercial Completa",
+                badge: "Nossos serviços",
+                title: "Representação comercial completa",
                 subtitle: "Suporte integral para o desenvolvimento do seu negócio em mercados internacionais",
                 items: {
-                    prospecting: { title: "Prospecção Internacional", desc: "Identificação e abordagem de potenciais compradores internacionais para seus produtos" },
-                    intelligence: { title: "Inteligência de Mercado", desc: "Estudos sobre viabilidade, precificação competitiva e oportunidades em cada mercado-alvo" },
-                    negotiation: { title: "Negociação e Contratos", desc: "Condução de negociações internacionais e elaboração de contratos de exportação" },
-                    logistics: { title: "Suporte Logístico", desc: "Coordenação de embarques, documentação e follow-up com compradores internacionais" }
+                    prospecting: { title: "Prospecção internacional", desc: "Identificação e abordagem de potenciais compradores internacionais para seus produtos" },
+                    intelligence: { title: "Inteligência de mercado", desc: "Estudos sobre viabilidade, precificação competitiva e oportunidades em cada mercado-alvo" },
+                    negotiation: { title: "Negociação e contratos", desc: "Condução de negociações internacionais e elaboração de contratos de exportação" },
+                    logistics: { title: "Suporte logístico", desc: "Coordenação de embarques, documentação e follow-up com compradores internacionais" }
                 }
             },
             regions: {
-                badge: "Mercados Internacionais",
-                title: "Presença Global Estabelecida",
+                badge: "Mercados internacionais",
+                title: "Presença global estabelecida",
                 subtitle: "Rede de contatos e expertise em mercados estratégicos ao redor do mundo",
                 items: {
                     americas: { name: "América Latina e América do Norte", desc: "Representação comercial em países das Américas, incluindo EUA, Canadá, México, Argentina e Chile" },
@@ -453,41 +453,41 @@ export const translations = {
                 }
             },
             segments: {
-                badge: "Segmentos Atendidos",
-                title: "Experiência em Diversos Setores",
+                badge: "Segmentos atendidos",
+                title: "Experiência em diversos setores",
                 subtitle: "Conhecimento especializado para representar produtos brasileiros em mercados globais",
                 items: {
-                    food: { name: "Alimentos e Bebidas", desc: "Exportação de produtos alimentícios, bebidas, ingredientes e commodities agrícolas" },
+                    food: { name: "Alimentos e bebidas", desc: "Exportação de produtos alimentícios, bebidas, ingredientes e commodities agrícolas" },
                     manufactured: { name: "Manufaturados", desc: "Produtos industrializados, componentes, equipamentos e bens de capital" },
-                    chemicals: { name: "Químicos e Farmacêuticos", desc: "Produtos químicos industriais, especialidades químicas e produtos farmacêuticos" },
-                    textiles: { name: "Têxteis e Calçados", desc: "Produtos têxteis, confecções, calçados e acessórios de moda" }
+                    chemicals: { name: "Químicos e farmacêuticos", desc: "Produtos químicos industriais, especialidades químicas e produtos farmacêuticos" },
+                    textiles: { name: "Têxteis e calçados", desc: "Produtos têxteis, confecções, calçados e acessórios de moda" }
                 }
             },
             process: {
-                badge: "Como Funciona",
-                title: "Seu Caminho para o Sucesso Internacional",
+                badge: "Como funciona",
+                title: "Seu caminho para o sucesso internacional",
                 subtitle: "Processo comprovado em 4 etapas para estabelecer sua presença em mercados globais",
                 steps: {
-                    diagnosis: { title: "Diagnóstico e Planejamento", desc: "Analisamos seu produto, capacidade produtiva e definimos mercados-alvo estratégicos" },
-                    strategy: { title: "Estratégia de Entrada", desc: "Desenvolvemos plano comercial e posicionamento competitivo para cada mercado" },
-                    prospecting: { title: "Prospecção Ativa", desc: "Identificamos e contatamos compradores qualificados nos mercados internacionais" },
-                    negotiation: { title: "Negociação e Fechamento", desc: "Conduzimos negociações e estruturamos contratos de exportação seguros" }
+                    diagnosis: { title: "Diagnóstico e planejamento", desc: "Analisamos seu produto, capacidade produtiva e definimos mercados-alvo estratégicos" },
+                    strategy: { title: "Estratégia de entrada", desc: "Desenvolvemos plano comercial e posicionamento competitivo para cada mercado" },
+                    prospecting: { title: "Prospecção ativa", desc: "Identificamos e contatamos compradores qualificados nos mercados internacionais" },
+                    negotiation: { title: "Negociação e fechamento", desc: "Conduzimos negociações e estruturamos contratos de exportação seguros" }
                 }
             },
             cta: {
-                title: "Pronto para Conquistar Mercados Internacionais?",
+                title: "Pronto para conquistar mercados internacionais?",
                 desc: "Vamos conversar sobre como podemos acelerar o crescimento das suas exportações com nossos serviços de representação comercial internacional",
-                button: "Comece Hoje Mesmo"
+                button: "Comece hoje mesmo"
             },
             contact: {
-                badge: "Entre em Contato",
-                title: "Inicie Sua Jornada Internacional",
+                badge: "Entre em contato",
+                title: "Inicie sua jornada internacional",
                 subtitle: "Preencha o formulário abaixo e nossa equipe entrará em contato em até 24 horas"
             }
         },
         contactPage: {
             hero: {
-                title: "Entre em Contato",
+                title: "Entre em contato",
                 subtitle: "Estamos prontos para ajudar sua empresa a",
                 subtitleHighlight: "crescer no mercado global"
             },
@@ -499,13 +499,13 @@ export const translations = {
                 hoursValue: "Seg - Sex: 9h às 18h"
             },
             map: {
-                title: "Nossa Localização",
+                title: "Nossa localização",
                 subtitle: "Visite nosso escritório em Itajaí/SC"
             }
         },
         blogPage: {
             hero: {
-                badge: "Insights & Notícias",
+                badge: "Insights & notícias",
                 title: "Blog Wisdom Trading",
                 subtitle: "Fique por dentro das",
                 subtitleHighlight: "últimas tendências",
@@ -526,14 +526,14 @@ export const translations = {
             readMore: "Ler mais",
             notFound: "Nenhum artigo encontrado nesta categoria.",
             loading: "Carregando...",
-            backToBlog: "Voltar para o Blog",
+            backToBlog: "Voltar para o blog",
             readTime: "de leitura",
             share: {
                 title: "Gostou deste artigo?",
                 subtitle: "Compartilhe com sua rede"
             },
             related: {
-                title: "Artigos Relacionados"
+                title: "Artigos relacionados"
             }
         }
     },
