@@ -11,6 +11,7 @@ import RepresentacaoInternacional from "./pages/RepresentacaoInternacional";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contato from "./pages/Contato";
+import TrabalheConosco from "./pages/TrabalheConosco";
 import NotFound from "./pages/NotFound";
 import Fundicao from "./pages/segments/Fundicao";
 import FerroAco from "./pages/segments/FerroAco";
@@ -21,6 +22,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import PostEditor from "./pages/PostEditor";
 import ProtectedRoute from "./components/ProtectedRoute";
 import FloatingActionMenu from "./components/FloatingActionMenu";
+import WhatsAppFloat from "./components/WhatsAppFloat";
 import ScrollToTop from "./components/ScrollToTop";
 
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -48,6 +50,7 @@ const App = () => (
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/contato" element={<Contato />} />
+            <Route path="/trabalhe-conosco" element={<TrabalheConosco />} />
             <Route path="/admin/login" element={<Login />} />
             <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
             <Route path="/admin/posts/new" element={<ProtectedRoute><PostEditor /></ProtectedRoute>} />
@@ -55,6 +58,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
           <FloatingActionMenu />
+          <WhatsAppFloat />
         </BrowserRouter>
       </TooltipProvider>
     </LanguageProvider>

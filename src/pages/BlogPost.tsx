@@ -4,9 +4,8 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowLeft, Tag, Share2, ArrowRight } from "lucide-react";
 import { useParams, useNavigate } from "react-router-dom";
-import { blogPosts, getRelatedPosts, BlogPost } from "@/data/blogPosts";
+import type { BlogPost } from "@/data/blogPosts";
 import { useEffect, useState } from "react";
-// import { supabase } from "@/integrations/supabase/client";
 import { postsService } from "@/services/postsService";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -63,15 +62,6 @@ const BlogPostPage = () => {
       console.error("Error loading post from Supabase", e);
     }
 
-    // 2. Check static posts (fallback)
-    const staticPost = blogPosts.find(p => p.id === postId);
-    if (staticPost) {
-      setPost(staticPost);
-      setLoading(false);
-      return;
-    }
-
-    // 3. (Supabase removed)
     setLoading(false);
   };
 
@@ -88,7 +78,7 @@ const BlogPostPage = () => {
     );
   }
 
-  const relatedPosts = getRelatedPosts(post);
+  const relatedPosts: BlogPost[] = [];
 
   return (
     <div className="min-h-screen bg-background">
@@ -116,7 +106,7 @@ const BlogPostPage = () => {
 
             <div className="flex items-center gap-4 mb-4">
               <span className="px-4 py-1.5 bg-primary text-white text-sm font-semibold rounded-full shadow-lg shadow-primary/20">
-                {t(`blogPage.categories.${categoryKeys[post.category] || 'all'}` as any)}
+                {t(`blogPage.categories.${categoryKeys[post.category] || 'all'}`)}
               </span>
               <span className="text-slate-600 flex items-center gap-2 text-sm">
                 <Clock size={14} />
@@ -207,7 +197,7 @@ const BlogPostPage = () => {
                     />
                     <div className="absolute top-3 left-3">
                       <span className="px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full">
-                        {t(`blogPage.categories.${categoryKeys[relatedPost.category] || 'all'}` as any)}
+                        {t(`blogPage.categories.${categoryKeys[relatedPost.category] || 'all'}`)}
                       </span>
                     </div>
                   </div>

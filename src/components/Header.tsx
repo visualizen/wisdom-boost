@@ -71,12 +71,12 @@ const Header = () => {
     href: "/representacao-comercial",
     isRoute: true
   }, {
-    label: t('header.export'),
-    href: "/representacao-internacional",
-    isRoute: true
-  }, {
     label: t('header.blog'),
     href: "/blog",
+    isRoute: true
+  }, {
+    label: t('header.careers'),
+    href: "/trabalhe-conosco",
     isRoute: true
   }, {
     label: t('header.contact'),
@@ -135,7 +135,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden lg:flex items-center space-x-5">
             {navItems.map(item => item.isRoute ? <Link key={item.label} to={item.href} className="text-foreground hover:text-primary transition-colors duration-300 font-medium text-sm lg:text-base">
               {item.label}
             </Link> : <a key={item.label} href={location.pathname === "/" ? item.href : `/${item.href}`} className="text-foreground hover:text-primary transition-colors duration-300 font-medium text-sm lg:text-base">
@@ -172,7 +172,7 @@ const Header = () => {
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center gap-4 md:hidden">
+          <div className="flex items-center gap-4 lg:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="rounded-full w-9 h-9">
@@ -199,7 +199,7 @@ const Header = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMenuOpen && <nav className="md:hidden py-4 animate-fade-in-up">
+        {isMenuOpen && <nav className="lg:hidden py-4 animate-fade-in-up">
           {navItems.map(item => item.isRoute ? <Link key={item.label} to={item.href} className="block py-3 text-foreground hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>
             {item.label}
           </Link> : <a key={item.label} href={location.pathname === "/" ? item.href : `/${item.href}`} className="block py-3 text-foreground hover:text-primary transition-colors" onClick={() => setIsMenuOpen(false)}>

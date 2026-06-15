@@ -28,7 +28,7 @@ export const emailService = {
             }
 
             const templateParams = {
-                to_email: "joaootima@gmail.com",
+                to_email: "contato@wisdomtrading.com.br",
                 from_name: "Wisdom CMS AI Request",
                 message: `
                     Nova solicitação de geração de artigo via IA:

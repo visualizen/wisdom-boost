@@ -4,6 +4,7 @@ import ContactForm from "@/components/ContactForm";
 import { Mail, MapPin, Clock, Globe, Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SEO } from "@/components/SEO";
+import heroImage from "@/assets/port-modern.jpg";
 
 const Contato = () => {
   const { t } = useLanguage();
@@ -21,7 +22,7 @@ const Contato = () => {
       <section className="relative min-h-[500px] pt-40 pb-16 flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/assets/images/contact-hero.jpg')" }}
+          style={{ backgroundImage: `url(${heroImage})` }}
         >
           {/* Standardized Dark Blue Map Overlay */}
           <div className="absolute inset-0 bg-blue-900/60 mix-blend-multiply"></div>

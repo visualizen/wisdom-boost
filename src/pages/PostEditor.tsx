@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,6 +13,14 @@ import { supabase } from "@/integrations/supabase/client";
 import RichTextEditor from "@/components/RichTextEditor";
 import AIGeneratorModal from "@/components/AIGeneratorModal";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+
+const getErrorMessage = (error: unknown) => {
+    if (error instanceof Error) return error.message;
+    if (typeof error === "object" && error !== null && "message" in error) {
+        return String(error.message);
+    }
+    return "Erro desconhecido";
+};
 
 const PostEditor = () => {
     const { id } = useParams();
@@ -44,13 +52,7 @@ const PostEditor = () => {
 
     const categories = ["Tendências", "Legislação", "Logística", "Mercados", "Tecnologia"];
 
-    useEffect(() => {
-        if (id) {
-            loadPost(id);
-        }
-    }, [id]);
-
-    const loadPost = async (postId: string) => {
+    const loadPost = useCallback(async (postId: string) => {
         try {
             const data = await postsService.getPost(postId);
             if (data) {
@@ -64,10 +66,16 @@ const PostEditor = () => {
                     keywords: data.keywords || ""
                 });
             }
-        } catch (error: any) {
-            toast.error("Erro ao carregar post: " + error.message);
+        } catch (error: unknown) {
+            toast.error("Erro ao carregar post: " + getErrorMessage(error));
         }
-    };
+    }, []);
+
+    useEffect(() => {
+        if (id) {
+            loadPost(id);
+        }
+    }, [id, loadPost]);
 
     // Auto-generate slug from title if empty
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,8 +108,8 @@ const PostEditor = () => {
             }
 
             navigate("/admin");
-        } catch (error: any) {
-            toast.error("Erro ao salvar: " + error.message);
+        } catch (error: unknown) {
+            toast.error("Erro ao salvar: " + getErrorMessage(error));
         } finally {
             setLoading(false);
         }

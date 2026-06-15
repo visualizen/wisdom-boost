@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Building2, Globe, TrendingUp, Users, ShieldCheck, Clock, CheckCircle, ArrowRight, BarChart3, Handshake, FileCheck, Package } from "lucide-react";
+import { Building2, Globe, TrendingUp, Users, ShieldCheck, Clock, ArrowRight, BarChart3, Handshake, FileCheck, Package } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -9,9 +8,9 @@ import ContactForm from "@/components/ContactForm";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SEO } from "@/components/SEO";
+import heroImage from "@/assets/global-commerce.jpg";
 
 const RepresentacaoComercial = () => {
-  const [activeSegment, setActiveSegment] = useState("all");
   const { t } = useLanguage();
 
   const benefits = [
@@ -75,33 +74,30 @@ const RepresentacaoComercial = () => {
       id: "chemicals",
       name: t('commercialPage.segments.items.chemicals.name'),
       description: t('commercialPage.segments.items.chemicals.desc'),
-      color: "purple"
+      iconBg: "bg-purple-500/10",
+      iconColor: "text-purple-500"
     },
     {
       id: "metals",
       name: t('commercialPage.segments.items.metals.name'),
       description: t('commercialPage.segments.items.metals.desc'),
-      color: "slate"
+      iconBg: "bg-slate-500/10",
+      iconColor: "text-slate-500"
     },
     {
       id: "food",
       name: t('commercialPage.segments.items.food.name'),
       description: t('commercialPage.segments.items.food.desc'),
-      color: "emerald"
+      iconBg: "bg-emerald-500/10",
+      iconColor: "text-emerald-500"
     },
     {
       id: "machinery",
       name: t('commercialPage.segments.items.machinery.name'),
       description: t('commercialPage.segments.items.machinery.desc'),
-      color: "amber"
+      iconBg: "bg-amber-500/10",
+      iconColor: "text-amber-500"
     }
-  ];
-
-  const stats = [
-    { value: "15+", label: t('commercialPage.stats.experience'), icon: Clock },
-    { value: "200+", label: t('commercialPage.stats.represented'), icon: Building2 },
-    { value: "500+", label: t('commercialPage.stats.deals'), icon: Handshake },
-    { value: "95%", label: t('commercialPage.stats.satisfaction'), icon: CheckCircle }
   ];
 
   const process = [
@@ -140,7 +136,7 @@ const RepresentacaoComercial = () => {
       <section className="relative min-h-[500px] pt-40 pb-16 flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/assets/images/brazil-market-hero.jpg')" }}
+          style={{ backgroundImage: `url(${heroImage})` }}
         >
           {/* Standardized Dark Blue Map Overlay */}
           <div className="absolute inset-0 bg-blue-900/60 mix-blend-multiply"></div>
@@ -163,32 +159,17 @@ const RepresentacaoComercial = () => {
               {t('commercialPage.hero.subtitle')} <span className="font-bold text-cyan-300">{t('commercialPage.hero.subtitleHighlight')}</span>. {t('commercialPage.hero.desc')}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-sky-500 hover:bg-sky-600 text-white rounded-full text-lg px-8 py-6 shadow-lg shadow-sky-500/20 border-0 transition-all duration-300 transform hover:-translate-y-1">
-                <a href="#contact">{t('commercialPage.hero.cta')}</a>
-                <ArrowRight className="ml-2 h-5 w-5 hover:translate-x-1 transition-transform" />
+            <div className="mb-14 flex flex-col gap-4 justify-center sm:mb-0 sm:flex-row">
+              <Button asChild size="lg" className="bg-sky-500 hover:bg-sky-600 text-white rounded-full text-lg px-8 py-6 shadow-lg shadow-sky-500/20 border-0 transition-all duration-300 transform hover:-translate-y-1">
+                <a href="#contato" className="inline-flex items-center">
+                  {t('commercialPage.hero.cta')}
+                  <ArrowRight className="ml-2 h-5 w-5 hover:translate-x-1 transition-transform" />
+                </a>
               </Button>
-              <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20 rounded-full text-lg px-8 py-6">
+              <Button asChild size="lg" variant="outline" className="bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20 rounded-full text-lg px-8 py-6">
                 <Link to="/contato">{t('commercialPage.hero.schedule')}</Link>
               </Button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-16 bg-card border-y border-border">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <stat.icon className="h-8 w-8 mx-auto mb-3 text-primary" />
-                <div className="text-4xl font-bold bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -277,13 +258,12 @@ const RepresentacaoComercial = () => {
             {segments.map((segment) => (
               <Card
                 key={segment.id}
-                className="border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg cursor-pointer group"
-                onClick={() => setActiveSegment(segment.id)}
+                className="border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg group"
               >
                 <CardContent className="p-8">
                   <div className="flex items-start gap-4">
-                    <div className={`h-12 w-12 rounded-lg bg-${segment.color}-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
-                      <Building2 className={`h-6 w-6 text-${segment.color}-500`} />
+                    <div className={`h-12 w-12 rounded-lg ${segment.iconBg} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                      <Building2 className={`h-6 w-6 ${segment.iconColor}`} />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl font-semibold mb-2 text-foreground">{segment.name}</h3>
@@ -341,9 +321,11 @@ const RepresentacaoComercial = () => {
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
             {t('commercialPage.cta.desc')}
           </p>
-          <Button size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6 group border-0">
-            <a href="#contact">{t('commercialPage.cta.button')}</a>
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          <Button asChild size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6 group border-0">
+            <a href="#contato" className="inline-flex items-center">
+              {t('commercialPage.cta.button')}
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </a>
           </Button>
         </div>
       </section>

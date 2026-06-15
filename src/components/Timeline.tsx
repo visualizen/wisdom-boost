@@ -8,14 +8,35 @@ import { useRef, useEffect, useState } from "react";
 
 const Timeline = () => {
   const { t } = useLanguage();
+  const sectionRef = useRef<HTMLElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
   const isPausedRef = useRef(isPaused);
+  const isInViewRef = useRef(false);
 
   // Keep ref in sync with state
   useEffect(() => {
     isPausedRef.current = isPaused;
   }, [isPaused]);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || typeof IntersectionObserver === "undefined") {
+      isInViewRef.current = true;
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInViewRef.current = entry.isIntersecting;
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
 
   // Auto-scroll animation - runs once on mount
   useEffect(() => {
@@ -27,7 +48,7 @@ const Timeline = () => {
 
     const animate = () => {
       // Use ref to get current pause state (avoids stale closure)
-      if (!isPausedRef.current && scrollContainer) {
+      if (isInViewRef.current && !isPausedRef.current && scrollContainer) {
         const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
         if (scrollContainer.scrollLeft < maxScroll - 1) {
           scrollContainer.scrollLeft += speed;
@@ -70,7 +91,7 @@ const Timeline = () => {
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden group/section">
+    <section ref={sectionRef} className="py-24 relative overflow-hidden group/section">
       {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"

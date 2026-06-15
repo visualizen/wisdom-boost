@@ -43,7 +43,7 @@ const FloatingActionMenu = () => {
     if (!isVisible || isAdminRoute) return null;
 
     return (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 animate-fade-in-up">
+        <div className="fixed bottom-6 left-1/2 z-50 hidden -translate-x-1/2 animate-fade-in-up sm:block">
             <div className="bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl rounded-full p-2 flex items-center gap-2 pr-2">
 
                 {/* Orçamento - Primary Action */}
@@ -75,4 +75,3 @@ const FloatingActionMenu = () => {
 };
 
 export default FloatingActionMenu;
-

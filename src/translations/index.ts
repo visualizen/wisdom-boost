@@ -9,6 +9,7 @@ export const translations = {
             representation: "Representação comercial",
             export: "Exportação",
             blog: "Blog",
+            careers: "Trabalhe Conosco",
             contact: "Contato",
             cta: "Fale Conosco"
         },
@@ -26,6 +27,10 @@ export const translations = {
                 import: {
                     title: "Importação por encomenda e por conta e ordem (C&O)",
                     desc: "Soluções completas para importação sob encomenda e operações por conta e ordem, otimizando custos e processos."
+                },
+                export: {
+                    title: "Exportação",
+                    desc: "Suporte para empresas brasileiras expandirem sua presença internacional e conquistarem novos mercados."
                 },
                 representation: {
                     title: "Representação comercial internacional",
@@ -136,6 +141,17 @@ export const translations = {
             copyright: "© 2024 Wisdom Trading. Todos os direitos reservados.",
             developedBy: "Desenvolvido por"
         },
+        careersPage: {
+            seoTitle: "Trabalhe Conosco",
+            seoDescription: "Faça parte da equipe Wisdom Trading e envie seu currículo para futuras oportunidades.",
+            heroBadge: "Carreiras",
+            heroTitle: "Trabalhe Conosco",
+            heroSubtitle: "Quer construir o futuro do comércio exterior com a gente?",
+            introTitle: "Envie seu currículo",
+            introText: "Estamos sempre abertos a conhecer profissionais com visão estratégica, responsabilidade e vontade de crescer em comércio exterior.",
+            emailLabel: "Envie seu currículo para",
+            button: "Enviar currículo"
+        },
         aboutPage: {
             hero: {
                 badge: "Inovação em comércio exterior",
@@ -191,20 +207,20 @@ export const translations = {
                 subtitle: "Os princípios que guiam nossa atuação no mercado global",
                 mission: {
                     title: "Missão",
-                    desc: "Facilitar e otimizar operações de comércio exterior, oferecendo soluções personalizadas e eficientes que conectam empresas brasileiras ao mercado global com segurança e agilidade."
+                    desc: "Transformar o comércio internacional em vantagem competitiva real, entregando operações ágeis, seguras e rentáveis para empresas brasileiras."
                 },
                 vision: {
                     title: "Visão",
-                    desc: "Ser referência nacional em trading e comércio exterior, reconhecida pela excelência operacional, inovação e pelo impacto positivo que geramos nos negócios dos nossos clientes."
+                    desc: "Ser a parceira estratégica líder em comércio internacional no Brasil, conectando empresas ao mundo com inteligência, excelência e resultados mensuráveis."
                 },
                 values: {
                     title: "Valores",
                     items: {
-                        integrity: "Integridade e transparência",
-                        excellence: "Excelência operacional",
-                        commitment: "Comprometimento com resultados",
-                        innovation: "Inovação contínua",
-                        respect: "Respeito e ética"
+                        integrity: "Inteligência: Decisões baseadas em conhecimento profundo e análise estratégica.",
+                        excellence: "Excelência: Busca constante pela qualidade superior em cada etapa do serviço.",
+                        commitment: "Agilidade: Respostas rápidas e processos eficientes em um mercado dinâmico.",
+                        innovation: "Parceria: Relacionamentos de longo prazo, com foco no sucesso do cliente.",
+                        respect: "Inovação: Uso de tecnologia e soluções criativas para superar barreiras."
                     }
                 }
             },
@@ -320,6 +336,18 @@ export const translations = {
                             "Expertise em procedimentos aduaneiros",
                             "Gestão completa da documentação necessária",
                             "Otimização de lead time e prazos de entrega"
+                        ]
+                    },
+                    export: {
+                        title: "Exportação",
+                        desc: "Apoiamos empresas brasileiras na expansão para mercados internacionais com estratégia, prospecção e coordenação operacional.",
+                        details: "A exportação passa a ser tratada como parte das soluções de comércio exterior da Wisdom Trading. Atuamos no mapeamento de mercados, conexão com compradores internacionais, organização documental e suporte logístico para que sua empresa ganhe presença fora do Brasil com segurança e previsibilidade.",
+                        benefits: [
+                            "Identificação de mercados e compradores internacionais",
+                            "Apoio na documentação e requisitos de exportação",
+                            "Coordenação logística e acompanhamento da operação",
+                            "Suporte comercial para negociação internacional",
+                            "Expansão global com menor risco operacional"
                         ]
                     },
                     representation: {
@@ -542,9 +570,10 @@ export const translations = {
             home: "Home",
             about: "About Us",
             services: "Services",
-            representation: "Commercial Representation",
+            representation: "Sales Representative",
             export: "Export",
             blog: "Blog",
+            careers: "Careers",
             contact: "Contact",
             cta: "Contact Us"
         },
@@ -563,9 +592,13 @@ export const translations = {
                     title: "Import by Order and Account (C&O)",
                     desc: "Complete solutions for import by order and operations by account and order, optimizing costs and processes."
                 },
+                export: {
+                    title: "Export",
+                    desc: "Support for Brazilian companies expanding their international presence and reaching new markets."
+                },
                 representation: {
-                    title: "International Commercial Representation",
-                    desc: "We represent your company in the international market, connecting you to the best global business partners."
+                    title: "International Sales Representative",
+                    desc: "We act as your sales representative in the international market, connecting you to the best global business partners."
                 },
                 consulting: {
                     title: "Tax and Customs Consulting in Foreign Trade",
@@ -672,6 +705,17 @@ export const translations = {
             copyright: "© 2024 Wisdom Trading. All rights reserved.",
             developedBy: "Developed by"
         },
+        careersPage: {
+            seoTitle: "Careers",
+            seoDescription: "Join the Wisdom Trading team and send your resume for future opportunities.",
+            heroBadge: "Careers",
+            heroTitle: "Careers",
+            heroSubtitle: "Want to build the future of foreign trade with us?",
+            introTitle: "Send your resume",
+            introText: "We are always open to meeting professionals with strategic vision, responsibility, and a desire to grow in foreign trade.",
+            emailLabel: "Send your resume to",
+            button: "Send resume"
+        },
         aboutPage: {
             hero: {
                 badge: "Innovation in Foreign Trade",
@@ -727,20 +771,20 @@ export const translations = {
                 subtitle: "The principles that guide our performance in the global market",
                 mission: {
                     title: "Mission",
-                    desc: "Facilitate and optimize foreign trade operations, offering personalized and efficient solutions that connect Brazilian companies to the global market with security and agility."
+                    desc: "Transform international trade into a real competitive advantage, delivering agile, secure, and profitable operations for Brazilian companies."
                 },
                 vision: {
                     title: "Vision",
-                    desc: "To be a national reference in trading and foreign trade, recognized for operational excellence, innovation, and the positive impact we generate on our clients' businesses."
+                    desc: "To be the leading strategic partner in international trade in Brazil, connecting companies to the world with intelligence, excellence, and measurable results."
                 },
                 values: {
                     title: "Values",
                     items: {
-                        integrity: "Integrity and transparency",
-                        excellence: "Operational excellence",
-                        commitment: "Commitment to results",
-                        innovation: "Continuous innovation",
-                        respect: "Respect and ethics"
+                        integrity: "Intelligence: Decisions based on deep knowledge and strategic analysis.",
+                        excellence: "Excellence: Constant pursuit of superior quality at every stage of service.",
+                        commitment: "Agility: Fast responses and efficient processes in a dynamic market.",
+                        innovation: "Partnership: Long-term relationships focused on client success.",
+                        respect: "Innovation: Use of technology and creative solutions to overcome barriers."
                     }
                 }
             },
@@ -762,7 +806,7 @@ export const translations = {
         },
         commercialPage: {
             hero: {
-                badge: "Commercial Representation in Brazil",
+                badge: "Sales Representative in Brazil",
                 title: "Your Gateway to the Brazilian Market",
                 subtitle: "Expand your business in Brazil with a",
                 subtitleHighlight: "trusted local partner",
@@ -791,7 +835,7 @@ export const translations = {
             },
             services: {
                 badge: "Our Services",
-                title: "Complete Commercial Representation",
+                title: "Complete Sales Representative Service",
                 subtitle: "End-to-end support for your business development in Brazil",
                 items: {
                     prospecting: { title: "Client Prospecting", desc: "Identification and approach of potential buyers aligned with your product" },
@@ -824,7 +868,7 @@ export const translations = {
             },
             cta: {
                 title: "Ready to Enter the Brazilian Market?",
-                desc: "Let's discuss how we can accelerate your business growth in Brazil with our proven commercial representation services",
+                desc: "Let's discuss how we can accelerate your business growth in Brazil with our proven sales representative services",
                 button: "Get Started Today"
             },
             contact: {
@@ -858,10 +902,22 @@ export const translations = {
                             "Optimization of lead time and delivery deadlines"
                         ]
                     },
+                    export: {
+                        title: "Export",
+                        desc: "We support Brazilian companies expanding into international markets with strategy, prospecting, and operational coordination.",
+                        details: "Export is now treated as part of Wisdom Trading's foreign trade solutions. We work on market mapping, connection with international buyers, documentation organization, and logistics support so your company can build presence outside Brazil with security and predictability.",
+                        benefits: [
+                            "Identification of international markets and buyers",
+                            "Support with export documentation and requirements",
+                            "Logistics coordination and operation tracking",
+                            "Commercial support for international negotiations",
+                            "Global expansion with lower operational risk"
+                        ]
+                    },
                     representation: {
-                        title: "International Commercial Representation",
-                        desc: "We represent your company in the international market, connecting you to the best global business partners.",
-                        details: "Our global network of contacts and deep knowledge of international markets allow your company to have a commercial presence in various countries without the need for its own structure. We act as your eyes and ears abroad, prospecting opportunities, negotiating with suppliers, and ensuring that your interests are well represented.",
+                        title: "International Sales Representative",
+                        desc: "We act as your sales representative in the international market, connecting you to the best global business partners.",
+                        details: "Our global network of contacts and deep knowledge of international markets allow your company to have sales representation in various countries without the need for its own structure. We act as your eyes and ears abroad, prospecting opportunities, negotiating with suppliers, and ensuring that your interests are well represented.",
                         benefits: [
                             "Access to a global network of qualified suppliers",
                             "Negotiation in various languages and cultures",
@@ -939,7 +995,7 @@ export const translations = {
         },
         internationalPage: {
             hero: {
-                badge: "International Commercial Representation",
+                badge: "International Sales Representative",
                 title: "Take Your Products to the World",
                 subtitle: "Expand your company to international markets with an",
                 subtitleHighlight: "experienced partner",
@@ -968,7 +1024,7 @@ export const translations = {
             },
             services: {
                 badge: "Our Services",
-                title: "Complete Commercial Representation",
+                title: "Complete Sales Representative Service",
                 subtitle: "Integral support for the development of your business in international markets",
                 items: {
                     prospecting: { title: "International Prospecting", desc: "Identification and approach of potential international buyers for your products" },
@@ -982,7 +1038,7 @@ export const translations = {
                 title: "Established Global Presence",
                 subtitle: "Network of contacts and expertise in strategic markets around the world",
                 items: {
-                    americas: { name: "Latin America and North America", desc: "Commercial representation in countries of the Americas, including USA, Canada, Mexico, Argentina, and Chile" },
+                    americas: { name: "Latin America and North America", desc: "Sales representative support in countries of the Americas, including USA, Canada, Mexico, Argentina, and Chile" },
                     europe: { name: "Europe", desc: "Access to European markets through partners in key EU countries" },
                     asia: { name: "Asia and Middle East", desc: "Strategic connections in emerging Asian markets and Persian Gulf countries" },
                     africa: { name: "Africa", desc: "Representation in high-potential African markets, especially Portuguese-speaking countries" }
@@ -1012,7 +1068,7 @@ export const translations = {
             },
             cta: {
                 title: "Ready to Conquer International Markets?",
-                desc: "Let's talk about how we can accelerate the growth of your exports with our international commercial representation services",
+                desc: "Let's talk about how we can accelerate the growth of your exports with our international sales representative services",
                 button: "Start Today"
             },
             contact: {
@@ -1081,6 +1137,7 @@ export const translations = {
             representation: "Representación Comercial",
             export: "Exportación",
             blog: "Blog",
+            careers: "Trabaja con Nosotros",
             contact: "Contacto",
             cta: "Contáctenos"
         },
@@ -1098,6 +1155,10 @@ export const translations = {
                 import: {
                     title: "Importación por Pedido y por Cuenta y Orden (C&O)",
                     desc: "Soluciones completas para importación por pedido y operaciones por cuenta y orden, optimizando costos y procesos."
+                },
+                export: {
+                    title: "Exportación",
+                    desc: "Soporte para empresas brasileñas que desean ampliar su presencia internacional y conquistar nuevos mercados."
                 },
                 representation: {
                     title: "Representación Comercial Internacional",
@@ -1208,6 +1269,17 @@ export const translations = {
             copyright: "© 2024 Wisdom Trading. Todos los derechos reservados.",
             developedBy: "Desarrollado por"
         },
+        careersPage: {
+            seoTitle: "Trabaja con Nosotros",
+            seoDescription: "Forma parte del equipo Wisdom Trading y envía tu currículum para futuras oportunidades.",
+            heroBadge: "Carreras",
+            heroTitle: "Trabaja con Nosotros",
+            heroSubtitle: "¿Quieres construir el futuro del comercio exterior con nosotros?",
+            introTitle: "Envía tu currículum",
+            introText: "Siempre estamos abiertos a conocer profesionales con visión estratégica, responsabilidad y ganas de crecer en comercio exterior.",
+            emailLabel: "Envía tu currículum a",
+            button: "Enviar currículum"
+        },
         aboutPage: {
             hero: {
                 badge: "Innovación en Comercio Exterior",
@@ -1263,20 +1335,20 @@ export const translations = {
                 subtitle: "Los principios que guían nuestra actuación en el mercado global",
                 mission: {
                     title: "Misión",
-                    desc: "Facilitar y optimizar operaciones de comercio exterior, ofreciendo soluciones personalizadas y eficientes que conectan empresas brasileñas al mercado global con seguridad y agilidad."
+                    desc: "Transformar el comercio internacional en una ventaja competitiva real, entregando operaciones ágiles, seguras y rentables para empresas brasileñas."
                 },
                 vision: {
                     title: "Visión",
-                    desc: "Ser referencia nacional en trading y comercio exterior, reconocida por la excelencia operativa, innovación y por el impacto positivo que generamos en los negocios de nuestros clientes."
+                    desc: "Ser el socio estratégico líder en comercio internacional en Brasil, conectando empresas al mundo con inteligencia, excelencia y resultados medibles."
                 },
                 values: {
                     title: "Valores",
                     items: {
-                        integrity: "Integridad y transparencia",
-                        excellence: "Excelencia operativa",
-                        commitment: "Compromiso con resultados",
-                        innovation: "Innovación continua",
-                        respect: "Respeto y ética"
+                        integrity: "Inteligencia: Decisiones basadas en conocimiento profundo y análisis estratégico.",
+                        excellence: "Excelencia: Búsqueda constante de calidad superior en cada etapa del servicio.",
+                        commitment: "Agilidad: Respuestas rápidas y procesos eficientes en un mercado dinámico.",
+                        innovation: "Asociación: Relaciones de largo plazo, con foco en el éxito del cliente.",
+                        respect: "Innovación: Uso de tecnología y soluciones creativas para superar barreras."
                     }
                 }
             },
@@ -1392,6 +1464,18 @@ export const translations = {
                             "Experiencia en procedimientos aduaneros",
                             "Gestión completa de la documentación necesaria",
                             "Optimización de lead time y plazos de entrega"
+                        ]
+                    },
+                    export: {
+                        title: "Exportación",
+                        desc: "Apoyamos a empresas brasileñas en la expansión hacia mercados internacionales con estrategia, prospección y coordinación operativa.",
+                        details: "La exportación pasa a formar parte de las soluciones de comercio exterior de Wisdom Trading. Actuamos en el mapeo de mercados, conexión con compradores internacionales, organización documental y soporte logístico para que su empresa gane presencia fuera de Brasil con seguridad y previsibilidad.",
+                        benefits: [
+                            "Identificación de mercados y compradores internacionales",
+                            "Soporte en documentación y requisitos de exportación",
+                            "Coordinación logística y seguimiento de la operación",
+                            "Soporte comercial para negociación internacional",
+                            "Expansión global con menor riesgo operativo"
                         ]
                     },
                     representation: {

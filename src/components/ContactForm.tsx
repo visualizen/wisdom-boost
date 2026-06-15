@@ -46,7 +46,7 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
       const validatedData = contactSchema.parse(formData);
       setIsSubmitting(true);
 
-      // Call Supabase Edge Function
+      // Send through Supabase Edge Function backed by Resend.
       const { data, error } = await supabase.functions.invoke('send-email', {
         body: validatedData,
       });
@@ -81,7 +81,7 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
         });
         setErrors(fieldErrors);
       } else {
-        // Fallback to WhatsApp if email fails or other error
+        // Fallback to WhatsApp if the email provider or Edge Function is unavailable.
         const validatedData = formData; // Fallback uses current state
         let message = `*Novo contato (via Fallback)*%0A%0A*Nome:* ${encodeURIComponent(validatedData.name)}%0A*Email:* ${encodeURIComponent(validatedData.email)}`;
         if (validatedData.phone) message += `%0A*Telefone:* ${encodeURIComponent(validatedData.phone)}`;
@@ -234,6 +234,7 @@ const ContactForm = ({ showServiceSelect = false, defaultService = "", title, su
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="importacao">Importação por Encomenda e C&O</SelectItem>
+                        <SelectItem value="exportacao">Exportação</SelectItem>
                         <SelectItem value="representacao">Representação Comercial Internacional</SelectItem>
                         <SelectItem value="consultoria">Consultoria Fiscal e Tributária</SelectItem>
                         <SelectItem value="logistica">Gestão Logística Internacional</SelectItem>

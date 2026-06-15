@@ -3,6 +3,7 @@ import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+const CONTACT_TO_EMAIL = "contato@wisdomtrading.com.br";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -25,8 +26,8 @@ serve(async (req) => {
     }
 
     const { data, error } = await resend.emails.send({
-      from: 'Wisdom Site <Contato@wisdomtrading.com.br>', // Updated to verified domain
-      to: ['joaootima@gmail.com'], // Temporary for testing
+      from: 'Wisdom Site <contato@wisdomtrading.com.br>',
+      to: [CONTACT_TO_EMAIL],
       subject: `Novo Lead: ${name} - ${service || 'Geral'}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">

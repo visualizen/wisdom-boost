@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { translations, Language } from '../translations';
 
+type TranslationNode = string | string[] | { [key: string]: TranslationNode };
+
 type LanguageContextType = {
     language: Language;
     setLanguage: (lang: Language) => void;
@@ -27,17 +29,17 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
     const t = (path: string): string => {
         const keys = path.split('.');
-        let current: any = translations[language];
+        let current = translations[language] as TranslationNode;
 
         for (const key of keys) {
-            if (current[key] === undefined) {
+            if (typeof current !== 'object' || current === null || Array.isArray(current) || !(key in current)) {
                 console.warn(`Translation key not found: ${path} for language: ${language}`);
                 return path;
             }
             current = current[key];
         }
 
-        return current as string;
+        return current as unknown as string;
     };
 
     return (

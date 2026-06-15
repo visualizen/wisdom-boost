@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Building2, Globe, TrendingUp, Users, ShieldCheck, Clock, CheckCircle, ArrowRight, BarChart3, Handshake, FileCheck, Package, MapPin } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,9 +8,9 @@ import ContactForm from "@/components/ContactForm";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SEO } from "@/components/SEO";
+import heroImage from "@/assets/cargo-ship-bg.png";
 
 const RepresentacaoInternacional = () => {
-  const [activeRegion, setActiveRegion] = useState("all");
   const { t } = useLanguage();
 
   const benefits = [
@@ -75,28 +74,32 @@ const RepresentacaoInternacional = () => {
       id: "americas",
       name: t('internationalPage.regions.items.americas.name'),
       description: t('internationalPage.regions.items.americas.desc'),
-      color: "emerald",
+      iconBg: "bg-emerald-500/10",
+      iconColor: "text-emerald-500",
       icon: MapPin
     },
     {
       id: "europe",
       name: t('internationalPage.regions.items.europe.name'),
       description: t('internationalPage.regions.items.europe.desc'),
-      color: "blue",
+      iconBg: "bg-blue-500/10",
+      iconColor: "text-blue-500",
       icon: MapPin
     },
     {
       id: "asia",
       name: t('internationalPage.regions.items.asia.name'),
       description: t('internationalPage.regions.items.asia.desc'),
-      color: "amber",
+      iconBg: "bg-amber-500/10",
+      iconColor: "text-amber-500",
       icon: MapPin
     },
     {
       id: "africa",
       name: t('internationalPage.regions.items.africa.name'),
       description: t('internationalPage.regions.items.africa.desc'),
-      color: "orange",
+      iconBg: "bg-orange-500/10",
+      iconColor: "text-orange-500",
       icon: MapPin
     }
   ];
@@ -168,7 +171,7 @@ const RepresentacaoInternacional = () => {
       <section className="relative min-h-[500px] pt-40 pb-16 flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/assets/images/representation-hero.jpg')" }}
+          style={{ backgroundImage: `url(${heroImage})` }}
         >
           {/* Standardized Dark Blue Map Overlay */}
           <div className="absolute inset-0 bg-blue-900/60 mix-blend-multiply"></div>
@@ -190,14 +193,14 @@ const RepresentacaoInternacional = () => {
               {t('internationalPage.hero.subtitle')} <span className="font-bold text-cyan-300">{t('internationalPage.hero.subtitleHighlight')}</span>. {t('internationalPage.hero.desc')}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-sky-500 hover:bg-sky-600 text-white rounded-full text-lg px-8 py-6 shadow-lg shadow-sky-500/20 border-0 transition-all duration-300 transform hover:-translate-y-1">
-                <a href="#contact" className="flex items-center">
+            <div className="mb-14 flex flex-col gap-4 justify-center sm:mb-0 sm:flex-row">
+              <Button asChild size="lg" className="bg-sky-500 hover:bg-sky-600 text-white rounded-full text-lg px-8 py-6 shadow-lg shadow-sky-500/20 border-0 transition-all duration-300 transform hover:-translate-y-1">
+                <a href="#contato" className="flex items-center">
                   {t('internationalPage.hero.cta')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Button>
-              <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20 rounded-full text-lg px-8 py-6">
+              <Button asChild size="lg" variant="outline" className="bg-white/10 backdrop-blur-md text-white border-white/20 hover:bg-white/20 rounded-full text-lg px-8 py-6">
                 <Link to="/contato">{t('internationalPage.hero.schedule')}</Link>
               </Button>
             </div>
@@ -306,13 +309,12 @@ const RepresentacaoInternacional = () => {
             {regions.map((region) => (
               <Card
                 key={region.id}
-                className="border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg cursor-pointer group"
-                onClick={() => setActiveRegion(region.id)}
+                className="border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg group"
               >
                 <CardContent className="p-8">
                   <div className="flex items-start gap-4">
-                    <div className={`h-12 w-12 rounded-lg bg-${region.color}-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
-                      <region.icon className={`h-6 w-6 text-${region.color}-500`} />
+                    <div className={`h-12 w-12 rounded-lg ${region.iconBg} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                      <region.icon className={`h-6 w-6 ${region.iconColor}`} />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl font-semibold mb-2 text-foreground">{region.name}</h3>
@@ -402,9 +404,11 @@ const RepresentacaoInternacional = () => {
           <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
             {t('internationalPage.cta.desc')}
           </p>
-          <Button size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6 group border-0">
-            <a href="#contact">{t('internationalPage.cta.button')}</a>
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          <Button asChild size="lg" variant="outline" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6 group border-0">
+            <a href="#contato" className="inline-flex items-center">
+              {t('internationalPage.cta.button')}
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </a>
           </Button>
         </div>
       </section>

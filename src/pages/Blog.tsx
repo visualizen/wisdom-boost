@@ -6,8 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Clock, ArrowRight, Newspaper } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
-import { blogPosts as initialStaticPosts, BlogPost } from "@/data/blogPosts";
+import type { BlogPost } from "@/data/blogPosts";
 import { postsService } from "@/services/postsService";
 import heroImage from "@/assets/quem-somos-hero.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -54,6 +53,8 @@ const Blog = () => {
           tags: []
         }));
         setDbPosts(mappedPosts);
+      } else {
+        setDbPosts([]);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -62,10 +63,7 @@ const Blog = () => {
     }
   };
 
-  // Combine static and DB posts, prioritizing DB posts but keeping static ones as fallback content
-  // If there are DB posts, we could choose to hide static ones, but for now let's mix them or
-  // just show static if DB is empty to make the site look populated.
-  const allPosts = dbPosts.length > 0 ? [...dbPosts, ...initialStaticPosts] : initialStaticPosts;
+  const allPosts = dbPosts;
 
   const filteredPosts = selectedCategory === "Todas"
     ? allPosts
@@ -75,7 +73,9 @@ const Blog = () => {
   // If no posts are marked as featured in DB, just pick the first one
   const displayFeatured = featuredPosts.length > 0 ? featuredPosts : (allPosts.length > 0 ? [allPosts[0]] : []);
 
-  const regularPosts = filteredPosts.filter(post => post && !displayFeatured.includes(post));
+  const regularPosts = selectedCategory === "Todas"
+    ? filteredPosts.filter(post => post && !displayFeatured.includes(post))
+    : filteredPosts;
 
   return (
     <div className="min-h-screen bg-background">
@@ -129,7 +129,7 @@ const Blog = () => {
                   ? "bg-gradient-primary text-white"
                   : "border-primary/30 hover:border-primary/50"}
               >
-                {t(`blogPage.categories.${categoryKeys[category]}` as any)}
+                {t(`blogPage.categories.${categoryKeys[category]}`)}
               </Button>
             ))}
           </div>
@@ -203,65 +203,75 @@ const Blog = () => {
           {selectedCategory !== "Todas" && (
             <div className="mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 pb-2 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
-                {t(`blogPage.categories.${categoryKeys[selectedCategory]}` as any)}
+                {t(`blogPage.categories.${categoryKeys[selectedCategory]}`)}
               </h2>
               <p className="text-xl text-muted-foreground">
-                Artigos sobre {t(`blogPage.categories.${categoryKeys[selectedCategory]}` as any).toLowerCase()}
+                Artigos sobre {t(`blogPage.categories.${categoryKeys[selectedCategory]}`).toLowerCase()}
               </p>
             </div>
           )}
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {regularPosts.map((post) => (
-              <Card
-                key={post.id}
-                className="group overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
-                onClick={() => navigate(`/blog/${post.id}`)}
-              >
-                <div className="relative overflow-hidden h-48">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute top-3 left-3">
-                    <span className="px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full">
-                      {post.category}
-                    </span>
-                  </div>
-                </div>
-                <CardContent className="p-5">
-                  <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
-                    <div className="flex items-center gap-1">
-                      <Calendar size={14} />
-                      <span>{post.date}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock size={14} />
-                      <span>{post.readTime}</span>
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                    {post.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-3">
-                    {post.excerpt}
-                  </p>
-                  <Button variant="ghost" className="group/btn p-0 h-auto font-semibold text-primary hover:text-primary/80 text-sm">
-                    {t('blogPage.readMore')}
-                    <ArrowRight className="ml-2 transition-transform group-hover/btn:translate-x-1" size={16} />
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {filteredPosts.length === 0 && (
+          {loading ? (
             <div className="text-center py-16">
               <p className="text-xl text-muted-foreground">
-                {t('blogPage.notFound')}
+                {t('blogPage.loading')}
               </p>
             </div>
+          ) : (
+            <>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {regularPosts.map((post) => (
+                  <Card
+                    key={post.id}
+                    className="group overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
+                    onClick={() => navigate(`/blog/${post.id}`)}
+                  >
+                    <div className="relative overflow-hidden h-48">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute top-3 left-3">
+                        <span className="px-3 py-1 bg-primary text-white text-xs font-semibold rounded-full">
+                          {post.category}
+                        </span>
+                      </div>
+                    </div>
+                    <CardContent className="p-5">
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
+                        <div className="flex items-center gap-1">
+                          <Calendar size={14} />
+                          <span>{post.date}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Clock size={14} />
+                          <span>{post.readTime}</span>
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                        {post.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                      <Button variant="ghost" className="group/btn p-0 h-auto font-semibold text-primary hover:text-primary/80 text-sm">
+                        {t('blogPage.readMore')}
+                        <ArrowRight className="ml-2 transition-transform group-hover/btn:translate-x-1" size={16} />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {filteredPosts.length === 0 && (
+                <div className="text-center py-16">
+                  <p className="text-xl text-muted-foreground">
+                    {t('blogPage.notFound')}
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </div>
       </section>

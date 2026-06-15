@@ -17,13 +17,13 @@ const Footer = () => {
               {t('footer.aboutText')}
             </p>
             <div className="flex gap-4">
-              <a href="https://www.facebook.com/wisdomcomex" target="_blank" rel="noopener noreferrer" className="bg-background/10 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+              <a href="https://www.facebook.com/wisdomcomex" target="_blank" rel="noopener noreferrer" aria-label="Facebook Wisdom Trading" className="bg-background/10 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
                 <Facebook size={20} />
               </a>
-              <a href="https://www.instagram.com/wisdom.trading_/" target="_blank" rel="noopener noreferrer" className="bg-background/10 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+              <a href="https://www.instagram.com/wisdom.trading_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Wisdom Trading" className="bg-background/10 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
                 <Instagram size={20} />
               </a>
-              <a href="https://www.linkedin.com/company/wisdomcomex/" target="_blank" rel="noopener noreferrer" className="bg-background/10 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+              <a href="https://www.linkedin.com/company/wisdomcomex/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Wisdom Trading" className="bg-background/10 p-2 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
                 <Linkedin size={20} />
               </a>
             </div>
@@ -61,6 +61,7 @@ const Footer = () => {
               <li><a href="/quem-somos" className="hover:text-primary transition-colors flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"></span>{t('header.about')}</a></li>
               <li><a href="/servicos" className="hover:text-primary transition-colors flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"></span>{t('header.services')}</a></li>
               <li><a href="/blog" className="hover:text-primary transition-colors flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"></span>{t('header.blog')}</a></li>
+              <li><a href="/trabalhe-conosco" className="hover:text-primary transition-colors flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"></span>{t('header.careers')}</a></li>
               <li><a href="/contato" className="hover:text-primary transition-colors flex items-center gap-2"><span className="w-1 h-1 bg-primary rounded-full"></span>{t('header.contact')}</a></li>
             </ul>
           </div>
@@ -71,8 +72,8 @@ const Footer = () => {
               {t('footer.legal')}
             </h4>
             <ul className="space-y-3 text-background/70">
-              <li><a href="#" className="hover:text-primary transition-colors">{t('footer.privacy')}</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">{t('footer.terms')}</a></li>
+              <li><span className="text-background/50">{t('footer.privacy')}</span></li>
+              <li><span className="text-background/50">{t('footer.terms')}</span></li>
             </ul>
             <div className="mt-6 pt-6 border-t border-background/10">
               <p className="text-sm text-background/50">

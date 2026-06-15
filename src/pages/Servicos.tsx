@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
-import { Package, Users, FileText, Shield, TrendingUp, ClipboardCheck, CheckCircle, Sparkles, Briefcase } from "lucide-react";
+import { Package, Users, FileText, Shield, TrendingUp, ClipboardCheck, CheckCircle, Sparkles, Briefcase, Ship } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import importExportImage from "@/assets/services/import-export.jpg";
 import internationalRepImage from "@/assets/services/international-representation.jpg";
@@ -9,6 +9,7 @@ import fiscalConsultingImage from "@/assets/services/fiscal-consulting.jpg";
 import logisticsManagementImage from "@/assets/services/logistics-management.jpg";
 import tariffStudiesImage from "@/assets/services/tariff-studies.jpg";
 import viabilityAnalysisImage from "@/assets/services/viability-analysis.jpg";
+import cargoShipImage from "@/assets/cargo-ship-bg.png";
 import heroImage from "@/assets/quem-somos-hero.jpg";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SEO } from "@/components/SEO";
@@ -18,6 +19,7 @@ const Servicos = () => {
 
   const services = [
     {
+      id: "importacao",
       icon: Package,
       title: t('servicesPage.list.items.import.title'),
       description: t('servicesPage.list.items.import.desc'),
@@ -26,6 +28,16 @@ const Servicos = () => {
       benefits: t('servicesPage.list.items.import.benefits') as unknown as string[]
     },
     {
+      id: "exportacao",
+      icon: Ship,
+      title: t('servicesPage.list.items.export.title'),
+      description: t('servicesPage.list.items.export.desc'),
+      details: t('servicesPage.list.items.export.details'),
+      image: cargoShipImage,
+      benefits: t('servicesPage.list.items.export.benefits') as unknown as string[]
+    },
+    {
+      id: "representacao",
       icon: Users,
       title: t('servicesPage.list.items.representation.title'),
       description: t('servicesPage.list.items.representation.desc'),
@@ -34,6 +46,7 @@ const Servicos = () => {
       benefits: t('servicesPage.list.items.representation.benefits') as unknown as string[]
     },
     {
+      id: "consultoria",
       icon: FileText,
       title: t('servicesPage.list.items.consulting.title'),
       description: t('servicesPage.list.items.consulting.desc'),
@@ -42,6 +55,7 @@ const Servicos = () => {
       benefits: t('servicesPage.list.items.consulting.benefits') as unknown as string[]
     },
     {
+      id: "logistica",
       icon: Shield,
       title: t('servicesPage.list.items.logistics.title'),
       description: t('servicesPage.list.items.logistics.desc'),
@@ -50,6 +64,7 @@ const Servicos = () => {
       benefits: t('servicesPage.list.items.logistics.benefits') as unknown as string[]
     },
     {
+      id: "ncm",
       icon: TrendingUp,
       title: t('servicesPage.list.items.ncm.title'),
       description: t('servicesPage.list.items.ncm.desc'),
@@ -58,6 +73,7 @@ const Servicos = () => {
       benefits: t('servicesPage.list.items.ncm.benefits') as unknown as string[]
     },
     {
+      id: "viabilidade",
       icon: ClipboardCheck,
       title: t('servicesPage.list.items.viability.title'),
       description: t('servicesPage.list.items.viability.desc'),
@@ -111,7 +127,7 @@ const Servicos = () => {
             {services.map((service, index) => {
               const isEven = index % 2 === 0;
               return (
-                <div key={index} className="relative">
+                <div key={service.id} id={service.id} className="relative scroll-mt-36">
                   <div className={`grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto ${!isEven ? 'lg:flex-row-reverse' : ''}`}>
                     {/* Image */}
                     <div className={`relative group ${!isEven ? 'lg:order-2' : ''}`}>
@@ -133,7 +149,7 @@ const Servicos = () => {
                         <span className="text-primary font-semibold">{t('servicesPage.list.badge')}</span>
                       </div>
 
-                      <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
+                      <h2 className="text-4xl md:text-5xl font-bold mb-6 pb-3 leading-tight bg-gradient-to-r from-primary-light via-primary to-primary-dark bg-clip-text text-transparent">
                         {service.title}
                       </h2>
 

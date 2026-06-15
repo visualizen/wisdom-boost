@@ -1,36 +1,54 @@
-import { Newspaper, TrendingUp, Globe, Calendar, ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Newspaper, Globe, Calendar, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { postsService } from "@/services/postsService";
+import fallbackImage from "@/assets/blog/trade-news.jpg";
+
+interface NewsPost {
+  id: string;
+  category: string;
+  title: string;
+  description: string;
+  date: string;
+  image: string;
+}
 
 const News = () => {
   const { t } = useLanguage();
+  const [news, setNews] = useState<NewsPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const news = [
-    {
-      category: "Exportação",
-      title: "Brasil atinge recorde em exportações do agronegócio",
-      description: "Setor registra crescimento de 15% no primeiro semestre com destaque para soja e café.",
-      date: "15 Nov 2025",
-      image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
-      category: "Logística",
-      title: "Novos corredores de exportação reduzem custos",
-      description: "Infraestrutura portuária modernizada promete agilizar operações de comércio exterior.",
-      date: "12 Nov 2025",
-      image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&q=80",
-      color: "from-cyan-500 to-sky-500"
-    },
-    {
-      category: "Comércio Global",
-      title: "Acordo comercial Brasil-UE abre novas oportunidades",
-      description: "Empresas brasileiras ganham acesso facilitado ao mercado europeu com redução de tarifas.",
-      date: "08 Nov 2025",
-      image: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&q=80",
-      color: "from-indigo-500 to-blue-500"
-    }
-  ];
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const posts = await postsService.getPosts();
+        setNews(
+          posts.slice(0, 3).map((post) => {
+            const textExcerpt = (post.meta_description || post.content || "")
+              .replace(/<[^>]*>?/gm, "")
+              .trim();
+
+            return {
+              id: post.id,
+              category: post.category || "Blog",
+              title: post.title,
+              description: textExcerpt.length > 150 ? `${textExcerpt.slice(0, 150)}...` : textExcerpt,
+              date: new Date(post.created_at).toLocaleDateString("pt-BR"),
+              image: post.image_url || fallbackImage,
+            };
+          }),
+        );
+      } catch (error) {
+        console.error("Erro ao carregar notícias:", error);
+        setNews([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNews();
+  }, []);
 
   return (
     <section className="py-32 relative overflow-hidden">
@@ -51,59 +69,64 @@ const News = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {news.map((item, index) => (
-            <Link key={index} to="/blog" className="group relative block">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-              <div className="relative h-full bg-card/80 backdrop-blur-xl rounded-3xl border-2 border-blue-500/20 group-hover:border-white/40 overflow-hidden transition-all duration-500 shadow-xl group-hover:shadow-2xl group-hover:shadow-blue-500/20 group-hover:-translate-y-2">
-                {/* Imagem */}
-                <div className="relative h-56 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  {/* Reduced white gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-card/20 to-transparent"></div>
-                  <div className={`absolute top-4 left-4 px-4 py-2 bg-gradient-to-r ${item.color} rounded-full`}>
-                    <span className="text-white font-semibold text-sm">{item.category}</span>
+        {loading ? (
+          <div className="text-center text-muted-foreground">{t('blogPage.loading')}</div>
+        ) : news.length > 0 ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {news.map((item) => (
+              <Link key={item.id} to={`/blog/${item.id}`} className="group relative block">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                <div className="relative h-full bg-card/80 backdrop-blur-xl rounded-3xl border-2 border-blue-500/20 group-hover:border-white/40 overflow-hidden transition-all duration-500 shadow-xl group-hover:shadow-2xl group-hover:shadow-blue-500/20 group-hover:-translate-y-2">
+                  <div className="relative h-56 overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card/20 to-transparent"></div>
+                    <div className="absolute top-4 left-4 px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full">
+                      <span className="text-white font-semibold text-sm">{item.category}</span>
+                    </div>
+                  </div>
+
+                  <div className="p-8">
+                    <div className="flex items-center gap-2 text-muted-foreground text-sm mb-4">
+                      <Calendar className="w-4 h-4" />
+                      <span>{item.date}</span>
+                    </div>
+
+                    <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent group-hover:from-cyan-600 group-hover:to-sky-600 transition-all duration-300">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-muted-foreground leading-relaxed mb-6">
+                      {item.description}
+                    </p>
+
+                    <div className="inline-flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all duration-300">
+                      <span>{t('news.readMore')}</span>
+                      <ArrowRight className="w-5 h-5" />
+                    </div>
                   </div>
                 </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="max-w-3xl mx-auto rounded-2xl border border-blue-500/20 bg-card/80 p-8 text-center text-muted-foreground">
+            {t('blogPage.notFound')}
+          </div>
+        )}
 
-                {/* Conteúdo */}
-                <div className="p-8">
-                  <div className="flex items-center gap-2 text-muted-foreground text-sm mb-4">
-                    <Calendar className="w-4 h-4" />
-                    <span>{item.date}</span>
-                  </div>
-
-                  <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent group-hover:from-cyan-600 group-hover:to-sky-600 transition-all duration-300">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-muted-foreground leading-relaxed mb-6">
-                    {item.description}
-                  </p>
-
-                  <div className="inline-flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all duration-300">
-                    <span>{t('news.readMore')}</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* CTA */}
         <div className="text-center mt-16">
-          <a
-            href="#"
+          <Link
+            to="/blog"
             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-2xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-xl shadow-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/40 hover:scale-105"
           >
             <Globe className="w-5 h-5" />
             <span>{t('news.viewAll')}</span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

@@ -52,20 +52,6 @@ const QuemSomos = () => {
             <p className="text-2xl md:text-3xl text-white/90 mb-10 font-light">
               {t('aboutPage.hero.subtitle')} <span className="font-bold text-cyan-300">{t('aboutPage.hero.subtitleHighlight')}</span>
             </p>
-            <div className="flex flex-wrap gap-6 justify-center">
-              <div className="px-8 py-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl">
-                <div className="text-3xl font-bold text-white">+30</div>
-                <div className="text-sm text-white/80">{t('aboutPage.hero.stats.experience')}</div>
-              </div>
-              <div className="px-8 py-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl">
-                <div className="text-3xl font-bold text-white">+50</div>
-                <div className="text-sm text-white/80">{t('aboutPage.hero.stats.countries')}</div>
-              </div>
-              <div className="px-8 py-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl">
-                <div className="text-3xl font-bold text-white">100%</div>
-                <div className="text-sm text-white/80">{t('aboutPage.hero.stats.satisfaction')}</div>
-              </div>
-            </div>
           </div>
         </div>
       </section>

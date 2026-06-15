@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,33 +8,41 @@ import { toast } from "sonner";
 import { postsService, BlogPost } from "@/services/postsService";
 import { supabase } from "@/integrations/supabase/client";
 
+const getErrorMessage = (error: unknown) => {
+    if (error instanceof Error) return error.message;
+    if (typeof error === "object" && error !== null && "message" in error) {
+        return String(error.message);
+    }
+    return "Erro desconhecido";
+};
+
 const AdminDashboard = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState<BlogPost[]>([]);
 
-    useEffect(() => {
-        checkAuth();
-        fetchPosts();
-    }, []);
-
-    const checkAuth = async () => {
+    const checkAuth = useCallback(async () => {
         const { data: { session } } = await supabase.auth.getSession();
         if (!session) {
             navigate("/admin/login");
         }
-    };
+    }, [navigate]);
 
-    const fetchPosts = async () => {
+    const fetchPosts = useCallback(async () => {
         try {
             const data = await postsService.getPosts();
             setPosts(data);
-        } catch (error: any) {
-            toast.error("Erro ao carregar posts: " + error.message);
+        } catch (error: unknown) {
+            toast.error("Erro ao carregar posts: " + getErrorMessage(error));
         } finally {
             setLoading(false);
         }
-    };
+    }, []);
+
+    useEffect(() => {
+        checkAuth();
+        fetchPosts();
+    }, [checkAuth, fetchPosts]);
 
     const handleDelete = async (id: string) => {
         if (!confirm("Tem certeza que deseja excluir este post?")) return;
@@ -43,8 +51,8 @@ const AdminDashboard = () => {
             await postsService.deletePost(id);
             toast.success("Post excluído com sucesso!");
             fetchPosts();
-        } catch (error: any) {
-            toast.error("Erro ao excluir: " + error.message);
+        } catch (error: unknown) {
+            toast.error("Erro ao excluir: " + getErrorMessage(error));
         }
     };
 
@@ -59,7 +67,10 @@ const AdminDashboard = () => {
         <div className="min-h-screen bg-gray-50 p-8">
             <div className="max-w-5xl mx-auto space-y-8">
                 <div className="flex justify-between items-center bg-white p-6 rounded-lg shadow-sm">
-                    <h1 className="text-3xl font-bold text-gray-900">Painel Administrativo</h1>
+                    <div>
+                        <h1 className="text-3xl font-bold text-gray-900">Painel Administrativo</h1>
+                        <p className="text-sm text-gray-500 mt-1">Novos artigos do blog são criados e publicados por este painel em /admin.</p>
+                    </div>
                     <div className="space-x-4">
                         <Button onClick={() => navigate("/admin/posts/new")} className="gap-2">
                             <Plus size={18} /> Novo Post
