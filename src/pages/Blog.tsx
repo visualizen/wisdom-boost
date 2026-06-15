@@ -73,9 +73,9 @@ const Blog = () => {
 
   const featuredPosts = allPosts.filter(post => post.featured);
   // If no posts are marked as featured in DB, just pick the first one
-  const displayFeatured = featuredPosts.length > 0 ? featuredPosts : [allPosts[0]];
+  const displayFeatured = featuredPosts.length > 0 ? featuredPosts : (allPosts.length > 0 ? [allPosts[0]] : []);
 
-  const regularPosts = filteredPosts.filter(post => !displayFeatured.includes(post));
+  const regularPosts = filteredPosts.filter(post => post && !displayFeatured.includes(post));
 
   return (
     <div className="min-h-screen bg-background">
