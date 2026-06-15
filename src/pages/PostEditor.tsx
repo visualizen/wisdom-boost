@@ -12,6 +12,7 @@ import { postsService } from "@/services/postsService";
 import { supabase } from "@/integrations/supabase/client";
 import RichTextEditor from "@/components/RichTextEditor";
 import AIGeneratorModal from "@/components/AIGeneratorModal";
+import { ArticleResult } from "@/services/aiService";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const PostEditor = () => {
@@ -105,6 +106,18 @@ const PostEditor = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleArticleGenerated = (result: ArticleResult) => {
+        setFormData(prev => ({
+            ...prev,
+            title: result.title || prev.title,
+            content: result.content || prev.content,
+            meta_description: result.metaDescription || prev.meta_description,
+            keywords: result.keywords || prev.keywords,
+            slug: prev.slug || (result.title || '').toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
+        }));
+        toast.success("Conteúdo gerado inserido no editor!");
     };
 
     return (
@@ -260,6 +273,7 @@ const PostEditor = () => {
             <AIGeneratorModal
                 open={aiModalOpen}
                 onOpenChange={setAiModalOpen}
+                onArticleGenerated={handleArticleGenerated}
             />
         </div>
     );
