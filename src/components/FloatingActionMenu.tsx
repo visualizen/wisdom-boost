@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 import { FileText, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const FloatingActionMenu = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [isClosed, setIsClosed] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const isAdminRoute = location.pathname.startsWith('/admin');
 
     useEffect(() => {
-        if (isClosed) return;
+        if (isClosed || isAdminRoute) return;
 
         // Timer: show after 60 seconds
         const timer = setTimeout(() => {
@@ -30,14 +33,14 @@ const FloatingActionMenu = () => {
             clearTimeout(timer);
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [isClosed]);
+    }, [isClosed, isAdminRoute]);
 
     const handleClose = () => {
         setIsClosed(true);
         setIsVisible(false);
     };
 
-    if (!isVisible) return null;
+    if (!isVisible || isAdminRoute) return null;
 
     return (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 animate-fade-in-up">
@@ -72,3 +75,4 @@ const FloatingActionMenu = () => {
 };
 
 export default FloatingActionMenu;
+

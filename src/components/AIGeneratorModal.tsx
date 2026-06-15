@@ -1,319 +1,117 @@
 
-import { useState, useEffect } from "react";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { toast } from "sonner";
-import { Sparkles, Key, Trash2, Eye, EyeOff, Check, Loader2 } from "lucide-react";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { aiService, AIConfig, AIProvider, ArticleResult } from "@/services/aiService";
+import { Sparkles, Zap, Clock, TrendingUp, Search, PenTool, MessageCircle } from "lucide-react";
 
 interface AIGeneratorModalProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
-    onArticleGenerated?: (result: ArticleResult) => void;
 }
 
-const AIGeneratorModal = ({ open, onOpenChange, onArticleGenerated }: AIGeneratorModalProps) => {
-    const [loading, setLoading] = useState(false);
-    const [showKey, setShowKey] = useState(false);
-    const [keySaved, setKeySaved] = useState(false);
+const WHATSAPP_NUMBER = "5547984028961";
+const WHATSAPP_MESSAGE = encodeURIComponent(
+    "Olá! Tenho interesse em ativar a funcionalidade de Geração de Artigos com IA no meu painel administrativo. Gostaria de saber mais sobre como funciona e os valores."
+);
 
-    const [aiConfig, setAiConfig] = useState<AIConfig>({
-        provider: 'openai',
-        apiKey: '',
-        model: 'gpt-4o',
-    });
+const benefits = [
+    {
+        icon: Clock,
+        title: "Economize Horas",
+        description: "Gere rascunhos completos de artigos em menos de 1 minuto, prontos para revisão e publicação.",
+        color: "from-blue-500 to-cyan-500",
+    },
+    {
+        icon: Search,
+        title: "SEO Otimizado",
+        description: "Artigos estruturados com palavras-chave, meta descriptions e headings otimizados para Google.",
+        color: "from-emerald-500 to-teal-500",
+    },
+    {
+        icon: PenTool,
+        title: "Múltiplos Estilos",
+        description: "Escolha entre informativo, persuasivo, técnico ou descontraído. A IA adapta o tom para seu público.",
+        color: "from-violet-500 to-purple-500",
+    },
+    {
+        icon: Zap,
+        title: "Tecnologia de Ponta",
+        description: "Powered by GPT-4o e Claude — os modelos de IA mais avançados do mercado.",
+        color: "from-amber-500 to-orange-500",
+    },
+    {
+        icon: TrendingUp,
+        title: "Mais Conteúdo, Mais Tráfego",
+        description: "Publique com consistência e atraia mais visitantes orgânicos para o seu site.",
+        color: "from-pink-500 to-rose-500",
+    },
+];
 
-    const [formData, setFormData] = useState({
-        titulo: "",
-        tamanho: "medio" as 'curto' | 'medio' | 'longo',
-        estilo: "informativo",
-        prompt: "",
-        palavrasChave: ""
-    });
-
-    useEffect(() => {
-        if (open) {
-            const saved = aiService.loadConfig();
-            if (saved) {
-                setAiConfig(saved);
-                setKeySaved(true);
-            }
-        }
-    }, [open]);
-
-    const handleProviderChange = (provider: AIProvider) => {
-        setAiConfig(prev => ({
-            ...prev,
-            provider,
-            model: aiService.getDefaultModel(provider),
-        }));
-        setKeySaved(false);
-    };
-
-    const handleSaveKey = () => {
-        if (!aiConfig.apiKey.trim()) {
-            toast.error("Insira uma chave de API válida");
-            return;
-        }
-        aiService.saveConfig(aiConfig);
-        setKeySaved(true);
-        toast.success("Chave salva com segurança no navegador");
-    };
-
-    const handleRemoveKey = () => {
-        aiService.removeConfig();
-        setAiConfig(prev => ({ ...prev, apiKey: '' }));
-        setKeySaved(false);
-        toast.success("Chave removida");
-    };
-
-    const handleGenerate = async () => {
-        if (!aiConfig.apiKey.trim()) {
-            toast.error("Configure sua chave de API antes de gerar");
-            return;
-        }
-
-        if (!formData.titulo.trim()) {
-            toast.error("Insira pelo menos um título sugerido");
-            return;
-        }
-
-        setLoading(true);
-        try {
-            // Save config if not saved yet
-            if (!keySaved) {
-                aiService.saveConfig(aiConfig);
-                setKeySaved(true);
-            }
-
-            const result = await aiService.generateArticle(aiConfig, formData);
-
-            toast.success("Artigo gerado com sucesso!");
-
-            if (onArticleGenerated) {
-                onArticleGenerated(result);
-            }
-
-            onOpenChange(false);
-        } catch (error: unknown) {
-            const message = error instanceof Error ? error.message : "Erro desconhecido";
-            toast.error(message);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const maskKey = (key: string) => {
-        if (key.length <= 8) return key;
-        return key.slice(0, 6) + '•'.repeat(Math.min(key.length - 10, 20)) + key.slice(-4);
-    };
-
-    const models = aiService.getModels(aiConfig.provider);
-
+const AIGeneratorModal = ({ open, onOpenChange }: AIGeneratorModalProps) => {
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="sm:max-w-[650px] max-h-[90vh] overflow-y-auto">
-                <DialogHeader>
-                    <DialogTitle className="flex items-center gap-2 text-primary">
-                        <Sparkles className="w-5 h-5" />
-                        Gerador de Artigos com IA
-                    </DialogTitle>
-                    <DialogDescription>
-                        Configure sua chave de API e gere artigos completos com inteligência artificial.
-                    </DialogDescription>
-                </DialogHeader>
+            <DialogContent className="sm:max-w-[580px] max-h-[90vh] overflow-y-auto p-0 border-0 bg-transparent shadow-none">
+                <div className="rounded-2xl overflow-hidden">
+                    {/* Hero Header */}
+                    <div className="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 px-6 pt-8 pb-10 text-center">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_50%)]" />
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(255,255,255,0.1),transparent_40%)]" />
 
-                <div className="space-y-6 py-4">
-                    {/* API Configuration Section */}
-                    <div className="space-y-4 p-4 bg-slate-50 rounded-lg border border-slate-200">
-                        <div className="flex items-center gap-2 mb-1">
-                            <Key className="w-4 h-4 text-slate-600" />
-                            <h3 className="font-semibold text-sm text-slate-700">Configuração de API</h3>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                                <Label>Provedor</Label>
-                                <Select
-                                    value={aiConfig.provider}
-                                    onValueChange={(val) => handleProviderChange(val as AIProvider)}
-                                >
-                                    <SelectTrigger>
-                                        <SelectValue />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="openai">OpenAI</SelectItem>
-                                        <SelectItem value="anthropic">Anthropic</SelectItem>
-                                    </SelectContent>
-                                </Select>
+                        <div className="relative z-10">
+                            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm mb-4 mx-auto">
+                                <Sparkles className="w-8 h-8 text-white" />
                             </div>
-                            <div className="space-y-2">
-                                <Label>Modelo</Label>
-                                <Select
-                                    value={aiConfig.model}
-                                    onValueChange={(val) => setAiConfig(prev => ({ ...prev, model: val }))}
-                                >
-                                    <SelectTrigger>
-                                        <SelectValue />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {models.map((m) => (
-                                            <SelectItem key={m.id} value={m.id}>{m.label}</SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                        </div>
-
-                        <div className="space-y-2">
-                            <Label>Chave da API</Label>
-                            <div className="flex gap-2">
-                                <div className="relative flex-1">
-                                    <Input
-                                        type={showKey ? "text" : "password"}
-                                        placeholder={aiConfig.provider === 'openai' ? 'sk-...' : 'sk-ant-...'}
-                                        value={aiConfig.apiKey}
-                                        onChange={(e) => {
-                                            setAiConfig(prev => ({ ...prev, apiKey: e.target.value }));
-                                            setKeySaved(false);
-                                        }}
-                                        className="pr-10 font-mono text-sm"
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={() => setShowKey(!showKey)}
-                                        className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
-                                    >
-                                        {showKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                                    </button>
-                                </div>
-                                {keySaved ? (
-                                    <Button variant="outline" size="icon" onClick={handleRemoveKey} className="text-red-500 hover:text-red-700 hover:bg-red-50 shrink-0">
-                                        <Trash2 className="w-4 h-4" />
-                                    </Button>
-                                ) : (
-                                    <Button variant="outline" onClick={handleSaveKey} className="gap-1 shrink-0">
-                                        <Check className="w-4 h-4" /> Salvar
-                                    </Button>
-                                )}
-                            </div>
-                            {keySaved && (
-                                <p className="text-xs text-green-600 flex items-center gap-1">
-                                    <Check className="w-3 h-3" /> Chave salva no navegador (apenas local)
-                                </p>
-                            )}
-                            <p className="text-xs text-slate-500">
-                                Sua chave fica armazenada apenas no seu navegador. Nunca é enviada ao nosso servidor.
+                            <DialogHeader className="space-y-2">
+                                <DialogTitle className="text-2xl font-bold text-white">
+                                    Geração de Artigos com IA
+                                </DialogTitle>
+                            </DialogHeader>
+                            <p className="text-white/85 text-sm mt-2 max-w-sm mx-auto leading-relaxed">
+                                Crie artigos profissionais, otimizados para SEO, em segundos.
+                                Direto do seu painel administrativo.
                             </p>
                         </div>
                     </div>
 
-                    {/* Article Configuration Section */}
-                    <div className="space-y-4">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                                <Label htmlFor="titulo">Título Sugerido</Label>
-                                <Input
-                                    id="titulo"
-                                    placeholder="Ex: O futuro da logística..."
-                                    value={formData.titulo}
-                                    onChange={(e) => setFormData(prev => ({ ...prev, titulo: e.target.value }))}
-                                />
+                    {/* Benefits */}
+                    <div className="bg-white px-6 py-6 space-y-3">
+                        {benefits.map((benefit, i) => (
+                            <div
+                                key={i}
+                                className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors group"
+                            >
+                                <div className={`shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br ${benefit.color} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform`}>
+                                    <benefit.icon className="w-5 h-5 text-white" />
+                                </div>
+                                <div>
+                                    <h4 className="font-semibold text-slate-800 text-sm">{benefit.title}</h4>
+                                    <p className="text-slate-500 text-xs leading-relaxed mt-0.5">{benefit.description}</p>
+                                </div>
                             </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="tamanho">Tamanho Aproximado</Label>
-                                <Select
-                                    value={formData.tamanho}
-                                    onValueChange={(val) => setFormData(prev => ({ ...prev, tamanho: val as 'curto' | 'medio' | 'longo' }))}
-                                >
-                                    <SelectTrigger>
-                                        <SelectValue />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="curto">Curto (~500 palavras)</SelectItem>
-                                        <SelectItem value="medio">Médio (~1000 palavras)</SelectItem>
-                                        <SelectItem value="longo">Longo (~2000 palavras)</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                                <Label htmlFor="estilo">Estilo de Escrita</Label>
-                                <Select
-                                    value={formData.estilo}
-                                    onValueChange={(val) => setFormData(prev => ({ ...prev, estilo: val }))}
-                                >
-                                    <SelectTrigger>
-                                        <SelectValue />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="informativo">Informativo / Objetivo</SelectItem>
-                                        <SelectItem value="persuasivo">Persuasivo / Vendas</SelectItem>
-                                        <SelectItem value="tecnico">Técnico / Especializado</SelectItem>
-                                        <SelectItem value="descontraido">Descontraído / Blog</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="keywords">Palavras-chave (SEO)</Label>
-                                <Input
-                                    id="keywords"
-                                    placeholder="logística, importação, china"
-                                    value={formData.palavrasChave}
-                                    onChange={(e) => setFormData(prev => ({ ...prev, palavrasChave: e.target.value }))}
-                                />
-                            </div>
-                        </div>
-
-                        <div className="space-y-2">
-                            <Label htmlFor="prompt">Instruções Adicionais (Prompt)</Label>
-                            <Textarea
-                                id="prompt"
-                                placeholder="Descreva o que você gostaria que a IA focasse, público alvo, tom de voz, etc..."
-                                className="min-h-[100px]"
-                                value={formData.prompt}
-                                onChange={(e) => setFormData(prev => ({ ...prev, prompt: e.target.value }))}
-                            />
-                        </div>
+                        ))}
                     </div>
 
-                    {loading && (
-                        <Alert className="bg-indigo-50 border-indigo-200">
-                            <Loader2 className="h-4 w-4 text-indigo-600 animate-spin" />
-                            <AlertDescription className="text-indigo-700">
-                                Gerando artigo com {aiConfig.provider === 'openai' ? 'OpenAI' : 'Anthropic'} ({aiConfig.model})...
-                                Isso pode levar de 15 a 60 segundos.
-                            </AlertDescription>
-                        </Alert>
-                    )}
-
-                    <DialogFooter className="gap-2">
-                        <Button variant="outline" onClick={() => onOpenChange(false)} disabled={loading}>Cancelar</Button>
-                        <Button
-                            onClick={handleGenerate}
-                            disabled={loading || !aiConfig.apiKey.trim()}
-                            className="gap-2 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 border-0"
+                    {/* CTA Footer */}
+                    <div className="bg-slate-50 border-t border-slate-100 px-6 py-5">
+                        <p className="text-center text-slate-600 text-xs mb-4 leading-relaxed">
+                            Essa é uma função exclusiva para projetos e sistemas personalizados.
+                            <br />
+                            Para ativar essa funcionalidade, entre em contato com o desenvolvedor.
+                        </p>
+                        <a
+                            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block"
                         >
-                            {loading ? (
-                                <>
-                                    <Loader2 className="w-4 h-4 animate-spin" />
-                                    Gerando...
-                                </>
-                            ) : (
-                                <>
-                                    <Sparkles className="w-4 h-4" />
-                                    Gerar Artigo
-                                </>
-                            )}
-                        </Button>
-                    </DialogFooter>
+                            <Button className="w-full h-12 gap-2 rounded-xl text-base font-semibold bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 shadow-lg shadow-green-500/25 border-0 transition-all hover:shadow-xl hover:shadow-green-500/30 hover:scale-[1.02]">
+                                <MessageCircle className="w-5 h-5" />
+                                Ativar Funcionalidade
+                            </Button>
+                        </a>
+                        <p className="text-center text-slate-400 text-[10px] mt-3">
+                            Desenvolvido por Visualizen • Sistemas Inteligentes
+                        </p>
+                    </div>
                 </div>
             </DialogContent>
         </Dialog>
